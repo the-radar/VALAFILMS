@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  font-family: "Roboto";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
+}
+
+@font-face {
+font-family: "BauLF-Medium";
+src: local("BauLF-Medium"),
+ url("./fonts/BauLF-Medium.ttf") format("truetype");
+font-weight: regular;
+}
+
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: local("AkzidenzGrotesk-MediumCondAlt"),
+   url("./fonts/AkzidenzGrotesk-MediumCondAlt.otf") format("opentype");
+  
+  }
