@@ -111,7 +111,7 @@ const [showModal,setmodal]= useState(false)
             <input type="text" placeholder="EMAIL ADDRESS" name="email" required   />
             <input type="text" placeholder="PHONE" name="phone" required /> */}
             <div class="input-container">
-              <select required name="field" style="{max-width:400px !important}">
+              <select required name="field" style={{maxWidth: "400px"}}>
                 <option selected disabled>YOUR FIELD(S) OF SPECIALIZATION</option>
                 <option value="Directing">Directing</option>
                 <option value="Acting">Acting</option>
