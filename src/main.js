@@ -92,7 +92,7 @@ const [showModal,setmodal]= useState(false)
         <img src={logo} style={{zIndex:"9000"}} alt="" onClick={()=>{setview('home');setmodal(false)}} />
         <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A F I L M S</h1>
         <div style={{zIndex:"6000",color:"white"}}>
-          <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY: 'auto'}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
+          <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto",overflow:"hidden"}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
           <form  onSubmit={sendEmail}>
             <div class="input-container">
               <input id="name" class="input" type="text" name="name" required placeholder=" " />
@@ -111,7 +111,7 @@ const [showModal,setmodal]= useState(false)
             <input type="text" placeholder="EMAIL ADDRESS" name="email" required   />
             <input type="text" placeholder="PHONE" name="phone" required /> */}
             <div class="input-container">
-              <select required name="field">
+              <select required name="field" style="{max-width:400px}">
                 <option selected disabled>YOUR FIELD(S) OF SPECIALIZATION</option>
                 <option value="Directing">Directing</option>
                 <option value="Acting">Acting</option>
