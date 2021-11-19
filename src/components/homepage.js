@@ -82,7 +82,7 @@ export default function Homepage({ vid }) {
           <div className="">
 
             <div className="" id="myVideo">
-              <video autoPlay muted playsInline loop id="myVideo" style={{ opacity: isVideoLoaded ? 1 : 0 }} onLoadedData={onLoadedData}>
+              <video autoPlay muted playsInline loop id="myVideo" style={{ opacity: isVideoLoaded ? 1 : 0, filter:"saturate(75%)" }} onLoadedData={onLoadedData}>
                 <source src={`${link}`} type="video/mp4" />
               </video>
             </div>
