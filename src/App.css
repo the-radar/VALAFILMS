@@ -1853,3 +1853,13 @@ max-height: 350px;
 
 
       }
+      .element {
+        overflow-y: scroll !important;
+        scrollbar-width: none !important; /* Firefox */
+        -ms-overflow-style: none !important;   /* Internet Explorer 10+ */
+    }
+    .element:-webkit-scrollbar { /* WebKit */
+        width: 0 !important;
+        height: 0 !important;
+    }
+    

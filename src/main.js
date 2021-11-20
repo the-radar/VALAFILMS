@@ -176,7 +176,7 @@ const [showModal,setmodal]= useState(false)
 
     <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> <p className="cp-text">
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
-   SEND US AN EMAIL: INFO.VALAFILMS@GMAIL.COM
+   SEND US AN EMAIL: CONTACT@VALAFILMS.COM
 </p></div><br />
     © COPYRIGHT 2021 VALAFILMS. ALL RIGHTS RESERVED. 
     
