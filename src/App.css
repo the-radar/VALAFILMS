@@ -1796,7 +1796,7 @@ max-height: 350px;
       .radar img{
         max-width: 60px;
       }
-      input[type="text"],textarea {
+      input[type="text"], textarea, select {
         width: 300px;
   
       }
