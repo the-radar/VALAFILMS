@@ -241,7 +241,7 @@ const classes = useStyles()
 
 <div className="vidwriteup">
   <h1 className="slideup">COLLABORATIONS  </h1>
-<h4 className="baulf2 mdf" onClick={()=>{window.location.href="https://www.youtube.com/watch?v=YkOLO1wXi-w"}} >WATCH NOW</h4>
+<h4 className="baulf2 mdf" onClick={()=>{window.open("https://www.youtube.com/watch?v=YkOLO1wXi-w","_blank")}} >WATCH NOW</h4>
 </div>
 
 </div>

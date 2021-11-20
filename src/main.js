@@ -176,7 +176,7 @@ const [showModal,setmodal]= useState(false)
 
     <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> <p className="cp-text">
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
-   SEND US AN EMAIL: CONTACT@VALAFILMS.COM
+   SEND US AN EMAIL: INFO@VALAFILMS.COM
 </p></div><br />
     © COPYRIGHT 2021 VALAFILMS. ALL RIGHTS RESERVED. 
     
@@ -184,7 +184,7 @@ const [showModal,setmodal]= useState(false)
   
 
 
-<div className="radar" onClick={()=>{window.location.href="https://www.instagram.com/theradarspace"}}>
+<div className="radar" onClick={()=>{window.open("https://www.instagram.com/theradarspace",'_blank')}}>
   <img src={rad} alt=""/>
 </div>
     <div className="navcontent">
@@ -202,10 +202,10 @@ setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition
 </h1>
 <div className={styleCondition3 ? "slidedown " : "slideup "} onClick={()=>{setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>
                <div className="aflex"> 
-<a href="https://twitter.com/valafilms?s=21" className="fa fa-twitter"></a>
+<a href="https://twitter.com/valafilms?s=21" target="_blank" className="fa fa-twitter"></a>
 
-<a href="https://youtube.com/channel/UC-N-kXie3NtFqonao9Sbe8A" className="fa fa-youtube"></a>
-<a href="https://instagram.com/vala_films?utm_medium=copy_link" className="fa fa-instagram"></a></div> 
+<a href="https://youtube.com/channel/UC-N-kXie3NtFqonao9Sbe8A" target="_blank" className="fa fa-youtube"></a>
+<a href="https://instagram.com/vala_films?utm_medium=copy_link" target="_blank" className="fa fa-instagram"></a></div> 
 </div>
 
 
