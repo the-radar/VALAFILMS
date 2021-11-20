@@ -92,12 +92,12 @@ and define the future of media in Africa.</p>
             <h4>{`${member.name.name} : ${member.name.role} `}</h4>
            <div className="ics">
            <div className='lk'>
-       {!!member.name.fb && <a href={member.name.fb} className="fa fa-facebook"></a>}
-      { !!member.name.tw &&<a href={member.name.tw} className="fa fa-twitter"></a>}
-       {!!member.name.ggl &&<a href={member.name.ggl} className="fa fa-google"></a>}
-       {!!member.name.ytb &&<a href={member.name.ytb} className="fa fa-youtube"></a>}
-       {!!member.name.ig &&<a href={member.name.ig} className="fa fa-instagram"></a>}
-       {!!member.name.ln && <a href={member.name.ln} className="fa fa-linkedin"></a>}
+       {!!member.name.fb && <a href={member.name.fb} target="_blank" className="fa fa-facebook"></a>}
+      { !!member.name.tw &&<a href={member.name.tw}  target="_blank" className="fa fa-twitter"></a>}
+       {!!member.name.ggl &&<a href={member.name.ggl} target="_blank" className="fa fa-google"></a>}
+       {!!member.name.ytb &&<a href={member.name.ytb} target="_blank" className="fa fa-youtube"></a>}
+       {!!member.name.ig &&<a href={member.name.ig} target="_blank" className="fa fa-instagram"></a>}
+       {!!member.name.ln && <a href={member.name.ln} target="_blank" className="fa fa-linkedin"></a>}
 
        
        
