@@ -107,7 +107,7 @@ people like us in the film industry.</p>
             <div className="wrapper">
                 <h2>VALAFILMS</h2>
 <p><font color = "#c1872b">VALA</font> in the Persian language Farsi, means “supreme”, and how do we
-identify with this word, you may wonder? Here at Vala films, our aim is to
+identify with this word, you may wonder? Here at ValaFilms, our aim is to
 deliver the highest quality, in all we do and produce. This word not only
 defines our values as a company, but the true essence we portray in all that
 we do. Here at ValaFilms, we go beyond the expected standard, to give our
