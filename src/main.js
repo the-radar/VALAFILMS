@@ -72,7 +72,6 @@ function sendEmail(e) {
         Array.from(document.querySelectorAll("input")).forEach(
           input => (input.value = "")
         );
-        // Bobs: I'm stumped here
         // Array.from(document.querySelectorAll("select").selected).forEach(
         //   input => (option.value = "")
         // );
@@ -81,7 +80,7 @@ function sendEmail(e) {
         console.log(error.text);
     });
 }
-const [showModal,setmodal]= useState(false)
+export const [showModal,setmodal]= useState(false)
   return (
     <div className="App">
        
