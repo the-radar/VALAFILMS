@@ -6,6 +6,7 @@ import YouTube from 'react-youtube';
 import Scrollbutton from "./scrolltobottom"
 import VideoThumbnail from 'react-video-thumbnail';
 import Logo from '../files/Logo_Low.png';
+import setmodal from './main';
 export default function Homepage({ vid }) {
   const settings = {
 
