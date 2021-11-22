@@ -98,7 +98,7 @@ export default function Homepage({ vid }) {
             <div className="wrapper">
                 <h2>Who We ARE</h2>
 
-                <p className="hometext"><font color = "#c1872b" onClick={()=>{setmodal(true);
+                <p className="hometext"><font color = "#c1872b" onClick={()=>{main.setmodal(true);
 setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition3)}}>We</font> are a group of creatives just like you, seeking to create opportunities for
 people like us in the film industry.</p>
                     </div>
