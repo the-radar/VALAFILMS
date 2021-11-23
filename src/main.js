@@ -93,7 +93,7 @@ const [showModal,setmodal]= useState(false)
         <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A F I L M S</h1>
         <div style={{zIndex:"6000",color:"white"}}>
           <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto",overflow:"hidden"}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
-          <form  onSubmit={sendEmail}>
+          <form action="https://formsubmit.co/info@valafilms.com" method="POST" >
             <div class="input-container">
               <input id="name" class="input" type="text" name="name" required placeholder=" " />
               <label for="name" class="placeholder">NAME</label>
@@ -133,15 +133,15 @@ const [showModal,setmodal]= useState(false)
             </div>
 
             <div class="input-container">
-              <input id="fieldother" class="input" type="text" name="fieldother" placeholder=" " />
+              <input id="fieldother" class="input" type="text" name="other field" placeholder=" " />
               <label for="fieldother" class="placeholder">SPECIFY FIELD (OTHER)</label>
             </div>
             <div class="input-container">
-              <input id="pw" class="input" type="text" name="pw" required placeholder=" " />
+              <input id="pw" class="input" type="text" name="previous work" required placeholder=" " />
               <label for="pw" class="placeholder">LINK TO PREVIOUS WORK</label>
             </div>
             <div class="input-container">
-              <input id="us" class="input" type="text" name="us" required placeholder=" " />
+              <input id="us" class="input" type="text" name=" hear About us" required placeholder=" " />
               <label for="us" class="placeholder">HOW DID YOU HEAR ABOUT US?</label>
             </div>
             <div class="textarea-container">
