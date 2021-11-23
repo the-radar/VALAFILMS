@@ -6,6 +6,8 @@ import YouTube from 'react-youtube';
 import Scrollbutton from "./scrolltobottom"
 import VideoThumbnail from 'react-video-thumbnail';
 import Logo from '../files/Logo_Low.png';
+import setmodal from '../main';
+import Appm from '../main';
 export default function Homepage({ vid }) {
   const settings = {
 
@@ -98,7 +100,8 @@ export default function Homepage({ vid }) {
             <div className="wrapper">
                 <h2>Who We ARE</h2>
 
-                <p className="hometext"><font color = "#c1872b">We</font> are a group of creatives just like you, seeking to create opportunities for
+                <p className="hometext"><font color = "#c1872b" onClick={()=>{main.setmodal(true);
+setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition3)}}>We</font> are a group of creatives just like you, seeking to create opportunities for
 people like us in the film industry.</p>
                     </div>
           </div>
@@ -106,10 +109,10 @@ people like us in the film industry.</p>
             <div className="wrapper">
                 <h2>VALAFILMS</h2>
 <p><font color = "#c1872b">VALA</font> in the Persian language Farsi, means “supreme”, and how do we
-identify with this word, you may wonder? Here at Vala films, our aim is to
+identify with this word, you may wonder? Here at ValaFilms, our aim is to
 deliver the highest quality, in all we do and produce. This word not only
 defines our values as a company, but the true essence we portray in all that
-we do. Here at Vala, we go beyond the expected standard, to give our
+we do. Here at ValaFilms, we go beyond the expected standard, to give our
 consumers authenticity.</p>
                    </div> 
           </div>
@@ -131,7 +134,7 @@ consumers authenticity.</p>
                 <p className="hometext">Are you involved in any aspect of film, and seeking opportunities to share
 your content with the world? Do you have ideas that require the best teams
 to execute?
-Simply mail us here: <font color = "#c1872b">info@valafilms@gmail.com</font>.
+Fill the form <font color = "#c1872b">here</font> and we'll be in touch.
 We look forward to having you on our team!</p>
                   </div>
           </div>
@@ -141,7 +144,7 @@ We look forward to having you on our team!</p>
 
               <p class="hometext"><font color = "#c1872b">Valafilms</font> is a bridge for creatives in the film industry to connect,
 collaborate and create. We provide a space designed to cater
-predominantly for creatives in the all over Africa. Through the platforms we
+predominantly for creatives all over Africa. Through the platforms we
 provide, creatives are given the pedestal to hone their skills and abilities, in
 order to produce art that will spread across the globe. Through our
 platform, your rights as a content producer is protected, along with your

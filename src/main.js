@@ -72,7 +72,6 @@ function sendEmail(e) {
         Array.from(document.querySelectorAll("input")).forEach(
           input => (input.value = "")
         );
-        // Bobs: I'm stumped here
         // Array.from(document.querySelectorAll("select").selected).forEach(
         //   input => (option.value = "")
         // );
@@ -81,7 +80,7 @@ function sendEmail(e) {
         console.log(error.text);
     });
 }
-const [showModal,setmodal]= useState(false)
+export const [showModal,setmodal]= useState(false)
   return (
     <div className="App">
        
@@ -105,6 +104,22 @@ const [showModal,setmodal]= useState(false)
             <div class="input-container">
               <input id="phone" class="input" type="text" name="phone" required placeholder=" " />
               <label for="phone" class="placeholder">PHONE</label>
+            </div>
+            <div class="input-container">
+              <select required name="sex">
+                <option selected disabled>GENDER</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="input-container">
+              <input id="dob" class="input" type="text" name="dob" required placeholder=" " />
+              <label for="dob" class="placeholder">DATE OF BIRTH (DD-MM-YYYY)</label>
+            </div>
+            <div class="input-container">
+              <input id="address" class="input" type="text" name="address" required placeholder=" " />
+              <label for="address" class="placeholder">ADDRESS</label>
             </div>
             
             {/* <input type="text" placeholder="NAME" name="name" required />
@@ -146,7 +161,7 @@ const [showModal,setmodal]= useState(false)
             </div>
             <div class="textarea-container">
               <textarea id="message" class="input" name="message" required placeholder=" "></textarea>
-              <label for="message" class="placeholder">YOUR MESSAGE</label>
+              <label for="message" class="placeholder">YOUR COMMENT</label>
             </div>
             
             {/* <input type="text" placeholder="SPECIFY FIELD (OTHER)" name="fieldother"/>

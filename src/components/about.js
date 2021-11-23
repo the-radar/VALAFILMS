@@ -59,7 +59,7 @@ convert(snapshot.val())
 <h1>OUR TEAM</h1>
 <br />
       
-<p>Here at Vala Films, our people are our greatest asset. Collaboration is a big
+<p>Here at ValaFilms, our people are our greatest asset. Collaboration is a big
 part of our culture and we have a team of young, talented and passionate
 creatives who bring fresh perspectives and infectious energy to actualize
 impactful projects.
@@ -88,7 +88,7 @@ and define the future of media in Africa.</p>
         >
          {!!myarray&& myarray.map((member, index) => (
             <div className="teamcontent">
-            <img src={member.name.imageUrl} alt="" width="300"  />
+            <img src={member.name.imageUrl} alt="" width="300" height="420" />
             <h4>{`${member.name.name} : ${member.name.role} `}</h4>
            <div className="ics">
            <div className='lk'>
