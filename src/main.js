@@ -34,12 +34,17 @@ function Appm() {
  const [styleCondition3,setstyle3]=useState(true);
  const [visible, setVisiblity] = useState("");
 const[view,setview]=useState('home');
+ function setpropsvalue(){
+  
+  setmodal(true);
+  
+ }
 
  function setviews(role) {
   
   switch(role) {
     case 'home':
-      return <Home vid={Vid}/>
+      return <Home vid={Vid} joinusprop={setpropsvalue} />
     case 'projects':
     return <Projects vid={Vid2} />
     case 'collab':
@@ -80,7 +85,7 @@ function sendEmail(e) {
         console.log(error.text);
     });
 }
-export const [showModal,setmodal]= useState(false)
+ const [showModal,setmodal]= useState(false)
   return (
     <div className="App">
        
@@ -177,7 +182,7 @@ export const [showModal,setmodal]= useState(false)
     {setviews(view)}
         
         <div id="nav-icon2" className={styleCondition2 ? "spin circle": "spin circle open"} onClick={(e)=>{ e.preventDefault();setstyle2(!styleCondition2);setstyle3(!styleCondition3);
-        setstyle(!styleCondition)}}>
+        setstyle(!styleCondition) ;setmodal(false)}}>
   <span ></span>
   <span ></span>
   <span ></span>
@@ -211,7 +216,7 @@ export const [showModal,setmodal]= useState(false)
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('collab');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>collaborations</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('adverts');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>commercials</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('team');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>team</h1>
-<h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setmodal(true);
+<h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setmodal(true);
 setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}> 
    JOIN US
 </h1>

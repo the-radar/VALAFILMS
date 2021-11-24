@@ -6,9 +6,8 @@ import YouTube from 'react-youtube';
 import Scrollbutton from "./scrolltobottom"
 import VideoThumbnail from 'react-video-thumbnail';
 import Logo from '../files/Logo_Low.png';
-import setmodal from '../main';
-import Appm from '../main';
-export default function Homepage({ vid }) {
+
+export default function Homepage({ vid ,joinusprop }) {
   const settings = {
 
     infinite: true,
@@ -100,8 +99,7 @@ export default function Homepage({ vid }) {
             <div className="wrapper">
                 <h2>Who We ARE</h2>
 
-                <p className="hometext"><font color = "#c1872b" onClick={()=>{main.setmodal(true);
-setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition3)}}>We</font> are a group of creatives just like you, seeking to create opportunities for
+                <p className="hometext"><font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>We</font> are a group of creatives just like you, seeking to create opportunities for
 people like us in the film industry.</p>
                     </div>
           </div>
@@ -134,7 +132,7 @@ consumers authenticity.</p>
                 <p className="hometext">Are you involved in any aspect of film, and seeking opportunities to share
 your content with the world? Do you have ideas that require the best teams
 to execute?
-Fill the form <font color = "#c1872b">here</font> and we'll be in touch.
+Fill the form <font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>here</font> and we'll be in touch.
 We look forward to having you on our team!</p>
                   </div>
           </div>
