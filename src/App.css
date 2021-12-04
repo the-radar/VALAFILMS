@@ -110,7 +110,7 @@ border-radius: 2px;
   opacity: 0.8;
   font-family: "Akzidenz-Grotesk BQ";
   font-weight: 100;
-  font-size: 14px;
+  font-size: 20px;
   margin-top: 16px;
   margin-left: 17%;
   margin-right: 15%;
@@ -941,7 +941,7 @@ html, body {
 }
 
 body {
-  font: 14px/1 'Akzidenz-Grotesk BQ';
+  font: 20px/1 'Akzidenz-Grotesk BQ';
   color: #EEEEEE ;
   background: #010101;
   -webkit-font-smoothing: antialiased;
@@ -1007,7 +1007,7 @@ textarea {
   opacity: 0.7;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 8px;
+  font-size: 14px;
   top: 14px; 
   left: 14px;
   pointer-events: none;
@@ -1047,7 +1047,7 @@ input[type="text"] {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 8px;
+  font-size: 14px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1067,7 +1067,7 @@ textarea {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 8px;
+  font-size: 14px;
   border: 2px solid rgba(230,230,230,0.1)
 }
 
@@ -1084,7 +1084,7 @@ select {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 8px;
+  font-size: 14px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1151,7 +1151,7 @@ select:hover {
   padding: 10px 15px;
   background: #c1872b ;
   border-top: 1px solid #010101;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.4;
   cursor: pointer;
   color: #010101;
@@ -1234,7 +1234,7 @@ select:hover {
   height: 20px;
   margin: -3px 5px 0 -15px;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 20px;
   font-family: fontawesome;
   line-height: 19px;
   text-align: center;
@@ -1748,7 +1748,7 @@ max-height: 350px;
         justify-content: center;
       }
       .hometext{
-        font-size: 14px;
+        font-size: 20px;
         text-align: justify;
         
       }
@@ -1770,7 +1770,7 @@ max-height: 350px;
       }
       .slidecontent p{
       width: 80%;
-      font-size: 14px;
+      font-size: 20px;
       }
       .slidecontent h1,.slidecontent h2{
         color:  #c1872b ;
