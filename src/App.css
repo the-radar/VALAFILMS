@@ -109,6 +109,7 @@ border-radius: 2px;
   color: #eeeeee;
   opacity: 0.8;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
   font-size: 16px;
@@ -340,6 +341,7 @@ align-items: center;
   margin-top: 5px;
   width:400px;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
 }
@@ -456,7 +458,7 @@ button[disabled]{
     .gmail{
       color: #c1872b;
       font-weight: 100;
-      font-size: 10px;
+      font-size: 16px;
     }
   .radar {
     animation: pulse 5s infinite ease-in-out;
@@ -779,6 +781,7 @@ font-family:  'pfdintextpro-regular';
   font-weight: 700;
   overflow: hidden;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
   margin-top: 30px;
@@ -1012,11 +1015,10 @@ textarea {
   color: #eee;
   opacity: 0.7;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  
-
-  font-size: 14px;
+  font-size: 12px;
   top: 14px; 
   left: 14px;
   pointer-events: none;
@@ -1051,16 +1053,15 @@ input[type="text"] {
   display: block;
   width: 400px;
   margin: 0 0 20px;
-  margin-top: 4px;
+  margin-top: 5px;
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   color: #eee;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  
-
-  font-size: 14px;
+  font-size: 12px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1074,16 +1075,18 @@ textarea {
   width: 400px;
   height: 150px;
   margin: 0 0 20px;
+  margin-top: 5px;
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   background: rgba(0,0,0,.25);
   color: #eee;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
   
 
-  font-size: 14px;
+  font-size: 12px;
   border: 2px solid rgba(230,230,230,0.1)
 }
 
@@ -1099,11 +1102,11 @@ select {
   background: rgba(0,0,0,.25);
   color: #eee;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  
-
-  font-size: 13px;
+  margin-top: 5px;
+  font-size: 12px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1117,6 +1120,7 @@ select:hover {
   display: inline-block;
   width: 100%;
   font-family: "pfdintextpro-regular";
+  text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
   
@@ -1173,7 +1177,7 @@ select:hover {
   padding: 10px 15px;
   background: #c1872b ;
   border-top: 1px solid #010101;
-  font-size: 20px;
+  font-size: 12px;
   line-height: 1.4;
   cursor: pointer;
   color: #010101;
@@ -1291,7 +1295,7 @@ input[type="submit"] {
   width: 150px;
   outline: none;
   font-family: "pfdintextpro-medium";
-  font-size: 16px;
+  font-size: 12px;
   box-sizing: border-box;
   border: 2px solid rgba(230,230,230,0.1);
   letter-spacing: 2px;
@@ -1713,7 +1717,7 @@ max-height: 350px;
       .cp-text {
         position: absolute;
         bottom: 10px;
-        font-size: 10px;
+        font-size: 14px;
         opacity: 0.8;
         /* right: 50%; */
        
