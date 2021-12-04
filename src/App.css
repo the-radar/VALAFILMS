@@ -1771,7 +1771,7 @@ max-height: 350px;
         justify-content: center;
       }
       .hometext{
-        font-size: 20px;
+        font-size: 14px;
         text-align: justify;
         
       }
@@ -1793,7 +1793,7 @@ max-height: 350px;
       }
       .slidecontent p{
       width: 82%;
-      font-size: 20px;
+      font-size: 14px;
       max-width: 82%;
       }
       .slidecontent h1,.slidecontent h2{
