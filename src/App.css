@@ -1597,9 +1597,7 @@ max-height: 350px;
         padding:0;
         /* display: none; */
       }
-      .homecon h1 {
-        display: none;
-      }
+      
       .slideimg{
         max-width: 400px;
       }
@@ -1612,7 +1610,7 @@ max-height: 350px;
       .homecon {
         position: fixed;
         top: 20px;
-        left: 5px;
+        left: 10px;
         z-index: 1000;
         color: #EEE;
         display: flex;
