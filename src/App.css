@@ -675,8 +675,9 @@ text-align: left;
 text-align: left;
 font-weight: bold;
 font-family:  'pfdintextpro-regular';
-
+text-transform: uppercase;
 }
+
 .vidwriteup h1{
   font-family: 'Akzidenz-Grotesk BQ';
   font-size: 55px;
@@ -950,6 +951,7 @@ html, body {
 
 body {
   font: 16px/1 'pfdintextpro-regular';
+  text-transform: uppercase;
   letter-spacing: 2px;
   color: #EEEEEE ;
   background: #010101;
@@ -1295,6 +1297,7 @@ input[type="submit"] {
   width: 150px;
   outline: none;
   font-family: "pfdintextpro-medium";
+  text-transform: uppercase;
   font-size: 12px;
   box-sizing: border-box;
   border: 2px solid rgba(230,230,230,0.1);
