@@ -108,7 +108,7 @@ border-radius: 2px;
 .slidecontent p{
   color: #eeeeee;
   opacity: 0.8;
-  font-family: "BauLF-Medium";
+  font-family: "Akzidenz-Grotesk BQ";
   font-weight: 100;
   font-size: 14px;
   margin-top: 16px;
@@ -775,7 +775,7 @@ font-family:  'Akzidenz-Grotesk BQ';
   width: 100vw;
   font-weight: 700;
   overflow: hidden;
-  font-family: 'BauLF-Medium', ;
+  font-family: 'Akzidenz-Grotesk BQ', ;
   margin-top: 30px;
 }
 
@@ -941,7 +941,7 @@ html, body {
 }
 
 body {
-  font: 14px/1 'BauLF-Medium';
+  font: 14px/1 'Akzidenz-Grotesk BQ';
   color: #EEEEEE ;
   background: #010101;
   -webkit-font-smoothing: antialiased;
@@ -1005,7 +1005,7 @@ textarea {
 .placeholder {
   color: #eee;
   opacity: 0.7;
-  font-family: 'BauLF-Medium';
+  font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
   font-size: 8px;
   top: 14px; 
@@ -1045,7 +1045,7 @@ input[type="text"] {
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'BauLF-Medium';
+  font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
   font-size: 8px;
   height: 40px;
@@ -1065,7 +1065,7 @@ textarea {
   background: rgba(0,0,0,.25);
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'BauLF-Medium';
+  font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
   font-size: 8px;
   border: 2px solid rgba(230,230,230,0.1)
@@ -1082,7 +1082,7 @@ select {
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'BauLF-Medium';
+  font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
   font-size: 8px;
   height: 40px;
@@ -1268,7 +1268,7 @@ input[type="submit"] {
   display: inline-block;
   width: 150px;
   outline: none;
-  font-family: "BauLF-Medium";
+  font-family: "Akzidenz-Grotesk BQ";
   font-size: 8px;
   box-sizing: border-box;
   border: 2px solid rgba(230,230,230,0.1);
