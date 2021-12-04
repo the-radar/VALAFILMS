@@ -1771,8 +1771,9 @@ max-height: 350px;
         align-items: center;
       }
       .slidecontent p{
-      width: 80%;
+      width: 82%;
       font-size: 20px;
+      max-width: 82%;
       }
       .slidecontent h1,.slidecontent h2{
         color:  #c1872b ;
