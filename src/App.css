@@ -109,7 +109,8 @@ border-radius: 2px;
   color: #eeeeee;
   opacity: 0.8;
   font-family: "pfdintextpro-regular";
-  font-weight: 100;
+  letter-spacing: 2px;
+  line-height: 28px;
   font-size: 16px;
   margin-top: 16px;
   margin-left: 17%;
@@ -338,7 +339,9 @@ align-items: center;
   margin-left: 20px;
   margin-top: 5px;
   width:400px;
-  font-family: 'pfdintextpro-regular'
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
 }
 .rodalform button{
   background-color: olive;
@@ -775,7 +778,9 @@ font-family:  'pfdintextpro-regular';
   width: 100vw;
   font-weight: 700;
   overflow: hidden;
-  font-family: 'pfdintextpro-regular', ;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
   margin-top: 30px;
 }
 
@@ -942,7 +947,7 @@ html, body {
 
 body {
   font: 16px/1 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   color: #EEEEEE ;
   background: #010101;
   -webkit-font-smoothing: antialiased;
@@ -1006,8 +1011,11 @@ textarea {
 .placeholder {
   color: #eee;
   opacity: 0.7;
-  font-family: 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
+  
+
   font-size: 14px;
   top: 14px; 
   left: 14px;
@@ -1047,8 +1055,11 @@ input[type="text"] {
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
+  
+
   font-size: 14px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
@@ -1067,8 +1078,11 @@ textarea {
   background: rgba(0,0,0,.25);
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
+  
+
   font-size: 14px;
   border: 2px solid rgba(230,230,230,0.1)
 }
@@ -1084,8 +1098,11 @@ select {
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
   color: #eee;
-  font-family: 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
+  
+
   font-size: 13px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
@@ -1099,8 +1116,11 @@ select:hover {
   position: relative;
   display: inline-block;
   width: 100%;
-  font-family: 'pfdintextpro-regular';
-  letter-spacing: 1px;
+  font-family: "pfdintextpro-regular";
+  letter-spacing: 2px;
+  line-height: 28px;
+  
+
 }
  .select-dropdown:last-child {
   margin-right: 0px;
@@ -1274,7 +1294,7 @@ input[type="submit"] {
   font-size: 16px;
   box-sizing: border-box;
   border: 2px solid rgba(230,230,230,0.1);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   line-height: 2.5em;
   text-transform: uppercase;
   padding: 0 1em;
