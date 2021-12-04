@@ -1606,10 +1606,12 @@ max-height: 350px;
       
     }
     @media only screen and (max-width: 768px) {
-      .storedvideo{
-        
-        
+
+      .gmail{
+        font-size: 12px;
+        margin-bottom: 45px;
       }
+
       .teampage{
         max-height: 200vh;
       }
@@ -1717,8 +1719,8 @@ max-height: 350px;
       }
       .cp-text {
         position: absolute;
-        bottom: 10px;
-        font-size: 14px;
+        bottom: 30px;
+        font-size: 12px;
         opacity: 0.8;
         /* right: 50%; */
        
@@ -1736,7 +1738,7 @@ max-height: 350px;
       .radar {
         animation: pulse 3s infinite ease-in-out;
         position: absolute;
-        bottom: 50px;
+        bottom: 10px;
         left: 50%;
         color: rgba(255, 255, 255, 0.7);
         text-shadow: 0 1px rgb(255 255 255 / 10%);
