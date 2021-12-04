@@ -96,7 +96,7 @@ function sendEmail(e) {
         <img src={logo} style={{zIndex:"9000"}} alt="" onClick={()=>{setview('home');setmodal(false)}} />
         <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A F I L M S</h1>
         <div style={{zIndex:"6000",color:"white"}}>
-          <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto",overflow:"hidden"}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
+          <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto"}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
           <form action="https://formsubmit.co/info@valafilms.com" method="POST" >
             <div class="input-container">
               <input id="name" class="input" type="text" name="name" required placeholder=" " />
