@@ -439,11 +439,11 @@ button[disabled]{
 
   position: absolute;
   bottom:50px;
-  font-size: 10px;
+  font-size: 14px;
   opacity: 0.8;
    color: #EEE;
    z-index:400;
-   text-align: left;
+   text-align: center;
   }
   .cp-text2{
 
@@ -1020,7 +1020,7 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  font-size: 12px;
+  font-size: 10px;
   top: 14px; 
   left: 14px;
   pointer-events: none;
@@ -1063,7 +1063,7 @@ input[type="text"] {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  font-size: 12px;
+  font-size: 10px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1086,9 +1086,7 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 28px;
-  
-
-  font-size: 12px;
+  font-size: 10px;
   border: 2px solid rgba(230,230,230,0.1)
 }
 
@@ -1108,7 +1106,7 @@ select {
   letter-spacing: 2px;
   line-height: 28px;
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 10px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1179,7 +1177,7 @@ select:hover {
   padding: 10px 15px;
   background: #c1872b ;
   border-top: 1px solid #010101;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.4;
   cursor: pointer;
   color: #010101;
@@ -1298,7 +1296,7 @@ input[type="submit"] {
   outline: none;
   font-family: "pfdintextpro-medium";
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 10px;
   box-sizing: border-box;
   border: 2px solid rgba(230,230,230,0.1);
   letter-spacing: 2px;
