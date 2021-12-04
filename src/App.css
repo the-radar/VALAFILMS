@@ -1609,7 +1609,6 @@ max-height: 350px;
 
       .gmail{
         font-size: 12px;
-        margin-bottom: 45px;
       }
 
       .teampage{
@@ -1719,7 +1718,7 @@ max-height: 350px;
       }
       .cp-text {
         position: absolute;
-        bottom: 30px;
+        bottom: 90px;
         font-size: 12px;
         opacity: 0.8;
         /* right: 50%; */
