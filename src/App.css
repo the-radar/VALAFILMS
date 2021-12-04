@@ -1007,7 +1007,7 @@ textarea {
   opacity: 0.7;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   top: 14px; 
   left: 14px;
   pointer-events: none;
@@ -1047,7 +1047,7 @@ input[type="text"] {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
@@ -1067,7 +1067,7 @@ textarea {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   border: 2px solid rgba(230,230,230,0.1)
 }
 
@@ -1084,7 +1084,7 @@ select {
   color: #eee;
   font-family: 'Akzidenz-Grotesk BQ';
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   height: 40px;
   border: 2px solid rgba(230,230,230,0.1);
 }
