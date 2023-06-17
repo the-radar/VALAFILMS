@@ -198,13 +198,13 @@ function sendEmail(e) {
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
    SEND US AN EMAIL: INFO@VALAFILMS.COM
 </p></div><br />
-    © COPYRIGHT 2021 VALAFILMS. ALL RIGHTS RESERVED. 
+    © COPYRIGHT 2023 VALAFILMS. ALL RIGHTS RESERVED. 
     
 </p></div>
   
 
 
-<div className="radar" onClick={()=>{window.open("https://www.instagram.com/theradarspace",'_blank')}}>
+<div className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>
   <img src={rad} alt=""/>
 </div>
     <div className="navcontent">

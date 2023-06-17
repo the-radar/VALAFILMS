@@ -238,8 +238,10 @@ const classes = useStyles()
       <div className="flexunder">
 <div className="content"> 
 <h2>{obj2[item].TITLE}</h2>
+<br />
 <p>{obj2[item].CAPTION}</p>
-<h1 className="baulf2"  style={{width:'fit-content'}} onClick={()=>{setmodal(true)}}>Watch Trailer</h1>
+{/* <h1 className="baulf2"  style={{width:'fit-content'}} onClick={()=>{setmodal(true)}}>Watch Trailer</h1> */}
+<br />
 <div className='' >
 <Slider {...settings3}>
 {obj2[item].supprtingimages.map((imgurl, index) => (
