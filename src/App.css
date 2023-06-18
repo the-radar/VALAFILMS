@@ -33,10 +33,11 @@ border-radius: 2px;
   margin-bottom: 10px;
 }
 .poster img{
-  max-height: 500px;
- 
+  max-height: 750px;
   margin: 20px auto;
-  
+  max-width: 100%;
+  padding: 10px;
+  margin-top: 10px;
 }
 .flexunder{
   display: flex;
@@ -1660,11 +1661,6 @@ max-height: 350px;
       .flexunder{
         flex-direction: column;
       }
-      .poster img {
-        max-width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-      }
       .nav-content-container>h1 {
         font-size: 40px;
       }.nav-content-container{
@@ -1845,55 +1841,52 @@ max-height: 350px;
       }
       }
       @media only screen and (max-width: 500px) {
-.teampage{
-  position: absolute;
-}
+        .teampage{
+          position: absolute;
+        }
 
-.content{
-  margin: 0 15px;
-  max-width: 90vw;
+        .content{
+          margin: 0 15px;
+          max-width: 90vw;
+        }
+        .middle{
+          width: 50px;
+          margin-left: -25px;
+          
+          margin-top: -25px;
+        }
+        .homecon {
+          position: fixed;
+          top: 20px;
+          left: 10%;
+          z-index: 1000;
+          color: #EEE;
+          display: flex;
+          max-width: 400px;
+          height: 40px;
+          align-items: center;
+          /* margin-left: -54px; */
+        }
+        .homecon h1{
+          display: none;
+        }
+        .newimage img{
+
+          max-width: 300px;
+          margin:auto
+        }
+
+        .flexunder{
+          flex-direction: column-reverse;
+        }
+      }
+
+.element {
+  overflow-y: scroll !important;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-.middle{
-  width: 50px;
-  margin-left: -25px;
-  
-  margin-top: -25px;
-}
-.homecon {
-  position: fixed;
-  top: 20px;
-  left: 10%;
-  z-index: 1000;
-  color: #EEE;
-  display: flex;
-  max-width: 400px;
-  height: 40px;
-  align-items: center;
-  margin-left: -54px;
-}
-.homecon h1{
+.element:-webkit-scrollbar { /* WebKit */
   display: none;
 }
-.newimage img{
-
-  max-width: 300px;
-  margin:auto
-}
-
-.flexunder{
-  flex-direction: column-reverse;
-}
-
-
-
-      }
-      .element {
-        overflow-y: scroll !important;
-        scrollbar-width: none !important; /* Firefox */
-        -ms-overflow-style: none !important;   /* Internet Explorer 10+ */
-    }
-    .element:-webkit-scrollbar { /* WebKit */
-        width: 0 !important;
-        height: 0 !important;
-    }
     
