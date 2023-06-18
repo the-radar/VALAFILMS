@@ -97,22 +97,21 @@ export default function Homepage({ vid ,joinusprop }) {
         <Slider {...settings}>
         <div className="slidecontent">
             <div className="wrapper">
-                <h2>Who We ARE</h2>
+                <h2>Who We Are</h2>
 
                 <p className="hometext"><font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>We</font> are a group of creatives just like you, seeking to create opportunities for
-people like us in the film industry.</p>
+                for talented individuals who want to make a way for themselves in the film industry.</p>
                     </div>
           </div>
           <div className="slidecontent">
             <div className="wrapper">
-                <h2>VALAFILMS</h2>
-<p><font color = "#c1872b">VALA</font> in the Persian language Farsi, means “supreme”, and how do we
-identify with this word, you may wonder? Here at ValaFilms, our aim is to
-deliver the highest quality, in all we do and produce. This word not only
-defines our values as a company, but the true essence we portray in all that
-we do. Here at ValaFilms, we go beyond the expected standard, to give our
-consumers authenticity.</p>
-                   </div> 
+              <h2>VALA FILMS</h2>
+              <p className="hometext">In the ancient Persian Language of Farsi, <font color = "#c1872b">VALA</font> means “supreme”, 
+              and we believe that there is no better reflection of what we at Vala Films represent!</p>
+
+              <p className="hometext">We aim to go above and beyond each time, exceeding the expectation in whatever we produce, 
+              taking your vision and our standards to new heights. Our goal is to be "Supreme" in every way!</p>
+            </div> 
           </div>
           
           <div className="slidecontent">
@@ -121,34 +120,39 @@ consumers authenticity.</p>
 
                 <p class="hometext">To connect creatives.</p>
                 <p className="hometext">Enhance the quality of content.</p>
-                <p className="hometext">Connect creators with the best suited teams.</p>
-                <p className="hometext">Create and find opportunities that empower.</p>
-                <p className="hometext">Improve the entire entertainment space.</p>
+                <p className="hometext">Build teams of creators that assist each other to achieve respective goals.</p>
+                <p className="hometext">Create and find opportunities that empower starter-ups in the industry.</p>
+                <p className="hometext">Improve the entire entertainment space for future creators.</p>
               </div></div>
           <div className="slidecontent">
             <div className="wrapper">
-                <h2>HOW YOU FIT IN</h2>
+              <h2>HOW YOU FIT IN</h2>
 
-                <p className="hometext">Are you involved in any aspect of film, and seeking opportunities to share
-your content with the world? Do you have ideas that require the best teams
-to execute?
-Fill the form <font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>here</font> and we'll be in touch.
-We look forward to having you on our team!</p>
-                  </div>
+              <p className="hometext">Whether you are A writer, Actor, Cinematographer, or you are involved in any other aspects of film, 
+              Vala films could be the platform you need for your next project.  
+              <br />
+              If you are seeking opportunities to share your content with the world or you need the right team to help you execute your vision 
+              in film and content, you’ve come to the right place!
+              <br />
+              Fill the form <font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>here</font> 
+              or send us an email at <font color = "#c1872b" style={{cursor:"pointer"}}>info@valafilms.com</font> and we'll be in touch.
+              We look forward to hearing about your creative ideas!</p>
+            </div>
           </div>
           <div className="slidecontent">
             <div className="wrapper">
               <h2>WHAT WE DO</h2>
 
-              <p class="hometext"><font color = "#c1872b">Valafilms</font> is a bridge for creatives in the film industry to connect,
-collaborate and create. We provide a space designed to cater
-predominantly for creatives all over Africa. Through the platforms we
-provide, creatives are given the pedestal to hone their skills and abilities, in
-order to produce art that will spread across the globe. Through our
-platform, your rights as a content producer is protected, along with your
-ability to exercise your creative freedom, as we do not prohibit the creatives
-under us the right to express their passion in their own ways.</p>
-               </div> 
+              <p class="hometext">At <font color = "#c1872b">Vala Films</font>, we provide the space for creatives in the film industry to connect, 
+              collaborate and create. Using our platform, creatives and dreamers get a chance to hone their skills and 
+              rise to the demands of the modern film and entertainment industry.</p>
+
+              <p class="hometext">We work with a range of different creatives from filmmakers to actors, writers, or cinematographers. 
+              With us, not only do you get the chance to discover your full untapped potential, you get to do so without restriction; 
+              Vala films values creative freedom and diverse forms of expression.</p>
+
+              <p class="hometext">Under our guidance, you can also be sure that your rights as a content producer will be protected!</p>
+            </div> 
           </div>
 
         </Slider>

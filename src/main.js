@@ -94,7 +94,7 @@ function sendEmail(e) {
       <div className="homecon">
 
         <img src={logo} style={{zIndex:"9000"}} alt="" onClick={()=>{setview('home');setmodal(false)}} />
-        <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A F I L M S</h1>
+        <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A   F I L M S</h1>
         <div style={{zIndex:"6000",color:"white"}}>
           <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto"}} visible={showModal}  enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
           <form action="https://formsubmit.co/info@valafilms.com" method="POST" >
@@ -196,9 +196,9 @@ function sendEmail(e) {
 
     <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> <p className="cp-text">
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
-   SEND US AN EMAIL: INFO@VALAFILMS.COM
+   Send us an email: info@valafilms.com
 </p></div><br />
-    © COPYRIGHT 2023 VALAFILMS. ALL RIGHTS RESERVED. 
+    © Copyright 2023 Vala Films. All Rights Reserved. 
     
 </p></div>
   

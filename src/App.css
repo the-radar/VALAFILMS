@@ -1418,6 +1418,7 @@ p,a,span{
   font-family: "Akzidenz-Grotesk BQ";
   font-weight: 300;
   font-size: 25px;
+  cursor: pointer;
 }
 .nav-content-container>h1{
   font-family: "Akzidenz-Grotesk BQ";
