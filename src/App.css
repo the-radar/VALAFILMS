@@ -1003,14 +1003,14 @@ textarea {
 .input-container {
   height: 40px;
   position: relative;
-  width: 400px;
+  width: 65vw;
   margin-bottom: 20px;
 }
 
 .textarea-container {
   height: 150px;
   position: relative;
-  width: 400px;
+  width: 65vw;
   margin-bottom: 20px;
 }
 
@@ -1048,13 +1048,13 @@ textarea {
 }
 
 form {
-  width: 400px;
+  width: 65vw;
   margin: 30px auto;
 }
 
 input[type="text"] {
   display: block;
-  width: 400px;
+  width: 65vw;
   margin: 0 0 20px;
   margin-top: 5px;
   padding: 8px 12px 10px 12px;
@@ -1075,7 +1075,7 @@ input[type="text"]:hover {
 
 textarea {
   display: block;
-  width: 400px;
+  width: 65vw;
   height: 150px;
   margin: 0 0 20px;
   margin-top: 5px;
@@ -1097,7 +1097,7 @@ textarea:hover {
 
 select {
   display: block;
-  width: 400px;
+  width: 65vw;
   margin: 0 0 20px;
   padding: 8px 12px 10px 12px;
   background: rgba(0,0,0,.25);
