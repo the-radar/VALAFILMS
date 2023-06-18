@@ -134,8 +134,8 @@ export default function Homepage({ vid ,joinusprop }) {
               <p className="hometext">If you are seeking opportunities to share your content with the world or you need the right team to help you execute your vision 
               in film and content, you’ve come to the right place!</p>
               
-              <p className="hometext">Fill the form <font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>here</font> 
-               or send us an email at <font color = "#c1872b" style={{cursor:"pointer"}}>info@valafilms.com</font> and we'll be in touch.</p>
+              <p className="hometext">Fill the form <font color = "#c1872b" style={{cursor:"pointer"}} onClick={()=>{joinusprop()}}>here </font> 
+              or send us an email at <font color = "#c1872b" style={{cursor:"pointer"}}>info@valafilms.com</font> and we'll be in touch.</p>
               
               <p className="hometext">We look forward to hearing about your creative ideas!</p>
             </div>
