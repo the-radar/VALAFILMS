@@ -307,7 +307,9 @@ const classes = useStyles()
 
       <h2>{obj2[item].TITLE}</h2>
       <br />
-      <p>{obj2[item].CAPTION}</p>
+      {obj2[item].CAPTION.split("\n").map((text, index) => (
+          <p key={index}>{text}</p>
+      ))}
       <br />
       <h1 className="baulf2"  style={{width:'fit-content'}}  onClick={()=>{setmodal(true);setembed(obj2[item].vidlink)
     if(!!obj2[item].storedvidlink) {
@@ -326,8 +328,6 @@ const classes = useStyles()
       
         setsettings({...sett,initialSlide:index})
         setcurrentitem(item)
-        // handleClickOpen()
-        // Bobs: I took it out for now because it seems like we don't need it again. 
       }}/>
 
 
