@@ -1776,8 +1776,6 @@ max-height: 350px;
         justify-content: center;
         min-width: 100vw;
         margin: auto;
-        margin-right: 20px;
-        align-items: center;
       }
       .slidecontent p{
         width: 82%;
