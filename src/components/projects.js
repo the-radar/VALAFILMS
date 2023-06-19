@@ -308,7 +308,7 @@ const classes = useStyles()
       <h2>{obj2[item].TITLE}</h2>
       <br />
       {obj2[item].CAPTION.split("\\n").map((text, index) => (
-          <p key={index}>{text}</p>
+          <p key={index}>{text}<br /></p>
       ))}
       {console.log(obj2[item].CAPTION.split("\n"))}
       <br />
