@@ -308,7 +308,7 @@ const classes = useStyles()
       <h2>{obj2[item].TITLE}</h2>
       <br />
       {obj2[item].CAPTION.split("\\n").map((text, index) => (
-          <p key={index}>{text}<br /></p>
+          <p key={index}>{text}<br /><br /></p>
       ))}
       <br />
       <h1 className="baulf2"  style={{width:'fit-content'}}  onClick={()=>{setmodal(true);setembed(obj2[item].vidlink)
