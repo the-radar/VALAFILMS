@@ -198,14 +198,14 @@ function sendEmail(e) {
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
    Send us an email: info@valafilms.com
 </p></div><br />
-    © Copyright 2023 Vala Films. All Rights Reserved. 
+    © Copyright 2023 Vala Films.
     
 </p></div>
   
 
 
 <div className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>
-  <img src={rad} alt=""/>
+  by TheRadar
 </div>
     <div className="navcontent">
 
