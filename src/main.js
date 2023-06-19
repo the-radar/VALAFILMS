@@ -196,18 +196,17 @@ function sendEmail(e) {
 
     <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
       <p className="cp-text">
-      <div style={{display:'flex',justifyContent:'center'}}> 
-        <p  className="gmail" >
-          Send us an email: info@valafilms.com
+        <div style={{display:'flex',justifyContent:'center'}}> 
+          <p  className="gmail" >
+            Send us an email: info@valafilms.com
+          </p>
+        </div>
+        <br />
+        <p>
+          © Copyright 2023 Vala Films
         </p>
-      </div>
-      <br />
-      © Copyright 2023 Vala Films
-      <br />
-      <div style={{display:'flex',justifyContent:'center'}}> 
-        <p></p>
-        <p className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
-      </div>
+        <br />
+        <p className="radar" style={{cursor:"pointer"}} onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
       </p>
     </div>
 
