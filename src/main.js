@@ -205,6 +205,7 @@ function sendEmail(e) {
       © Copyright 2023 Vala Films
       <br />
       <div style={{display:'flex',justifyContent:'center'}}> 
+        <p></p>
         <p className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
       </div>
       </p>
