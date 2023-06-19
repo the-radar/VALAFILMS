@@ -198,7 +198,7 @@ function sendEmail(e) {
     <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
    Send us an email: info@valafilms.com
 </p></div><br />
-    © Copyright 2023 Vala Films.
+    © Copyright 2023 Vala Films
     
 </p></div>
   

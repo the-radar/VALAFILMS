@@ -126,7 +126,7 @@ border-radius: 2px;
   text-transform: uppercase;
   text-align: left;
   margin: auto;
-  max-width: 90%;
+  max-width: 68%;
 }
 .pcontent h1{
   text-transform: uppercase;
@@ -958,9 +958,7 @@ body {
   font-weight: 200;
 }
 #filter p:active{
-color: #61dafb;
-
-
+  color: #61dafb;
 }
 button,
 input,
@@ -1606,7 +1604,13 @@ max-height: 350px;
       
     }
     @media only screen and (max-width: 768px) {
-
+      #filter p{
+        font-family: 'Akzidenz-Grotesk BQ';
+        font-size: 22px;
+        cursor: pointer;
+        color: #eee;
+      }
+      
       .gmail{
         font-size: 12px;
       }
@@ -1802,7 +1806,7 @@ max-height: 350px;
         font-size: 25px;
         text-transform: uppercase;
         text-align: left;
-        width: 80%;
+        width: 82%;
         margin: auto;
       }
       .wrapper{
