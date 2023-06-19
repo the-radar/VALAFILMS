@@ -194,21 +194,19 @@ function sendEmail(e) {
 
   <div className={styleCondition ? "nav" : "nav show"}>
 
-    <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> <p className="cp-text">
-    <div style={{display:'flex',justifyContent:'center'}}> <p  className="gmail" >
-   Send us an email: info@valafilms.com
-</p></div><br />
+    <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
+      <p className="cp-text">
+      <div style={{display:'flex',justifyContent:'center'}}> 
+        <p  className="gmail" >
+          Send us an email: info@valafilms.com
+        </p>
+      </div>
+    <br />
     © Copyright 2023 Vala Films
-    
-</p></div>
-  
+    <p className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
+    </p></div>
 
-
-<div className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>
-  by TheRadar
-</div>
-    <div className="navcontent">
-
+<div className="navcontent">
 <div className="nav-content-container">
 
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('home');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}} >home </h1>

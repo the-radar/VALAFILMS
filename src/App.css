@@ -1731,14 +1731,10 @@ max-height: 350px;
       .radar {
         animation: pulse 3s infinite ease-in-out;
         position: absolute;
-        bottom: 10px;
-        left: 50%;
+        bottom: 1vh;
         color: rgba(255, 255, 255, 0.7);
         text-shadow: 0 1px rgb(255 255 255 / 10%);
         z-index: 400;
-        /* align-self: center; */
-        /* margin: auto; */
-        margin-left: -50px;
       }
       .teampage{
   flex-wrap: wrap;

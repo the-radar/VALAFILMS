@@ -310,7 +310,6 @@ const classes = useStyles()
       {obj2[item].CAPTION.split("\\n").map((text, index) => (
           <p key={index}>{text}<br /></p>
       ))}
-      {console.log(obj2[item].CAPTION.split("\n"))}
       <br />
       <h1 className="baulf2"  style={{width:'fit-content'}}  onClick={()=>{setmodal(true);setembed(obj2[item].vidlink)
     if(!!obj2[item].storedvidlink) {
