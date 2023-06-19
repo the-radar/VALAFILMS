@@ -269,7 +269,7 @@ const classes = useStyles()
         src={thumblink}
         className="video-thumb tiny"
         alt="thumb"
-        style={{ display: isVideoLoaded ? 'block' : 'none' }}
+        style={{ display: isVideoLoaded ? 'none' : 'block' }}
       />      
       <video autoPlay muted loop id="myVideo" style={{ opacity: isVideoLoaded ? 1 : 0 }} onLoadedData={onLoadedData}>
   <source src={`${link}`} type="video/mp4"/>
@@ -289,10 +289,10 @@ const classes = useStyles()
   <p onClick={()=>{setcurrenttag("all")} } style={{color:currenttag=="all"?"#c1872b":"#eeeeee"}}>ALL</p>
   <p onClick={()=>{setcurrenttag("short")}} style={{color:currenttag=="short"?"#c1872b":"#eeeeee"}}>SHORTS</p>
   <p onClick={()=>{setcurrenttag("fashion")}} style={{color:currenttag=="fashion"?"#c1872b":"#eeeeee"}}>FASHION</p>
-    { //<p onClick={()=>{setcurrenttag("documentary")}} style={{color:currenttag=="documentary"?"#c1872b":"#eeeeee"}}>DOCUMENTARIES</p> 
-    } 
+  { //<p onClick={()=>{setcurrenttag("documentary")}} style={{color:currenttag=="documentary"?"#c1872b":"#eeeeee"}}>DOCUMENTARIES</p> 
+  } 
   <p onClick={()=>{setcurrenttag("real estate")}} style={{color:currenttag=="real estate"?"#c1872b":"#eeeeee"}}>REAL ESTATE</p>
-</div>
+</div> 
          
         
 <Slider {...settings}  >
