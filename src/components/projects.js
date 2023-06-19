@@ -307,7 +307,7 @@ const classes = useStyles()
 
       <h2>{obj2[item].TITLE}</h2>
       <br />
-      {obj2[item].CAPTION.split("\n").map((text, index) => (
+      {obj2[item].CAPTION.split("\\n").map((text, index) => (
           <p key={index}>{text}</p>
       ))}
       {console.log(obj2[item].CAPTION.split("\n"))}
@@ -347,7 +347,7 @@ const classes = useStyles()
   </div>
     </div>
     <div className="poster">
-    <img src={obj2[item].poster} alt=""/>
+      <img src={obj2[item].poster} alt=""/>
     </div>
   </div>
   <br/>

@@ -843,7 +843,8 @@ input{
   color: #000000;
 }
 .rodal-dialogue{
-  padding: 5vh 5vw;
+  top: 5vh;
+  padding: 5vw;
 }
 .rodal-mask {
   position: absolute;
