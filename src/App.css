@@ -843,7 +843,7 @@ input{
   color: #000000;
 }
 .rodal-dialogue{
-  padding: 0px;
+  padding: 5vh 5vw;
 }
 .rodal-mask {
   position: absolute;
@@ -852,11 +852,6 @@ input{
 .teamdesc{
   max-width: 500px;
   margin-right: 7%;
- 
-
-
-  
- 
 }
 
 .teamdesc *{
@@ -865,7 +860,7 @@ input{
 .teamdesc h2{
   color:  #c1872b ;
   margin: 0;
-}
+} 
 .teanrow{ 
   display: flex;
   gap: 50px;
@@ -1014,7 +1009,6 @@ textarea {
   color: #eee;
   opacity: 0.7;
   font-family: "pfdintextpro-regular";
-  /* text-transform: uppercase; */
   letter-spacing: 2px;
   line-height: 28px;
   font-size: 10px;
@@ -1610,7 +1604,7 @@ max-height: 350px;
         cursor: pointer;
         color: #eee;
       }
-      
+
       .gmail{
         font-size: 12px;
       }
@@ -1826,7 +1820,7 @@ max-height: 350px;
         max-width: 60px;
       }
       input[type="text"], textarea, select {
-        width: 300px;
+        width: 65vw;
   
       }
       .scroll-to-top{
