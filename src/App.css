@@ -460,12 +460,7 @@ button[disabled]{
     }
   .radar {
     animation: pulse 5s infinite ease-in-out;
-    position: absolute;
-    bottom:2vh;
-    display: flex;
-    align-self: center;
     color: rgba(255, 255, 255, 0.7); text-shadow: 0 1px rgba(255, 255, 255, 0.1);
-    z-index:400;
   }
   .radar img{
     max-width: 70px;
@@ -1732,7 +1727,6 @@ max-height: 350px;
         animation: pulse 3s infinite ease-in-out;
         color: rgba(255, 255, 255, 0.7);
         text-shadow: 0 1px rgb(255 255 255 / 10%);
-        margin-bottom: 1vh;
       }
       .teampage{
   flex-wrap: wrap;
@@ -1782,19 +1776,20 @@ max-height: 350px;
         justify-content: center;
         min-width: 100vw;
         margin: auto;
+        margin-right: 20px;
         align-items: center;
       }
       .slidecontent p{
-      width: 82%;
-      font-size: 14px;
-      max-width: 82%;
+        width: 82%;
+        font-size: 14px;
+        max-width: 82%;
       }
       .slidecontent h1,.slidecontent h2{
         color:  #c1872b ;
         font-size: 25px;
         text-transform: uppercase;
         text-align: left;
-        width: 82%;
+        max-width: 82%;
         margin: auto;
       }
       .wrapper{
