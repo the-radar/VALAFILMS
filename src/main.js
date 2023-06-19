@@ -201,10 +201,12 @@ function sendEmail(e) {
           Send us an email: info@valafilms.com
         </p>
       </div>
-    <br />
-    © Copyright 2023 Vala Films
-    <p className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
-    </p></div>
+      <br />
+      © Copyright 2023 Vala Films
+      <br />
+        <p className="radar" onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
+      </p>
+    </div>
 
 <div className="navcontent">
 <div className="nav-content-container">
