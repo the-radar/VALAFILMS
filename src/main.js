@@ -12,6 +12,7 @@ import Collabs from "../src/components/collab"
 import Admin from "../src/components/admin"
 import Ad from "../src/components/Ad"
 import Ab from "../src/components/about"
+import Photography from './components/photography';
 import emailjs from 'emailjs-com';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -55,6 +56,8 @@ const[view,setview]=useState('home');
           return <Ab  />
           case 'team':
             return <Ab  />
+            case 'photography':
+              return <Photography />
     default:
       return <p>Your current feed</p>
   }
@@ -216,6 +219,7 @@ function sendEmail(e) {
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('home');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}} >home </h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('projects');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>films</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('collab');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>collaborations</h1>
+<h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('photography');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>photography</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('adverts');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>commercials</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('team');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>team</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setmodal(true);
