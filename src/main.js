@@ -12,7 +12,7 @@ import Collabs from "../src/components/collab"
 import Admin from "../src/components/admin"
 import Ad from "../src/components/Ad"
 import Ab from "../src/components/about"
-import Photography from './components/photography';
+import Photography from '../src/components/photography';
 import emailjs from 'emailjs-com';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -206,7 +206,7 @@ function sendEmail(e) {
         </div>
         <br />
         <p>
-          © Copyright 2023 Vala Films
+          © Copyright 2025 Vala Films
         </p>
         <br />
         <p className="radar" style={{cursor:"pointer"}} onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
