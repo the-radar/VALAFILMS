@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import firebase from './firebase';
 import { v4 as uuid } from 'uuid';
-import { IconButton } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const PhotoUpload = () => {
   const [imageUrl, setImageUrl] = useState([]);
@@ -125,7 +125,7 @@ const PhotoUpload = () => {
                 onClick={() => deleteImage(index)}
                 className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 p-1 rounded-full"
               >
-                <X className="w-4 h-4 text-white" />
+                <CloseIcon className="w-4 h-4 text-white" />
               </IconButton>
             </div>
           ))}
