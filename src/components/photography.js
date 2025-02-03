@@ -69,7 +69,7 @@ export default function Photography() {
 
   useEffect(() => {
     const loadContent = () => {
-      const photoRef = firebase.database().ref("photography");
+      const photoRef = firebase.database().ref("photopages");
       photoRef.on("value", (snapshot) => {
         const data = snapshot.val();
         if (data) {
