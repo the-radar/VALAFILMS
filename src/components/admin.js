@@ -4,7 +4,8 @@ import Upload from "./upload"
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Addteam from './addteam'
+import Addteam from './addteam';
+import PhotoUpload from "./photoupload"; 
 
 export default function Admin() {
 
@@ -19,6 +20,7 @@ export default function Admin() {
    const[collabsettings,setcollabs]=useState(false)
    const [open, setOpen] = useState(false);
    const[membersettings,setmembers]=useState(false)
+   const [photosettings, setphotos] = useState(false);
 
   const handleClick = () => {
     setOpen(true);
@@ -31,6 +33,14 @@ export default function Admin() {
 
     setOpen(false);
   };
+  const closeAllSettings = () => {
+    setfilms(false);
+    setads(false);
+    sethomes(false);
+    setcollabs(false);
+    setmembers(false);
+    setphotos(false);
+};
 
     return (
         <div>
@@ -161,6 +171,15 @@ firebase.database().ref('/vala/settings/ads/landingvideo').set(ad).then(()=>{
                     </div>
                    
                 </div>}
+                <h3 onClick={() => {closeAllSettings(); setphotos(true)}} className="hib">
+                        SHOW PHOTOGRAPHY SETTINGS
+                    </h3>
+                    {photosettings && (
+                        <div className="set">
+                            <h3>ADD NEW PHOTOGRAPHY PROJECT</h3>
+                            <PhotoUpload />
+                        </div>
+                    )}
             </div>
         </div>
         </div>
