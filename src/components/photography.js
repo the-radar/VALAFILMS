@@ -8,6 +8,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Slide from "@material-ui/core/Slide";
 import { makeStyles } from "@material-ui/core/styles";
+import Scrollbutton from "./scrolltobottom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,6 +59,21 @@ const useStyles = makeStyles((theme) => ({
     top: 10,
     right: 10,
   },
+  poster: {
+    width: "100%",
+    borderRadius: "8px",
+  },
+  content: {
+    textAlign: "left",
+    padding: "10px",
+  },
+  title: {
+    fontSize: "1.5em",
+    fontWeight: "bold",
+  },
+  description: {
+    marginTop: "10px",
+  },
 }));
 
 export default function Photography() {
@@ -102,12 +118,14 @@ export default function Photography() {
 
       <div className={classes.gallery}>
         {photos.map((photo) => (
-          (photo.category === currentCategory || currentCategory === "all") && (
-            photo.images && photo.images.map((imgObj, index) => (
-              <div key={index} className={classes.photoCard} onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}>
-                <img src={imgObj.url} alt={`Photo ${index}`} className={classes.photoThumbnail} />
+          (photo.tag === currentCategory || currentCategory === "all") && (
+            <div key={photo.id} className={classes.photoCard} onClick={() => { setCurrentImage(photo.poster); setShowModal(true); }}>
+              <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
+              <div className={classes.content}>
+                <h2 className={classes.title}>{photo.TITLE}</h2>
+                <p className={classes.description}>{photo.CAPTION}</p>
               </div>
-            ))
+            </div>
           )
         ))}
       </div>
@@ -123,6 +141,8 @@ export default function Photography() {
           <img src={currentImage} alt="Selected" style={{ maxWidth: "100%", borderRadius: "8px" }} />
         </DialogContent>
       </Dialog>
+
+      <Scrollbutton />
     </div>
   );
 }
