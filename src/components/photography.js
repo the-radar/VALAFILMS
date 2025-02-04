@@ -118,6 +118,7 @@ export default function Photography() {
         if (data) {
           const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
           setPhotos(formattedPhotos);
+          console.log(formattedPhotos);
         }
       });
     };
@@ -128,7 +129,7 @@ export default function Photography() {
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
 
   const filteredPhotos = photos.filter(
-    (photo) => currentCategory === "all" || photo.tag === currentCategory
+    (photo) => currentCategory === "all" || photo.tag == currentCategory
   );
 
   const handleNext = () => {
@@ -148,7 +149,7 @@ export default function Photography() {
           <p
             key={category}
             onClick={() => setCurrentCategory(category)}
-            className={`${classes.filterItem} ${currentCategory === category ? "active" : ""}`}
+            className={`${classes.filterItem} ${currentCategory == category ? "active" : ""}`}
           >
             {category.toUpperCase()}
           </p>
