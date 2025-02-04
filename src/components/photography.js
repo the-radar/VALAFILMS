@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
   poster: {
     width: "100%",
+    maxHeight: "300px",
+    objectFit: "cover",
     borderRadius: "8px",
     marginBottom: "20px",
   },
@@ -87,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     transform: "translateY(-50%)",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    color: "white",
+    color: "#c1872b",
     "&:hover": {
       backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
@@ -201,7 +203,7 @@ export default function Photography() {
           </IconButton>
         </div>
         <DialogContent className={classes.dialogBg}>
-          <img src={currentImage} alt="Selected" style={{ maxWidth: "100%", borderRadius: "8px" }} />
+          <img src={currentImage} alt="Selected" style={{ maxWidth: "80%", borderRadius: "8px" }} />
         </DialogContent>
       </Dialog>
     </div>
