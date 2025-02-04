@@ -1,209 +1,156 @@
-import React, { useState, useEffect } from "react";
-import firebase from "./firebase";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import Slide from "@material-ui/core/Slide";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import React, { useState } from 'react';
+import firebase from './firebase';
+import { v4 as uuid } from 'uuid';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    color: "white",
-    padding: "20px",
-    textAlign: "center",
+  container: {
+    maxWidth: '600px',
+    margin: 'auto',
+    padding: '20px',
+    overflow: 'hidden',
   },
-  filter: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "15px",
-    marginBottom: "20px",
+  input: {
+    width: '100%',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    marginBottom: '10px',
   },
-  filterItem: {
-    cursor: "pointer",
-    color: "#eeeeee",
-    "&.active": {
-      color: "#c1872b",
+  imageGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+    gap: '10px',
+    marginTop: '10px',
+  },
+  imageWrapper: {
+    position: 'relative',
+    width: '100px',
+    height: '100px',
+    borderRadius: '5px',
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    borderRadius: '5px',
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: '5px',
+    right: '5px',
+    background: 'rgba(255, 0, 0, 0.7)',
+    color: '#fff',
+    padding: '3px',
+  },
+  button: {
+    width: '100%',
+    padding: '10px',
+    borderRadius: '5px',
+    border: 'none',
+    background: '#007BFF',
+    color: 'white',
+    cursor: 'pointer',
+    '&:disabled': {
+      background: '#ccc',
+      cursor: 'not-allowed',
     },
-  },
-  photoCard: {
-    padding: "10px",
-    textAlign: "left",
-  },
-  poster: {
-    width: "100%",
-    borderRadius: "8px",
-    marginBottom: "20px",
-  },
-  content: {
-    padding: "10px",
-  },
-  title: {
-    fontSize: "1.5em",
-    fontWeight: "bold",
-  },
-  description: {
-    marginTop: "10px",
-  },
-  thumbnailRow: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-    marginTop: "10px",
-  },
-  thumbnail: {
-    width: "100px",
-    height: "100px",
-    objectFit: "cover",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
-  dialogBg: {
-    backgroundColor: "black",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  closeIcon: {
-    color: "white",
-    position: "absolute",
-    top: 10,
-    right: 10,
-  },
-  sliderContainer: {
-    position: "relative",
-    width: "100%",
-    overflow: "hidden",
-  },
-  slide: {
-    minWidth: "100%",
-    transition: "transform 0.5s ease-in-out",
-  },
-  navButton: {
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-  },
-  prevButton: {
-    left: "10px",
-  },
-  nextButton: {
-    right: "10px",
   },
 }));
 
-export default function Photography() {
+const PhotoUpload = () => {
   const classes = useStyles();
-  const [photos, setPhotos] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("all");
-  const [showModal, setShowModal] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageUrl, setImageUrl] = useState([]);
+  const [posterUrl, setPosterUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [caption, setCaption] = useState("");
+  const [tag, setTag] = useState("");
 
-  useEffect(() => {
-    const loadContent = () => {
-      const photoRef = firebase.database().ref("photopages");
-      photoRef.on("value", (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
-          setPhotos(formattedPhotos);
-        }
-      });
+  const readImages = async (e) => {
+    const file = e.target.files[0];
+    const id = uuid();
+    const storageRef = firebase.storage().ref('photos').child(id);
+    await storageRef.put(file);
+    const url = await storageRef.getDownloadURL();
+    setImageUrl([...imageUrl, { url }]);
+  };
+
+  const readPoster = async (e) => {
+    const file = e.target.files[0];
+    const id = uuid();
+    const storageRef = firebase.storage().ref('photoPoster').child(id);
+    await storageRef.put(file);
+    const url = await storageRef.getDownloadURL();
+    setPosterUrl(url);
+  };
+
+  const deleteImage = (indexToDelete) => {
+    setImageUrl(imageUrl.filter((_, index) => index !== indexToDelete));
+  };
+
+  const saveProject = async () => {
+    const projectId = `project${Date.now()}`;
+    const projectRef = firebase.database().ref('photopages').child(projectId);
+    
+    const projectData = {
+      TITLE: title,
+      CAPTION: caption,
+      poster: posterUrl,
+      tag: tag,
+      images: imageUrl
     };
-    loadContent();
-  }, []);
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
-
-  const filteredPhotos = photos.filter(
-    (photo) => currentCategory === "all" || photo.tag === currentCategory
-  );
-
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
+    try {
+      await projectRef.set(projectData);
+      alert('Project saved successfully!');
+      setImageUrl([]);
+      setPosterUrl("");
+      setTitle("");
+      setCaption("");
+      setTag("");
+    } catch (error) {
+      alert('Error saving project: ' + error.message);
+    }
   };
 
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
-  };
+  const isInvalid = !title || !posterUrl || !tag || imageUrl.length === 0 || !caption;
 
   return (
-    <div className={classes.root}>
-      <h1>Photography</h1>
+    <div className={classes.container}>
+      <h2>Upload Cover Photo</h2>
+      <input type="file" accept="image/*" onChange={readPoster} className={classes.input} />
+      {posterUrl && <img src={posterUrl} alt="Cover" className={classes.image} style={{ width: '150px', height: '150px' }} />}
+
+      <label>Project Title</label>
+      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={classes.input} placeholder="Enter project title" />
       
-      <div className={classes.filter}>
-        {["all", "product", "food", "portraits", "tinyduru"].map((category) => (
-          <p
-            key={category}
-            onClick={() => setCurrentCategory(category)}
-            className={`${classes.filterItem} ${currentCategory === category ? "active" : ""}`}
-          >
-            {category.toUpperCase()}
-          </p>
+      <label>Tag</label>
+      <input type="text" value={tag} onChange={(e) => setTag(e.target.value)} className={classes.input} placeholder="Enter tag" />
+
+      <label>Description</label>
+      <textarea value={caption} onChange={(e) => setCaption(e.target.value)} className={classes.input} rows={3} placeholder="Enter description" />
+
+      <h2>Upload Project Images</h2>
+      <input type="file" accept="image/*" onChange={readImages} className={classes.input} />
+      <div className={classes.imageGrid}>
+        {imageUrl.map((img, index) => (
+          <div key={index} className={classes.imageWrapper}>
+            <img src={img.url} alt="" className={classes.image} />
+            <IconButton onClick={() => deleteImage(index)} className={classes.deleteButton}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </div>
         ))}
       </div>
 
-      <div className={classes.sliderContainer}>
-        {filteredPhotos.map((photo, index) => (
-          <Slide
-            key={photo.id}
-            direction="left"
-            in={index === currentSlide}
-            mountOnEnter
-            unmountOnExit
-            timeout={500}
-          >
-            <div className={classes.slide}>
-              <div className={classes.photoCard}>
-                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
-                <div className={classes.content}>
-                  <h2 className={classes.title}>{photo.TITLE}</h2>
-                  <p className={classes.description}>{photo.CAPTION}</p>
-                  <div className={classes.thumbnailRow}>
-                    {photo.images && photo.images.map((imgObj, index) => (
-                      <img
-                        key={index}
-                        src={imgObj.url}
-                        alt={`Photo ${index}`}
-                        className={classes.thumbnail}
-                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Slide>
-        ))}
-        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
-          Prev
-        </Button>
-        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
-          Next
-        </Button>
-      </div>
-
-      {/* Image Modal */}
-      <Dialog fullScreen={fullScreen} open={showModal} onClose={() => setShowModal(false)} TransitionComponent={Slide}>
-        <div className={classes.dialogBg}>
-          <IconButton onClick={() => setShowModal(false)} className={classes.closeIcon}>
-            <CloseIcon />
-          </IconButton>
-        </div>
-        <DialogContent className={classes.dialogBg}>
-          <img src={currentImage} alt="Selected" style={{ maxWidth: "100%", borderRadius: "8px" }} />
-        </DialogContent>
-      </Dialog>
+      <button onClick={saveProject} disabled={isInvalid} className={classes.button}>
+        Save Project
+      </button>
     </div>
   );
-}
+};
+
+export default PhotoUpload;

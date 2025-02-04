@@ -8,6 +8,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Slide from "@material-ui/core/Slide";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,35 +29,9 @@ const useStyles = makeStyles((theme) => ({
       color: "#c1872b",
     },
   },
-  gallery: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: "10px",
-  },
   photoCard: {
-    width: "200px",
-    cursor: "pointer",
-    transition: "transform 0.3s ease",
-    "&:hover": {
-      transform: "scale(1.05)",
-    },
-  },
-  photoThumbnail: {
-    width: "100%",
-    borderRadius: "8px",
-  },
-  dialogBg: {
-    backgroundColor: "black",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  closeIcon: {
-    color: "white",
-    position: "absolute",
-    top: 10,
-    right: 10,
+    padding: "10px",
+    textAlign: "left",
   },
   poster: {
     width: "100%",
@@ -64,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
   },
   content: {
-    textAlign: "left",
     padding: "10px",
   },
   title: {
@@ -87,6 +61,43 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "8px",
     cursor: "pointer",
   },
+  dialogBg: {
+    backgroundColor: "black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  closeIcon: {
+    color: "white",
+    position: "absolute",
+    top: 10,
+    right: 10,
+  },
+  sliderContainer: {
+    position: "relative",
+    width: "100%",
+    overflow: "hidden",
+  },
+  slide: {
+    minWidth: "100%",
+    transition: "transform 0.5s ease-in-out",
+  },
+  navButton: {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+    },
+  },
+  prevButton: {
+    left: "10px",
+  },
+  nextButton: {
+    right: "10px",
+  },
 }));
 
 export default function Photography() {
@@ -95,6 +106,7 @@ export default function Photography() {
   const [currentCategory, setCurrentCategory] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const loadContent = () => {
@@ -113,6 +125,18 @@ export default function Photography() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
 
+  const filteredPhotos = photos.filter(
+    (photo) => currentCategory === "all" || photo.tag === currentCategory
+  );
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+  };
+
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
@@ -129,29 +153,44 @@ export default function Photography() {
         ))}
       </div>
 
-      <div className={classes.gallery}>
-        {photos.map((photo) => (
-          (photo.tag === currentCategory || currentCategory === "all") && (
-            <div key={photo.id} className={classes.photoCard}>
-              <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
-              <div className={classes.content}>
-                <h2 className={classes.title}>{photo.TITLE}</h2>
-                <p className={classes.description}>{photo.CAPTION}</p>
-                <div className={classes.thumbnailRow}>
-                  {photo.images && photo.images.map((imgObj, index) => (
-                    <img
-                      key={index}
-                      src={imgObj.url}
-                      alt={`Photo ${index}`}
-                      className={classes.thumbnail}
-                      onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
-                    />
-                  ))}
+      <div className={classes.sliderContainer}>
+        {filteredPhotos.map((photo, index) => (
+          <Slide
+            key={photo.id}
+            direction="left"
+            in={index === currentSlide}
+            mountOnEnter
+            unmountOnExit
+            timeout={500}
+          >
+            <div className={classes.slide}>
+              <div className={classes.photoCard}>
+                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
+                <div className={classes.content}>
+                  <h2 className={classes.title}>{photo.TITLE}</h2>
+                  <p className={classes.description}>{photo.CAPTION}</p>
+                  <div className={classes.thumbnailRow}>
+                    {photo.images && photo.images.map((imgObj, index) => (
+                      <img
+                        key={index}
+                        src={imgObj.url}
+                        alt={`Photo ${index}`}
+                        className={classes.thumbnail}
+                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          )
+          </Slide>
         ))}
+        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
+          Prev
+        </Button>
+        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
+          Next
+        </Button>
       </div>
 
       {/* Image Modal */}
