@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
   poster: {
     width: "100%",
     borderRadius: "8px",
+    marginBottom: "20px",
   },
   content: {
     textAlign: "left",
@@ -72,6 +73,19 @@ const useStyles = makeStyles((theme) => ({
   },
   description: {
     marginTop: "10px",
+  },
+  thumbnailRow: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginTop: "10px",
+  },
+  thumbnail: {
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "8px",
+    cursor: "pointer",
   },
 }));
 
@@ -123,11 +137,15 @@ export default function Photography() {
               <div className={classes.content}>
                 <h2 className={classes.title}>{photo.TITLE}</h2>
                 <p className={classes.description}>{photo.CAPTION}</p>
-                <div className={classes.gallery}>
+                <div className={classes.thumbnailRow}>
                   {photo.images && photo.images.map((imgObj, index) => (
-                    <div key={index} className={classes.photoCard} onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}>
-                      <img src={imgObj.url} alt={`Photo ${index}`} className={classes.photoThumbnail} />
-                    </div>
+                    <img
+                      key={index}
+                      src={imgObj.url}
+                      alt={`Photo ${index}`}
+                      className={classes.thumbnail}
+                      onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                    />
                   ))}
                 </div>
               </div>
