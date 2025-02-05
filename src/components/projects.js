@@ -153,6 +153,7 @@ export default function Projects({vid}) {
       setlink(snapshot.val().vala.settings.film.landingvideo)
       setthumblink(snapshot.val().vala.settings.film.thumb)
       setAds(snapshot.val().ads.slides) // Load ads content
+      console.log("first load ", snapshot.val().ads.slides);
       setAdsLink(snapshot.val().vala.settings.ads.landingvideo) // Load ads landing video
 
     }); }
