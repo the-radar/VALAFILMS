@@ -263,9 +263,8 @@ const classes = useStyles()
   <p onClick={()=>{setcurrenttag("all")} } style={{color:currenttag=="all"?"#c1872b":"#eeeeee"}}>ALL</p>
   <p onClick={()=>{setcurrenttag("short")}} style={{color:currenttag=="short"?"#c1872b":"#eeeeee"}}>SHORTS</p>
   <p onClick={()=>{setcurrenttag("ads")}} style={{color:currenttag=="ads"?"#c1872b":"#eeeeee"}}>ADS</p>
-  { //<p onClick={()=>{setcurrenttag("documentary")}} style={{color:currenttag=="documentary"?"#c1872b":"#eeeeee"}}>DOCUMENTARIES</p> 
-  } 
-  <p onClick={()=>{setcurrenttag("real estate")}} style={{color:currenttag=="real estate"?"#c1872b":"#eeeeee"}}>REAL ESTATE</p>
+  <p onClick={()=>{setcurrenttag("documentary")}} style={{color:currenttag=="documentary"?"#c1872b":"#eeeeee"}}>DOCUMENTARIES</p> 
+  
 </div> 
          
         
