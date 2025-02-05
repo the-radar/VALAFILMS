@@ -220,7 +220,7 @@ function sendEmail(e) {
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('projects');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>films</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('collab');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>collaborations</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('photography');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>photography</h1>
-<h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('team');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>team</h1>
+<h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('team');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);setstyle3(!styleCondition3)}}>creative junkies</h1>
 <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setmodal(true);
 setstyle2(!styleCondition2);setstyle(!styleCondition);;setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}> 
    JOIN US
