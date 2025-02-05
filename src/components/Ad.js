@@ -1,41 +1,17 @@
 import React from 'react'
-import lsp from "../files/LSP.jpeg"
-import lsp1 from "../files/LSP1.jpeg"
-import lsp2 from "../files/LSP2.png"
-import lsp3 from "../files/LSP3.jpeg"
-import lsp4 from "../files/LSP4.png"
-import lsp5 from "../files/LSP5.jpeg"
-import lsp6 from "../files/LSP6.jpeg"
-import lsp7 from "../files/LSP7.png"
-import sf from "../files/sf.jpeg"
-import sf1 from "../files/sf1.jpeg"
-import sf2 from "../files/sf2.jpeg"
-import sf3 from "../files/sf3.jpeg"
-import sf4 from "../files/sf4.jpeg"
-import sf5 from "../files/sf5.jpeg"
-import sf6 from "../files/sf6.jpeg"
-import sf7 from "../files/sf7.jpeg"
 import Slide from '@material-ui/core/Slide'
-import sf8 from "../files/sf8.jpeg"
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import logovid from "../files/logo2.mp4"
-import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 import Scrollbutton from "./scrolltobottom"
 import Slider from "react-slick";
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-
-
-
 import Rodal from 'rodal';
 import {useState,useEffect  } from "react";
 import { teal, purple } from '@material-ui/core/colors';

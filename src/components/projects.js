@@ -1,47 +1,22 @@
 import React from 'react'
-import lsp from "../files/LSP.jpeg"
-import lsp1 from "../files/LSP1.jpeg"
-import lsp2 from "../files/LSP2.png"
-import lsp3 from "../files/LSP3.jpeg"
-import lsp4 from "../files/LSP4.png"
-import lsp5 from "../files/LSP5.jpeg"
-import lsp6 from "../files/LSP6.jpeg"
-import lsp7 from "../files/LSP7.png"
-import sf from "../files/sf.jpeg"
-import sf1 from "../files/sf1.jpeg"
-import sf2 from "../files/sf2.jpeg"
-import sf3 from "../files/sf3.jpeg"
-import sf4 from "../files/sf4.jpeg"
-import sf5 from "../files/sf5.jpeg"
-import sf6 from "../files/sf6.jpeg"
-import sf7 from "../files/sf7.jpeg"
-import sf8 from "../files/sf8.jpeg"
-import ScriptTag from 'react-script-tag';
 import Slide from '@material-ui/core/Slide'
 import logovid from "../files/logo2.mp4"
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 import Slider from "react-slick";
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-
 import Scrollbutton from "./scrolltobottom"
-
 import Rodal from 'rodal';
 import {useState,useEffect  } from "react";
 import { teal, purple } from '@material-ui/core/colors';
 import firebase from "./firebase"
 import YoutubeEmbed from "./embed";
-
 import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
 import NavigateBeforeTwoToneIcon from '@material-ui/icons/NavigateBeforeTwoTone';
 import ReactPlayer from 'react-player/lazy'
@@ -177,6 +152,8 @@ export default function Projects({vid}) {
       setobj2(snapshot.val().filmpages.slides)
       setlink(snapshot.val().vala.settings.film.landingvideo)
       setthumblink(snapshot.val().vala.settings.film.thumb)
+      setAds(snapshot.val().ads.slides) // Load ads content
+      setAdsLink(snapshot.val().vala.settings.ads.landingvideo) // Load ads landing video
 
     }); }
     const [obj,setobj]= useState()
@@ -185,6 +162,8 @@ export default function Projects({vid}) {
    const [link,setlink] = useState()
    const [thumblink,setthumblink] = useState()
    const [imgarr,setarr] = useState([])
+   const [ads, setAds] = useState([]) // State for ads content
+   const [adsLink, setAdsLink] = useState("") // State for ads landing video
   const ColorButton = withStyles((theme) => ({
     root: {
       color: theme.palette.getContrastText(teal[500]),
@@ -258,12 +237,7 @@ const classes = useStyles()
           
        </div> }    
                 </Rodal></div>
-       
-               
                 </div>
-
-
-
                  <div className="vidcon">
                  <img
         src={thumblink}
@@ -288,7 +262,7 @@ const classes = useStyles()
 <div id="filter" placeholder-text="SHORTS">
   <p onClick={()=>{setcurrenttag("all")} } style={{color:currenttag=="all"?"#c1872b":"#eeeeee"}}>ALL</p>
   <p onClick={()=>{setcurrenttag("short")}} style={{color:currenttag=="short"?"#c1872b":"#eeeeee"}}>SHORTS</p>
-  <p onClick={()=>{setcurrenttag("fashion")}} style={{color:currenttag=="fashion"?"#c1872b":"#eeeeee"}}>FASHION</p>
+  <p onClick={()=>{setcurrenttag("ads")}} style={{color:currenttag=="ads"?"#c1872b":"#eeeeee"}}>ADS</p>
   { //<p onClick={()=>{setcurrenttag("documentary")}} style={{color:currenttag=="documentary"?"#c1872b":"#eeeeee"}}>DOCUMENTARIES</p> 
   } 
   <p onClick={()=>{setcurrenttag("real estate")}} style={{color:currenttag=="real estate"?"#c1872b":"#eeeeee"}}>REAL ESTATE</p>
@@ -355,25 +329,13 @@ const classes = useStyles()
 
    
 <Rodal  customMaskStyles={{backgroundColor:'black'}} customStyles={{backgroundColor:"black",padding:"0",zIndex:'6000'}} visible={showModal2} width={1000} height={1000} enterAnimation="rotate" showMask={true} onClose={()=>{setmodal2(false)}}>
-
-
                 </Rodal>
-
 </div>
     ))
-
-}  
-
-         
-        
-          
+}       
         </Slider>
-      
-
 <br/>
 <br/>
-
-
 </div>:<div style={{display:'flex',justifyContent:'center',alignItems:'center',paddingTop:'3%',
      minWidth:'100vw',backgroundColor:'black'}} >   <video autoPlay muted loop id="loading"  style={{maxWidth:'35vw',zIndex:'4000'}}>
      <source src={logovid} type="video/mp4"/>

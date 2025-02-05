@@ -145,19 +145,6 @@ export default function Photography() {
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
-      
-      <div className={classes.filter}>
-        {["all", "product", "food", "portraits", "tinyduru"].map((category) => (
-          <p
-            key={category}
-            onClick={() => setCurrentCategory(category)}
-            className={`${classes.filterItem} ${currentCategory === category ? "active" : ""}`}
-          >
-            {category.toUpperCase()}
-          </p>
-        ))}
-      </div>
-
       <div className={classes.sliderContainer}>
         {filteredPhotos.map((photo, index) => (
           <Slide
