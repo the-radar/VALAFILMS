@@ -153,7 +153,6 @@ export default function Projects({vid}) {
       setlink(snapshot.val().vala.settings.film.landingvideo)
       setthumblink(snapshot.val().vala.settings.film.thumb)
       setAds(snapshot.val().ad.slides) // Load ads content
-      console.log("first load ", snapshot.val().ad.slides);
       setAdsLink(snapshot.val().vala.settings.ads.landingvideo) // Load ads landing video
 
     }); }
@@ -283,7 +282,7 @@ const classes = useStyles()
                <p key={index}>{text}<br /><br /></p>
              ))}
              <br />
-             <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(ads[item].vidlink); if(!!ads[item].storedvidlink) { setembed2(ads[item].storedvidlink) }}}>Watch Content</h1>
+             <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(ads[item].vidlink); if(!!ads[item].storedvidlink) { setembed2(adsLink) }}}>Watch Content</h1>
              <br />
              <div className=''>
                <Slider {...settings3}>
