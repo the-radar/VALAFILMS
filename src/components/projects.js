@@ -271,67 +271,81 @@ const classes = useStyles()
         
 <Slider {...settings}  >
 { 
-   !!obj2 && Object.keys(obj2).map((item, i) => (
-
-    (obj2[item].tag==currenttag || currenttag=="all")   &&
-<div className="flexcol">
-  <div className="flexunder">
-
-    <div className="content"> 
-
-      <h2>{obj2[item].TITLE}</h2>
-      <br />
-      {obj2[item].CAPTION.split("\\n").map((text, index) => (
-          <p key={index}>{text}<br /><br /></p>
-      ))}
-      <br />
-      <h1 className="baulf2"  style={{width:'fit-content'}}  onClick={()=>{setmodal(true);setembed(obj2[item].vidlink)
-    if(!!obj2[item].storedvidlink) {
-      setembed2(obj2[item].storedvidlink)
-    } 
-    
-    }
-    }>Watch Content</h1>
-      <br />
-      <div className='' >
-   <Slider {...settings3}>
-     {obj2[item].supprtingimages.map((imgurl, index) => (
-      <div className="newimage">
-     
-      < img src={`${imgurl.url}`} className="" alt="hey" key={index} onClick={()=>{
-      
-        setsettings({...sett,initialSlide:index})
-        setcurrentitem(item)
-      }}/>
-
-
-
-      </div>
-    ))
-
-    }
-</Slider>
-    
-
-
-   
-
-
-  </div>
-    </div>
-    <div className="poster">
-      <img src={obj2[item].poster} alt=""/>
-    </div>
-  </div>
-  <br/>
-  <br/>
-  
-
-   
-<Rodal  customMaskStyles={{backgroundColor:'black'}} customStyles={{backgroundColor:"black",padding:"0",zIndex:'6000'}} visible={showModal2} width={1000} height={1000} enterAnimation="rotate" showMask={true} onClose={()=>{setmodal2(false)}}>
-                </Rodal>
-</div>
-    ))
+   currenttag === "ads" ? (
+     !!ads && Object.keys(ads).map((item, i) => (
+       <div className="flexcol">
+         <div className="flexunder">
+           <div className="content"> 
+             <h2>{ads[item].TITLE}</h2>
+             <br />
+             {ads[item].CAPTION.split("\\n").map((text, index) => (
+               <p key={index}>{text}<br /><br /></p>
+             ))}
+             <br />
+             <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(ads[item].vidlink); if(!!ads[item].storedvidlink) { setembed2(ads[item].storedvidlink) }}}>Watch Content</h1>
+             <br />
+             <div className=''>
+               <Slider {...settings3}>
+                 {ads[item].supprtingimages.map((imgurl, index) => (
+                   <div className="newimage">
+                     <img src={`${imgurl.url}`} className="" alt="hey" key={index} onClick={()=>{
+                       setsettings({...sett, initialSlide: index});
+                       setcurrentitem(item);
+                     }}/>
+                   </div>
+                 ))}
+               </Slider>
+             </div>
+           </div>
+           <div className="poster">
+             <img src={ads[item].poster} alt=""/>
+           </div>
+         </div>
+         <br/>
+         <br/>
+         <Rodal customMaskStyles={{backgroundColor:'black'}} customStyles={{backgroundColor:"black",padding:"0",zIndex:'6000'}} visible={showModal2} width={1000} height={1000} enterAnimation="rotate" showMask={true} onClose={()=>{setmodal2(false)}}>
+         </Rodal>
+       </div>
+     ))
+   ) : (
+     !!obj2 && Object.keys(obj2).map((item, i) => (
+       (obj2[item].tag == currenttag || currenttag == "all") && (
+         <div className="flexcol">
+           <div className="flexunder">
+             <div className="content"> 
+               <h2>{obj2[item].TITLE}</h2>
+               <br />
+               {obj2[item].CAPTION.split("\\n").map((text, index) => (
+                 <p key={index}>{text}<br /><br /></p>
+               ))}
+               <br />
+               <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(obj2[item].vidlink); if(!!obj2[item].storedvidlink) { setembed2(obj2[item].storedvidlink) }}}>Watch Content</h1>
+               <br />
+               <div className=''>
+                 <Slider {...settings3}>
+                   {obj2[item].supprtingimages.map((imgurl, index) => (
+                     <div className="newimage">
+                       <img src={`${imgurl.url}`} className="" alt="hey" key={index} onClick={()=>{
+                         setsettings({...sett, initialSlide: index});
+                         setcurrentitem(item);
+                       }}/>
+                     </div>
+                   ))}
+                 </Slider>
+               </div>
+             </div>
+             <div className="poster">
+               <img src={obj2[item].poster} alt=""/>
+             </div>
+           </div>
+           <br/>
+           <br/>
+           <Rodal customMaskStyles={{backgroundColor:'black'}} customStyles={{backgroundColor:"black",padding:"0",zIndex:'6000'}} visible={showModal2} width={1000} height={1000} enterAnimation="rotate" showMask={true} onClose={()=>{setmodal2(false)}}>
+           </Rodal>
+         </div>
+       )
+     ))
+   )
 }       
         </Slider>
 <br/>
