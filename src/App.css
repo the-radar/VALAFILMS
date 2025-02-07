@@ -40,6 +40,11 @@ border-radius: 2px;
   margin-top: 10px;
   object-fit: contain;
 }
+@media (min-width: 768px) {
+  .poster img {
+    width: auto; /* Allows it to go back to max-width: 500px on larger screens */
+  }
+}
 .flexunder{
   display: flex;
   justify-content: space-evenly;
