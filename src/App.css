@@ -35,9 +35,10 @@ border-radius: 2px;
 .poster img{
   max-height: 750px;
   margin: 20px auto;
-  max-width: 100%;
+  max-width: 500px;
   padding: 10px;
   margin-top: 10px;
+  object-fit: contain;
 }
 .flexunder{
   display: flex;
