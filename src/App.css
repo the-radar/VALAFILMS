@@ -42,7 +42,7 @@ border-radius: 2px;
 }
 @media (min-width: 768px) {
   .poster img {
-    width: auto; /* Allows it to go back to max-width: 500px on larger screens */
+    max-width: 100%; /* Allows it to go back to max-width: 500px on larger screens */
   }
 }
 .flexunder{
