@@ -1,169 +1,297 @@
-import React, { useState, useEffect } from "react";
-import Slide from "@material-ui/core/Slide";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme, makeStyles } from "@material-ui/core/styles";
-import firebase from "./firebase"; // ensure your firebase config is imported correctly
-import Slider from "react-slick"; // reusing the existing slider from your project
+"use client"
 
-// Reuse your existing transition for dialogs
+import React, { useState, useEffect } from "react"
+import Slide from "@material-ui/core/Slide"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
+import "react-gallery-carousel/dist/index.css"
+import Slider from "react-slick"
+import { makeStyles } from "@material-ui/core/styles"
+import Dialog from "@material-ui/core/Dialog"
+import DialogContent from "@material-ui/core/DialogContent"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useTheme } from "@material-ui/core/styles"
+import Scrollbutton from "./scrolltobottom"
+import Rodal from "rodal"
+import firebase from "./firebase"
+
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+  return <Slide direction="up" ref={ref} {...props} />
+})
 
-// Define your styles (feel free to adjust these to match your existing design)
-const useStyles = makeStyles({
-  bg: {
-    backgroundColor: "black",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "20px",
-  },
-  icon: {
-    color: "white",
-    width: "30px",
-    height: "30px",
-  },
-  poster: {
-    width: "100%",
-    maxHeight: "300px",
-    objectFit: "cover",
-    cursor: "pointer",
-  },
-  photoContainer: {
-    color: "white",
-    textAlign: "center",
-    margin: "20px 0",
-  },
-  viewGallery: {
-    cursor: "pointer",
-    color: "#c1872b",
-    marginTop: "10px",
-  },
-  imgSlide: {
-    width: "100%",
-    maxHeight: "80vh",
-    objectFit: "contain",
-  },
-});
+export default function PhotographyProjects() {
+  const [photos, setPhotos] = useState([])
+  const [showModal, setModal] = useState(false)
+  const [currentItem, setCurrentItem] = useState(null)
+  const [currentTag, setCurrentTag] = useState("all")
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [link, setLink] = useState("")
+  const [thumbLink, setThumbLink] = useState("")
 
-export default function Photography() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
 
-  // State for loaded photography pages
-  const [photos, setPhotos] = useState([]);
-  // State for controlling the modal dialog and current photo selection
-  const [open, setOpen] = useState(false);
-  const [currentPhoto, setCurrentPhoto] = useState(null);
-  // This state holds the slider settings; reusing the settings from your existing page.
-  const [sliderSettings, setSliderSettings] = useState({
-    dots: true,
+  const useStyles = makeStyles({
+    root: {
+      backgroundColor: "black",
+      zIndex: 8000,
+    },
+    bg: {
+      backgroundColor: "black",
+      zIndex: 8000,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    icon: {
+      color: "white",
+      width: "30px",
+      height: "30px",
+    },
+  })
+
+  const settings = {
     infinite: true,
-    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
-    // initialSlide will be reset to 0 when opening the dialog
-    initialSlide: 0,
-  });
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 15000,
+    className: "slides",
+  }
 
-  // Load photography content from Firebase (from the "photopages" node)
+  const settings3 = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500,
+    arrows: false,
+  }
+
   useEffect(() => {
-    const photoRef = firebase.database().ref("photopages");
-    photoRef.on("value", (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const formattedPhotos = Object.keys(data).map((key) => ({
-          id: key,
-          ...data[key],
-        }));
-        setPhotos(formattedPhotos);
-      }
-    });
-  }, []);
+    const loadContent = () => {
+      const photoRef = firebase.database().ref("photopages")
+      photoRef.on("value", (snapshot) => {
+        const data = snapshot.val()
+        if (data) {
+          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }))
+          setPhotos(formattedPhotos)
+        }
+      })
 
-  // When a photography item is clicked, open the modal and set the current photo item.
-  const openDialog = (photo) => {
-    setCurrentPhoto(photo);
-    // Reset the slider to the first image (or change if you wish)
-    setSliderSettings({ ...sliderSettings, initialSlide: 0 });
-    setOpen(true);
-  };
+      const settingsRef = firebase.database().ref("vala/settings/photography")
+      settingsRef.on("value", (snapshot) => {
+        const data = snapshot.val()
+        if (data) {
+          setLink(data.landingvideo)
+          setThumbLink(data.thumb)
+        }
+      })
+    }
+    loadContent()
+  }, [])
 
-  const closeDialog = () => {
-    setOpen(false);
-  };
+  const onLoadedData = () => {
+    setIsVideoLoaded(true)
+  }
 
-  // Helper: Extract an array of image URLs from a photography item.
-  // Your DB structure uses numeric keys for each image, plus a separate "poster" field.
-  const getImageArray = (photo) => {
-    if (!photo.images) return [];
-    return Object.keys(photo.images)
-      .filter((key) => key !== "poster" && !isNaN(key))
-      .map((key) => photo.images[key].url);
-  };
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const classes = useStyles()
 
   return (
-    <div style={{ backgroundColor: "black", minHeight: "100vh", padding: "20px" }}>
-      {photos.map((photo) => (
-        <div key={photo.id} className={classes.photoContainer}>
-          <h2>{photo.TITLE}</h2>
-          <p>{photo.CAPTION}</p>
-          {/* Use the "poster" image if available; otherwise use the first image */}
-          <img
-            src={
-              photo.images && photo.images.poster
-                ? photo.images.poster
-                : getImageArray(photo)[0] || ""
-            }
-            alt={photo.TITLE}
-            className={classes.poster}
-            onClick={() => openDialog(photo)}
-          />
-          <p className={classes.viewGallery} onClick={() => openDialog(photo)}>
-            View Gallery
-          </p>
-        </div>
-      ))}
-
-      {/* Modal dialog using your existing slider */}
+    <div>
       <Dialog
         fullScreen={fullScreen}
         open={open}
-        onClose={closeDialog}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
         TransitionComponent={Transition}
-        PaperProps={{
-          style: { backgroundColor: "black" },
-        }}
       >
-        <div style={{ display: "flex", backgroundColor: "black", padding: "10px" }}>
-          <IconButton onClick={closeDialog} className={classes.icon}>
+        <div style={{ display: "flex", backgroundColor: "black" }}>
+          <IconButton onClick={handleClose} className={classes.icon}>
             <CloseIcon />
           </IconButton>
         </div>
         <DialogContent className={classes.bg}>
-          {currentPhoto && (
-            <Slider {...sliderSettings}>
-              {getImageArray(currentPhoto).map((imgUrl, index) => (
-                <div key={index}>
-                  <img
-                    src={imgUrl}
-                    alt={`Slide ${index}`}
-                    className={classes.imgSlide}
-                  />
-                </div>
-              ))}
+          <div className="slideimg">
+            <Slider {...settings3}>
+              {currentItem &&
+                currentItem.images.map((imgUrl, index) => (
+                  <div key={index}>
+                    <img
+                      src={imgUrl.url || "/placeholder.svg"}
+                      alt={`Supporting image ${index + 1}`}
+                      className="imgslide"
+                    />
+                  </div>
+                ))}
             </Slider>
-          )}
+          </div>
         </DialogContent>
       </Dialog>
+
+      <div className="vidcon">
+        <img
+          src={thumbLink || "/placeholder.svg"}
+          className="video-thumb tiny"
+          alt="thumb"
+          style={{ display: isVideoLoaded ? "none" : "block" }}
+        />
+        <video autoPlay muted loop id="myVideo" style={{ opacity: isVideoLoaded ? 1 : 0 }} onLoadedData={onLoadedData}>
+          <source src={link} type="video/mp4" />
+        </video>
+        <div className="vidwriteup">
+          <h1 className="slideup">PHOTOGRAPHY</h1>
+          <br />
+          <h4
+            className="baulf2 mdf"
+            onClick={() => {
+              window.open("https://your-photography-portfolio-url.com", "_blank")
+            }}
+          >
+            VIEW PORTFOLIO
+          </h4>
+        </div>
+      </div>
+
+      <div id="filter" placeholder-text="CATEGORIES">
+        <p
+          onClick={() => {
+            setCurrentTag("all")
+          }}
+          style={{ color: currentTag == "all" ? "#c1872b" : "#eeeeee" }}
+        >
+          ALL
+        </p>
+        <p
+          onClick={() => {
+            setCurrentTag("portrait")
+          }}
+          style={{ color: currentTag == "portrait" ? "#c1872b" : "#eeeeee" }}
+        >
+          PORTRAIT
+        </p>
+        <p
+          onClick={() => {
+            setCurrentTag("landscape")
+          }}
+          style={{ color: currentTag == "landscape" ? "#c1872b" : "#eeeeee" }}
+        >
+          LANDSCAPE
+        </p>
+        <p
+          onClick={() => {
+            setCurrentTag("event")
+          }}
+          style={{ color: currentTag == "event" ? "#c1872b" : "#eeeeee" }}
+        >
+          EVENT
+        </p>
+      </div>
+
+      <Slider {...settings}>
+        {photos.map(
+          (photo, i) =>
+            (photo.tag == currentTag || currentTag == "all") && (
+              <div className="flexcol" key={photo.id}>
+                <div className="flexunder">
+                  <div className="content">
+                    <h2>{photo.TITLE}</h2>
+                    <br />
+                    {photo.CAPTION.split("\\n").map((text, index) => (
+                      <p key={index}>
+                        {text}
+                        <br />
+                        <br />
+                      </p>
+                    ))}
+                    <br />
+                    <h1
+                      className="baulf2"
+                      style={{ width: "fit-content" }}
+                      onClick={() => {
+                        setModal(true)
+                        setCurrentItem(photo)
+                      }}
+                    >
+                      View Gallery
+                    </h1>
+                    <br />
+                    <div className="">
+                      <Slider {...settings3}>
+                        {photo.images.map((imgUrl, index) => (
+                          <div className="newimage" key={index}>
+                            <img
+                              src={imgUrl.url || "/placeholder.svg"}
+                              className=""
+                              alt={`Gallery image ${index + 1}`}
+                              onClick={() => {
+                                setCurrentItem(photo)
+                                handleClickOpen()
+                              }}
+                            />
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  </div>
+                  <div className="poster-container">
+                    <img
+                      className="poster-img"
+                      src={photo.poster || "/placeholder.svg"}
+                      alt={`${photo.TITLE} poster`}
+                    />
+                  </div>
+                </div>
+                <br />
+                <br />
+              </div>
+            ),
+        )}
+      </Slider>
+
+      <Rodal
+        customMaskStyles={{ backgroundColor: "black" }}
+        customStyles={{ backgroundColor: "black", padding: "0", zIndex: "6000" }}
+        visible={showModal}
+        width={1000}
+        height={1000}
+        enterAnimation="rotate"
+        showMask={true}
+        onClose={() => {
+          setModal(false)
+        }}
+      >
+        {currentItem && (
+          <Slider {...settings3}>
+            {currentItem.images.map((imgUrl, index) => (
+              <div key={index}>
+                <img
+                  src={imgUrl.url || "/placeholder.svg"}
+                  alt={`Full size image ${index + 1}`}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
+      </Rodal>
+
+      <Scrollbutton />
     </div>
-  );
+  )
 }
+
