@@ -333,8 +333,8 @@ const classes = useStyles()
                  </Slider>
                </div>
              </div>
-             <div className="poster">
-               <img src={obj2[item].poster} alt=""/>
+             <div className="poster-container">
+               <img className="poster-img" src={obj2[item].poster} alt=""/>
              </div>
            </div>
            <br/>
