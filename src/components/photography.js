@@ -1,181 +1,201 @@
-"use client"
+import React, { useState, useEffect } from "react";
+import firebase from "./firebase";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import Slide from "@material-ui/core/Slide";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
-import React, { useState, useEffect } from "react"
-import Slide from "@material-ui/core/Slide"
-import IconButton from "@material-ui/core/IconButton"
-import CloseIcon from "@material-ui/icons/Close"
-import "react-gallery-carousel/dist/index.css"
-import Slider from "react-slick"
-import { makeStyles } from "@material-ui/core/styles"
-import Dialog from "@material-ui/core/Dialog"
-import DialogContent from "@material-ui/core/DialogContent"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import { useTheme } from "@material-ui/core/styles"
-import Scrollbutton from "./scrolltobottom"
-import firebase from "./firebase"
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
-
-export default function PhotographyProjects() {
-  const [photos, setPhotos] = useState([])
-  const [currentItem, setCurrentItem] = useState(null)
-  const [open, setOpen] = useState(false)
-
-  const theme = useTheme()
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
-
-  const useStyles = makeStyles({
-    root: {
-      backgroundColor: "black",
-      zIndex: 8000,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: "white",
+    padding: "20px",
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "40px",
     },
-    bg: {
-      backgroundColor: "black",
-      zIndex: 8000,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
+  },
+  filter: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "15px",
+    marginBottom: "20px",
+  },
+  filterItem: {
+    cursor: "pointer",
+    color: "#eeeeee",
+    "&.active": {
+      color: "#c1872b",
     },
-    icon: {
-      color: "white",
-      width: "30px",
-      height: "30px",
+  },
+  photoCard: {
+    padding: "10px",
+    textAlign: "left",
+  },
+  poster: {
+    width: "100%",
+    maxHeight: "300px",
+    objectFit: "cover",
+    borderRadius: "8px",
+    marginBottom: "20px",
+  },
+  content: {
+    padding: "10px",
+  },
+  title: {
+    fontSize: "1.5em",
+    fontWeight: "bold",
+  },
+  description: {
+    marginTop: "10px",
+  },
+  thumbnailRow: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginTop: "10px",
+  },
+  thumbnail: {
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "8px",
+    cursor: "pointer",
+  },
+  dialogBg: {
+    backgroundColor: "black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  closeIcon: {
+    color: "white",
+    position: "absolute",
+    top: 10,
+    right: 10,
+  },
+  sliderContainer: {
+    position: "relative",
+    width: "100%",
+    overflow: "hidden",
+  },
+  slide: {
+    minWidth: "100%",
+    transition: "transform 0.5s ease-in-out",
+  },
+  navButton: {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    color: "#c1872b",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
-  })
+  },
+  prevButton: {
+    left: "10px",
+  },
+  nextButton: {
+    right: "10px",
+  },
+}));
 
-  const settings = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 15000,
-    className: "slides",
-  }
-
-  const supportingImagesSettings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
+export default function Photography() {
+  const classes = useStyles();
+  const [photos, setPhotos] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("all");
+  const [showModal, setShowModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const loadContent = () => {
-      const photoRef = firebase.database().ref("photopages")
+      const photoRef = firebase.database().ref("photopages");
       photoRef.on("value", (snapshot) => {
-        const data = snapshot.val()
+        const data = snapshot.val();
         if (data) {
-          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }))
-          setPhotos(formattedPhotos)
+          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+          setPhotos(formattedPhotos);
         }
-      })
-    }
-    loadContent()
-  }, [])
+      });
+    };
+    loadContent();
+  }, []);
 
-  const handleClickOpen = (item) => {
-    setCurrentItem(item)
-    setOpen(true)
-  }
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
 
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const filteredPhotos = photos.filter(
+    (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase()
+  );
 
-  const classes = useStyles()
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+  };
 
   return (
-    <div style={{ backgroundColor: "black", color: "white" }}>
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-        TransitionComponent={Transition}
-      >
-        <div style={{ display: "flex", backgroundColor: "black" }}>
-          <IconButton onClick={handleClose} className={classes.icon}>
+    <div className={classes.root}>
+      <h1>Photography</h1>
+      <div className={classes.sliderContainer}>
+        {filteredPhotos.map((photo, index) => (
+          <Slide
+            key={photo.id}
+            direction="left"
+            in={index === currentSlide}
+            mountOnEnter
+            unmountOnExit
+            timeout={500}
+          >
+            <div className={classes.slide}>
+              <div className={classes.photoCard}>
+                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
+                <div className={classes.content}>
+                  <h2 className={classes.title}>{photo.TITLE}</h2>
+                  <p className={classes.description}>{photo.CAPTION}</p>
+                  <div className={classes.thumbnailRow}>
+                    {photo.images && photo.images.map((imgObj, index) => (
+                      <img
+                        key={index}
+                        src={imgObj.url}
+                        alt={`Photo ${index}`}
+                        className={classes.thumbnail}
+                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Slide>
+        ))}
+        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
+          Prev
+        </Button>
+        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
+          Next
+        </Button>
+      </div>
+
+      {/* Image Modal */}
+      <Dialog fullScreen={fullScreen} open={showModal} onClose={() => setShowModal(false)} TransitionComponent={Slide}>
+        <div className={classes.dialogBg}>
+          <IconButton onClick={() => setShowModal(false)} className={classes.closeIcon}>
             <CloseIcon />
           </IconButton>
         </div>
-        <DialogContent className={classes.bg}>
-          <div className="slideimg">
-            <img
-              src={currentItem?.poster || "/placeholder.svg"}
-              alt="Full size poster"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
+        <DialogContent className={classes.dialogBg}>
+          <img src={currentImage} alt="Selected" style={{ maxWidth: "80%", borderRadius: "8px" }} />
         </DialogContent>
       </Dialog>
-
-      <Slider {...settings}>
-        {photos.map((photo, i) => (
-          <div key={photo.id} className="photo-slide" style={{ position: "relative" }}>
-            <div
-              className="poster-background"
-              style={{
-                backgroundImage: `url(${photo.poster || "/placeholder.svg"})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                filter: "brightness(50%)",
-              }}
-            />
-            <div className="content" style={{ position: "relative", zIndex: 1, padding: "4rem 2rem" }}>
-              <h1 className="photo-title" style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-                {photo.TITLE}
-              </h1>
-              <p className="photo-caption" style={{ fontSize: "1.5rem", marginBottom: "2rem" }}>
-                {photo.CAPTION}
-              </p>
-
-              <div className="supporting-images" style={{ marginTop: "2rem" }}>
-                <Slider {...supportingImagesSettings}>
-                  {photo.images.map((imgUrl, index) => (
-                    <div className="supporting-image" key={index} style={{ padding: "0 0.5rem" }}>
-                      <img
-                        src={imgUrl.url || "/placeholder.svg"}
-                        alt={`Supporting image ${index + 1}`}
-                        style={{ width: "100%", height: "auto", cursor: "pointer" }}
-                        onClick={() => handleClickOpen(photo)}
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-
-      <Scrollbutton />
     </div>
-  )
+  );
 }
-
