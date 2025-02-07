@@ -35,13 +35,12 @@ border-radius: 2px;
 .poster img{
   max-height: 750px;
   margin: 20px auto;
-  max-width: 500px;
+  max-width: 100%;
   padding: 10px;
   margin-top: 10px;
-  object-fit: contain;
 }
 .poster-container {
-  width: 100%;
+  width: 80%;
   max-width: 500px;
   margin: 20px auto;
   padding: 10px;
