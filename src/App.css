@@ -40,10 +40,9 @@ border-radius: 2px;
   margin-top: 10px;
 }
 .poster-container {
-  width: 80%;
+  width: 100%;
   max-width: 500px;
-  margin: 20px auto;
-  padding: 10px;
+  align-self: center;
 }
 
 .poster-img {
