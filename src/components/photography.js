@@ -12,7 +12,6 @@ import DialogContent from "@material-ui/core/DialogContent"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { useTheme } from "@material-ui/core/styles"
 import Scrollbutton from "./scrolltobottom"
-import Rodal from "rodal"
 import firebase from "./firebase"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -21,13 +20,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function PhotographyProjects() {
   const [photos, setPhotos] = useState([])
-  const [showModal, setModal] = useState(false)
   const [currentItem, setCurrentItem] = useState(null)
-  const [currentTag, setCurrentTag] = useState("all")
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [open, setOpen] = useState(false)
-  const [link, setLink] = useState("")
-  const [thumbLink, setThumbLink] = useState("")
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
@@ -62,16 +56,28 @@ export default function PhotographyProjects() {
     className: "slides",
   }
 
-  const settings3 = {
-    dots: true,
-    fade: true,
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 1,
+  const supportingImagesSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   }
 
   useEffect(() => {
@@ -84,24 +90,12 @@ export default function PhotographyProjects() {
           setPhotos(formattedPhotos)
         }
       })
-
-      const settingsRef = firebase.database().ref("vala/settings/photography")
-      settingsRef.on("value", (snapshot) => {
-        const data = snapshot.val()
-        if (data) {
-          setLink(data.landingvideo)
-          setThumbLink(data.thumb)
-        }
-      })
     }
     loadContent()
   }, [])
 
-  const onLoadedData = () => {
-    setIsVideoLoaded(true)
-  }
-
-  const handleClickOpen = () => {
+  const handleClickOpen = (item) => {
+    setCurrentItem(item)
     setOpen(true)
   }
 
@@ -112,7 +106,7 @@ export default function PhotographyProjects() {
   const classes = useStyles()
 
   return (
-    <div>
+    <div style={{ backgroundColor: "black", color: "white" }}>
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -127,168 +121,58 @@ export default function PhotographyProjects() {
         </div>
         <DialogContent className={classes.bg}>
           <div className="slideimg">
-            <Slider {...settings3}>
-              {currentItem &&
-                currentItem.images.map((imgUrl, index) => (
-                  <div key={index}>
-                    <img
-                      src={imgUrl.url || "/placeholder.svg"}
-                      alt={`Supporting image ${index + 1}`}
-                      className="imgslide"
-                    />
-                  </div>
-                ))}
-            </Slider>
+            <img
+              src={currentItem?.poster || "/placeholder.svg"}
+              alt="Full size poster"
+              style={{ width: "100%", height: "auto" }}
+            />
           </div>
         </DialogContent>
       </Dialog>
 
-      <div className="vidcon">
-        <img
-          src={thumbLink || "/placeholder.svg"}
-          className="video-thumb tiny"
-          alt="thumb"
-          style={{ display: isVideoLoaded ? "none" : "block" }}
-        />
-        <video autoPlay muted loop id="myVideo" style={{ opacity: isVideoLoaded ? 1 : 0 }} onLoadedData={onLoadedData}>
-          <source src={link} type="video/mp4" />
-        </video>
-        <div className="vidwriteup">
-          <h1 className="slideup">PHOTOGRAPHY</h1>
-          <br />
-          <h4
-            className="baulf2 mdf"
-            onClick={() => {
-              window.open("https://your-photography-portfolio-url.com", "_blank")
-            }}
-          >
-            VIEW PORTFOLIO
-          </h4>
-        </div>
-      </div>
-
-      <div id="filter" placeholder-text="CATEGORIES">
-        <p
-          onClick={() => {
-            setCurrentTag("all")
-          }}
-          style={{ color: currentTag == "all" ? "#c1872b" : "#eeeeee" }}
-        >
-          ALL
-        </p>
-        <p
-          onClick={() => {
-            setCurrentTag("portrait")
-          }}
-          style={{ color: currentTag == "portrait" ? "#c1872b" : "#eeeeee" }}
-        >
-          PORTRAIT
-        </p>
-        <p
-          onClick={() => {
-            setCurrentTag("landscape")
-          }}
-          style={{ color: currentTag == "landscape" ? "#c1872b" : "#eeeeee" }}
-        >
-          LANDSCAPE
-        </p>
-        <p
-          onClick={() => {
-            setCurrentTag("event")
-          }}
-          style={{ color: currentTag == "event" ? "#c1872b" : "#eeeeee" }}
-        >
-          EVENT
-        </p>
-      </div>
-
       <Slider {...settings}>
-        {photos.map(
-          (photo, i) =>
-            (photo.tag == currentTag || currentTag == "all") && (
-              <div className="flexcol" key={photo.id}>
-                <div className="flexunder">
-                  <div className="content">
-                    <h2>{photo.TITLE}</h2>
-                    <br />
-                    {photo.CAPTION.split("\\n").map((text, index) => (
-                      <p key={index}>
-                        {text}
-                        <br />
-                        <br />
-                      </p>
-                    ))}
-                    <br />
-                    <h1
-                      className="baulf2"
-                      style={{ width: "fit-content" }}
-                      onClick={() => {
-                        setModal(true)
-                        setCurrentItem(photo)
-                      }}
-                    >
-                      View Gallery
-                    </h1>
-                    <br />
-                    <div className="">
-                      <Slider {...settings3}>
-                        {photo.images.map((imgUrl, index) => (
-                          <div className="newimage" key={index}>
-                            <img
-                              src={imgUrl.url || "/placeholder.svg"}
-                              className=""
-                              alt={`Gallery image ${index + 1}`}
-                              onClick={() => {
-                                setCurrentItem(photo)
-                                handleClickOpen()
-                              }}
-                            />
-                          </div>
-                        ))}
-                      </Slider>
-                    </div>
-                  </div>
-                  <div className="poster-container">
-                    <img
-                      className="poster-img"
-                      src={photo.poster || "/placeholder.svg"}
-                      alt={`${photo.TITLE} poster`}
-                    />
-                  </div>
-                </div>
-                <br />
-                <br />
-              </div>
-            ),
-        )}
-      </Slider>
+        {photos.map((photo, i) => (
+          <div key={photo.id} className="photo-slide" style={{ position: "relative" }}>
+            <div
+              className="poster-background"
+              style={{
+                backgroundImage: `url(${photo.poster || "/placeholder.svg"})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                filter: "brightness(50%)",
+              }}
+            />
+            <div className="content" style={{ position: "relative", zIndex: 1, padding: "4rem 2rem" }}>
+              <h1 className="photo-title" style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+                {photo.TITLE}
+              </h1>
+              <p className="photo-caption" style={{ fontSize: "1.5rem", marginBottom: "2rem" }}>
+                {photo.CAPTION}
+              </p>
 
-      <Rodal
-        customMaskStyles={{ backgroundColor: "black" }}
-        customStyles={{ backgroundColor: "black", padding: "0", zIndex: "6000" }}
-        visible={showModal}
-        width={1000}
-        height={1000}
-        enterAnimation="rotate"
-        showMask={true}
-        onClose={() => {
-          setModal(false)
-        }}
-      >
-        {currentItem && (
-          <Slider {...settings3}>
-            {currentItem.images.map((imgUrl, index) => (
-              <div key={index}>
-                <img
-                  src={imgUrl.url || "/placeholder.svg"}
-                  alt={`Full size image ${index + 1}`}
-                  style={{ width: "100%", height: "auto" }}
-                />
+              <div className="supporting-images" style={{ marginTop: "2rem" }}>
+                <Slider {...supportingImagesSettings}>
+                  {photo.images.map((imgUrl, index) => (
+                    <div className="supporting-image" key={index} style={{ padding: "0 0.5rem" }}>
+                      <img
+                        src={imgUrl.url || "/placeholder.svg"}
+                        alt={`Supporting image ${index + 1}`}
+                        style={{ width: "100%", height: "auto", cursor: "pointer" }}
+                        onClick={() => handleClickOpen(photo)}
+                      />
+                    </div>
+                  ))}
+                </Slider>
               </div>
-            ))}
-          </Slider>
-        )}
-      </Rodal>
+            </div>
+          </div>
+        ))}
+      </Slider>
 
       <Scrollbutton />
     </div>
