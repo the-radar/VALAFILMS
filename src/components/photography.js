@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
+import Slider from "react-slick";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { useTheme } from "@material-ui/core/styles";
@@ -94,20 +95,18 @@ export default function Photography() {
   const [currentImage, setCurrentImage] = useState("")
 
   useEffect(() => {
-    const loadContent = async () => {
-      // Replace with your actual Firebase initialization
-      const firebase = { database: () => ({ ref: () => ({ on: () => {} }) }) } // Placeholder
-      const photoRef = firebase.database().ref("photopages")
+    const loadContent = () => {
+      const photoRef = firebase.database().ref("photopages");
       photoRef.on("value", (snapshot) => {
-        const data = snapshot.val()
+        const data = snapshot.val();
         if (data) {
-          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }))
-          setPhotos(formattedPhotos)
+          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+          setPhotos(formattedPhotos);
         }
-      })
-    }
-    loadContent()
-  }, [])
+      });
+    };
+    loadContent();
+  }, []);
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
@@ -178,7 +177,7 @@ export default function Photography() {
         </div>
         <DialogContent className={classes.dialogBg}>
           <img
-            src={currentImage}
+            src={currentImage || "/placeholder.svg"}
             alt="Selected"
             style={{ maxWidth: "80%", borderRadius: "8px" }}
           />
