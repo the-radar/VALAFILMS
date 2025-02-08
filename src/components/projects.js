@@ -18,7 +18,6 @@ import { teal, purple } from '@material-ui/core/colors';
 import firebase from "./firebase"
 import YoutubeEmbed from "./embed";
 import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
-import NavigateBeforeTwoToneIcon from '@material-ui/icons/NavigateBeforeTwoTone';
 import ReactPlayer from 'react-player/lazy'
 
 

@@ -1,44 +1,52 @@
-import React, { useState, useEffect } from "react";
-import firebase from "./firebase";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import Slide from "@material-ui/core/Slide";
-import { makeStyles } from "@material-ui/core/styles";
-import Slider from "react-slick";
-import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
+"use client"
+
+import React, { useState, useEffect } from "react"
+import firebase from "./firebase"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import Dialog from "@material-ui/core/Dialog"
+import DialogContent from "@material-ui/core/DialogContent"
+import Slide from "@material-ui/core/Slide"
+import { makeStyles } from "@material-ui/core/styles"
+import Slider from "react-slick"
+import NavigateNextTwoToneIcon from "@material-ui/icons/NavigateNextTwoTone"
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />
+})
 
 function SampleNextArrow(props) {
-  const { onClick } = props;
-  let className = props.type === "next" ? "nextArrow" : "prevArrow";
-  className += " arrow";
+  const { onClick } = props
+  let className = props.type === "next" ? "nextArrow" : "prevArrow"
+  className += " arrow"
+  const char =
+    props.type === "next" ? (
+      <NavigateNextTwoToneIcon />
+    ) : (
+      <NavigateNextTwoToneIcon style={{ transform: "rotate(180deg)" }} />
+    )
   return (
-    <div
-      className={className}
-      onClick={onClick}
-    />
-  );
+    <div className={className} onClick={onClick}>
+      {char}
+    </div>
+  )
 }
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "white", zIndex: '10000' }}
-      onClick={onClick}
-    />
-  );
+    <div className="prevArrow arrow" onClick={onClick}>
+      <NavigateNextTwoToneIcon style={{ transform: "rotate(180deg)" }} />
+    </div>
+  )
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     color: "white",
-    backgroundColor: "black",
-    minHeight: "100vh",
+    padding: "20px",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       paddingTop: "40px",
@@ -57,6 +65,47 @@ const useStyles = makeStyles((theme) => ({
       color: "#c1872b",
     },
   },
+  photoCard: {
+    padding: "10px",
+    textAlign: "left",
+  },
+  poster: {
+    width: "100%",
+    height: "100vh",
+    objectFit: "cover",
+    borderRadius: "8px",
+  },
+  content: {
+    padding: "10px",
+    position: "absolute",
+    bottom: "20px",
+    left: "20px",
+    right: "20px",
+    background: "rgba(0, 0, 0, 0.7)",
+    borderRadius: "8px",
+  },
+  title: {
+    fontSize: "1.5em",
+    fontWeight: "bold",
+    color: "white",
+  },
+  description: {
+    marginTop: "10px",
+    color: "white",
+  },
+  thumbnailRow: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginTop: "10px",
+  },
+  thumbnail: {
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "8px",
+    cursor: "pointer",
+  },
   dialogBg: {
     backgroundColor: "black",
     display: "flex",
@@ -69,101 +118,96 @@ const useStyles = makeStyles((theme) => ({
     top: 10,
     right: 10,
   },
-  icon: {
-    color: "white",
-    width: "30px",
-    height: "30px"
-  }
-}));
+}))
 
 export default function Photography() {
-  const classes = useStyles();
-  const [photos, setPhotos] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("all");
-  const [showModal, setShowModal] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
+  const classes = useStyles()
+  const [photos, setPhotos] = useState([])
+  const [currentCategory, setCurrentCategory] = useState("all")
+  const [showModal, setShowModal] = useState(false)
+  const [currentImage, setCurrentImage] = useState("")
 
   useEffect(() => {
     const loadContent = () => {
-      const photoRef = firebase.database().ref("photopages");
+      const photoRef = firebase.database().ref("photopages")
       photoRef.on("value", (snapshot) => {
-        const data = snapshot.val();
+        const data = snapshot.val()
         if (data) {
-          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
-          setPhotos(formattedPhotos);
+          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }))
+          setPhotos(formattedPhotos)
         }
-      });
-    };
-    loadContent();
-  }, []);
+      })
+    }
+    loadContent()
+  }, [])
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
 
   const filteredPhotos = photos.filter(
-    (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase()
-  );
+    (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase(),
+  )
 
   const settings = {
+    dots: false,
     infinite: true,
+    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
     autoplaySpeed: 15000,
-    className: 'slides'
-  };
+    nextArrow: <SampleNextArrow type="next" />,
+    prevArrow: <SamplePrevArrow />,
+    className: "slides",
+  }
 
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
-
-      <div id="filter" placeholder-text="CATEGORIES">
-        <p onClick={() => setCurrentCategory("all")} style={{ color: currentCategory === "all" ? "#c1872b" : "#eeeeee" }}>ALL</p>
-        <p onClick={() => setCurrentCategory("nature")} style={{ color: currentCategory === "nature" ? "#c1872b" : "#eeeeee" }}>NATURE</p>
-        <p onClick={() => setCurrentCategory("portrait")} style={{ color: currentCategory === "portrait" ? "#c1872b" : "#eeeeee" }}>PORTRAITS</p>
-        <p onClick={() => setCurrentCategory("street")} style={{ color: currentCategory === "street" ? "#c1872b" : "#eeeeee" }}>STREET</p>
+      <div className={classes.filter}>
+        {["all", "portrait", "landscape", "street"].map((category) => (
+          <span
+            key={category}
+            className={`${classes.filterItem} ${currentCategory === category ? "active" : ""}`}
+            onClick={() => setCurrentCategory(category)}
+          >
+            {category.toUpperCase()}
+          </span>
+        ))}
       </div>
-
       <Slider {...settings}>
         {filteredPhotos.map((photo) => (
-          <div className="flexcol" key={photo.id}>
-            <div className="flexunder">
-              <div className="content">
-                <h2>{photo.TITLE}</h2>
-                <br />
-                {photo.CAPTION.split("\\n").map((text, index) => (
-                  <p key={index}>{text}<br /><br /></p>
-                ))}
-                <br />
-                <div className="thumbnailRow">
-                  {photo.images && photo.images.map((imgObj, index) => (
+          <div key={photo.id} className={classes.photoCard}>
+            <img src={photo.poster || "/placeholder.svg"} alt={photo.TITLE} className={classes.poster} />
+            <div className={classes.content}>
+              <h2 className={classes.title}>{photo.TITLE}</h2>
+              <p className={classes.description}>{photo.CAPTION}</p>
+              <div className={classes.thumbnailRow}>
+                {photo.images &&
+                  photo.images.map((imgObj, index) => (
                     <img
                       key={index}
-                      src={imgObj.url}
+                      src={imgObj.url || "/placeholder.svg"}
                       alt={`Photo ${index}`}
-                      className="thumbnail"
+                      className={classes.thumbnail}
                       onClick={() => {
-                        setCurrentImage(imgObj.url);
-                        setShowModal(true);
+                        setCurrentImage(imgObj.url)
+                        setShowModal(true)
                       }}
                     />
                   ))}
-                </div>
-              </div>
-              <div className="poster-container">
-                <img className="poster-img" src={photo.poster} alt={photo.TITLE} />
               </div>
             </div>
           </div>
         ))}
       </Slider>
 
+      {/* Image Modal */}
       <Dialog
         fullScreen={fullScreen}
         open={showModal}
         onClose={() => setShowModal(false)}
-        TransitionComponent={Slide}
+        TransitionComponent={Transition}
       >
         <div className={classes.dialogBg}>
           <IconButton onClick={() => setShowModal(false)} className={classes.closeIcon}>
@@ -171,9 +215,14 @@ export default function Photography() {
           </IconButton>
         </div>
         <DialogContent className={classes.dialogBg}>
-          <img src={currentImage} alt="Selected" style={{ maxWidth: "80%", borderRadius: "8px" }} />
+          <img
+            src={currentImage || "/placeholder.svg"}
+            alt="Selected"
+            style={{ maxWidth: "80%", maxHeight: "80vh", borderRadius: "8px" }}
+          />
         </DialogContent>
       </Dialog>
     </div>
-  );
+  )
 }
+
