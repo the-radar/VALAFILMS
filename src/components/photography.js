@@ -9,6 +9,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Slide from "@material-ui/core/Slide";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
+import NavigateBeforeTwoToneIcon from '@material-ui/icons/NavigateBeforeTwoTone';
 
 const useStyles = makeStyles((theme) => ({
   root: {
