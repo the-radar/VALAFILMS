@@ -1,149 +1,88 @@
-import { useState, useEffect } from "react"
-import firebase from "./firebase"
-import IconButton from "@material-ui/core/IconButton"
-import CloseIcon from "@material-ui/icons/Close"
-import { useTheme } from "@material-ui/core/styles"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import Dialog from "@material-ui/core/Dialog"
-import DialogContent from "@material-ui/core/DialogContent"
-import Slide from "@material-ui/core/Slide"
-import { makeStyles } from "@material-ui/core/styles"
-import Slider from "react-slick"
-import NavigateNextTwoToneIcon from "@material-ui/icons/NavigateNextTwoTone"
-import NavigateBeforeTwoToneIcon from "@material-ui/icons/NavigateBeforeTwoTone"
-
-function SampleNextArrow(props) {
-  const { onClick } = props
-  return (
-    <div className="nextArrow arrow" onClick={onClick}>
-      <NavigateNextTwoToneIcon />
-    </div>
-  )
-}
-
-function SamplePrevArrow(props) {
-  const { onClick } = props
-  return (
-    <div className="prevArrow arrow" onClick={onClick}>
-      <NavigateBeforeTwoToneIcon />
-    </div>
-  )
-}
+import React, { useState, useEffect } from "react";
+import firebase from "./firebase";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import Slide from "@material-ui/core/Slide";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: "white",
-    padding: "20px",
-    textAlign: "center",
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: "40px",
-    },
+    padding: theme.spacing(2),
   },
-  filter: {
+  sliderContainer: {
+    width: "100%",
+    height: "auto",
+  },
+  slide: {
     display: "flex",
+    alignItems: "center",
     justifyContent: "center",
-    gap: "15px",
-    marginBottom: "20px",
-  },
-  filterItem: {
-    cursor: "pointer",
-    color: "#eeeeee",
-    "&.active": {
-      color: "#c1872b",
-    },
-  },
-  photoCard: {
-    padding: "10px",
-    textAlign: "left",
+    height: "500px",
+    padding: theme.spacing(2),
   },
   poster: {
-    width: "100%",
-    height: "100vh",
-    objectFit: "cover",
-    borderRadius: "0",
-    marginBottom: "0",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    borderRadius: "8px",
+    marginRight: theme.spacing(2),
   },
   content: {
-    position: "absolute",
-    bottom: "0",
-    left: "0",
-    right: "0",
-    padding: "20px",
-    background: "rgba(0, 0, 0, 0.7)",
-    color: "white",
+    flex: 1,
   },
   title: {
-    fontSize: "1.5em",
-    fontWeight: "bold",
+    fontSize: "1.5rem",
+    marginBottom: theme.spacing(1),
   },
   description: {
-    marginTop: "10px",
+    fontSize: "1rem",
+    marginBottom: theme.spacing(2),
   },
   thumbnailRow: {
     display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-    marginTop: "10px",
+    flexWrap: "wrap",
   },
   thumbnail: {
     width: "100px",
     height: "100px",
     objectFit: "cover",
-    borderRadius: "8px",
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     cursor: "pointer",
-  },
-  dialogBg: {
-    backgroundColor: "black",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  closeIcon: {
-    color: "white",
-    position: "absolute",
-    top: 10,
-    right: 10,
-  },
-  sliderContainer: {
-    position: "relative",
-    width: "100%",
-    height: "100vh",
-    overflow: "hidden",
-  },
-  slide: {
-    minWidth: "100%",
-    height: "100vh",
-    transition: "transform 0.5s ease-in-out",
+    borderRadius: "8px",
   },
   navButton: {
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
+    zIndex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    color: "#c1872b",
+    color: "white",
     "&:hover": {
       backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
   },
   prevButton: {
-    left: "10px",
+    left: theme.spacing(2),
   },
   nextButton: {
-    right: "10px",
+    right: theme.spacing(2),
+  },
+  dialogBg: {
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    padding: theme.spacing(2),
+  },
+  closeIcon: {
+    position: "absolute",
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    color: "white",
   },
 }))
-
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 2000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 15000,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
-}
 
 export default function Photography() {
   const classes = useStyles()
@@ -151,10 +90,11 @@ export default function Photography() {
   const [currentCategory, setCurrentCategory] = useState("all")
   const [showModal, setShowModal] = useState(false)
   const [currentImage, setCurrentImage] = useState("")
-  const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
-    const loadContent = () => {
+    const loadContent = async () => {
+      // Replace with your actual Firebase initialization
+      const firebase = { database: () => ({ ref: () => ({ on: () => {} }) }) } // Placeholder
       const photoRef = firebase.database().ref("photopages")
       photoRef.on("value", (snapshot) => {
         const data = snapshot.val()
@@ -174,12 +114,33 @@ export default function Photography() {
     (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase(),
   )
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: true,
+    prevArrow: (
+      <Button className={`${classes.navButton} ${classes.prevButton}`}>
+        <NavigateBeforeTwoToneIcon />
+      </Button>
+    ),
+    nextArrow: (
+      <Button className={`${classes.navButton} ${classes.nextButton}`}>
+        <NavigateNextTwoToneIcon />
+      </Button>
+    ),
+  }
+
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
       <div className={classes.sliderContainer}>
         <Slider {...settings}>
-          {filteredPhotos.map((photo, index) => (
+          {filteredPhotos.map((photo) => (
             <div key={photo.id} className={classes.slide}>
               <img src={photo.poster || "/placeholder.svg"} alt={photo.TITLE} className={classes.poster} />
               <div className={classes.content}>
@@ -224,4 +185,3 @@ export default function Photography() {
     </div>
   )
 }
-
