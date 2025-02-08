@@ -7,8 +7,10 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Slide from "@material-ui/core/Slide";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
+import Slider from "react-slick";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,26 +21,13 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: "40px",
     },
   },
-  filter: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "15px",
-    marginBottom: "20px",
-  },
-  filterItem: {
-    cursor: "pointer",
-    color: "#eeeeee",
-    "&.active": {
-      color: "#c1872b",
-    },
-  },
   photoCard: {
     padding: "10px",
     textAlign: "left",
   },
   poster: {
     width: "100%",
-    maxHeight: "300px",
+    height: "100vh",
     objectFit: "cover",
     borderRadius: "8px",
     marginBottom: "20px",
@@ -78,15 +67,6 @@ const useStyles = makeStyles((theme) => ({
     top: 10,
     right: 10,
   },
-  sliderContainer: {
-    position: "relative",
-    width: "100%",
-    overflow: "hidden",
-  },
-  slide: {
-    minWidth: "100%",
-    transition: "transform 0.5s ease-in-out",
-  },
   navButton: {
     position: "absolute",
     top: "50%",
@@ -104,6 +84,37 @@ const useStyles = makeStyles((theme) => ({
     right: "10px",
   },
 }));
+
+function SampleNextArrow(props) {
+  const { onClick } = props;
+  return (
+    <div className={`${props.className} arrow`} onClick={onClick}>
+      <NavigateNextTwoToneIcon />
+    </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { onClick } = props;
+  return (
+    <div className={`${props.className} arrow`} onClick={onClick}>
+      <NavigateNextTwoToneIcon />
+    </div>
+  );
+}
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 1500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3500,
+  arrows: true,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+};
 
 export default function Photography() {
   const classes = useStyles();
@@ -134,58 +145,33 @@ export default function Photography() {
     (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase()
   );
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
-  };
-
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
-   
-
-      <div className={classes.sliderContainer}>
+      <Slider {...settings}>
         {filteredPhotos.map((photo, index) => (
-          <Slide
-            key={photo.id}
-            direction="left"
-            in={index === currentSlide}
-            mountOnEnter
-            unmountOnExit
-            timeout={500}
-          >
-            <div className={classes.slide}>
-              <div className={classes.photoCard}>
-                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
-                <div className={classes.content}>
-                  <h2 className={classes.title}>{photo.TITLE}</h2>
-                  <p className={classes.description}>{photo.CAPTION}</p>
-                  <div className={classes.thumbnailRow}>
-                    {photo.images && photo.images.map((imgObj, index) => (
-                      <img
-                        key={index}
-                        src={imgObj.url}
-                        alt={`Photo ${index}`}
-                        className={classes.thumbnail}
-                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
-                      />
-                    ))}
-                  </div>
+          <div key={photo.id} className={classes.slide}>
+            <div className={classes.photoCard}>
+              <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
+              <div className={classes.content}>
+                <h2 className={classes.title}>{photo.TITLE}</h2>
+                <p className={classes.description}>{photo.CAPTION}</p>
+                <div className={classes.thumbnailRow}>
+                  {photo.images && photo.images.map((imgObj, index) => (
+                    <img
+                      key={index}
+                      src={imgObj.url}
+                      alt={`Photo ${index}`}
+                      className={classes.thumbnail}
+                      onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
-          </Slide>
+          </div>
         ))}
-        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
-          Prev
-        </Button>
-        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
-          Next
-        </Button>
-      </div>
+      </Slider>
 
       {/* Image Modal */}
       <Dialog fullScreen={fullScreen} open={showModal} onClose={() => setShowModal(false)} TransitionComponent={Slide}>
