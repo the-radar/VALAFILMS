@@ -8,12 +8,37 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Slide from "@material-ui/core/Slide";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import Slider from "react-slick";
+import NavigateNextTwoToneIcon from '@material-ui/icons/NavigateNextTwoTone';
+
+function SampleNextArrow(props) {
+  const { onClick } = props;
+  let className = props.type === "next" ? "nextArrow" : "prevArrow";
+  className += " arrow";
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "white", zIndex: '10000' }}
+      onClick={onClick}
+    />
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
     color: "white",
-    padding: "20px",
+    backgroundColor: "black",
+    minHeight: "100vh",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       paddingTop: "40px",
@@ -32,40 +57,6 @@ const useStyles = makeStyles((theme) => ({
       color: "#c1872b",
     },
   },
-  photoCard: {
-    padding: "10px",
-    textAlign: "left",
-  },
-  poster: {
-    width: "100%",
-    maxHeight: "300px",
-    objectFit: "cover",
-    borderRadius: "8px",
-    marginBottom: "20px",
-  },
-  content: {
-    padding: "10px",
-  },
-  title: {
-    fontSize: "1.5em",
-    fontWeight: "bold",
-  },
-  description: {
-    marginTop: "10px",
-  },
-  thumbnailRow: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-    marginTop: "10px",
-  },
-  thumbnail: {
-    width: "100px",
-    height: "100px",
-    objectFit: "cover",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
   dialogBg: {
     backgroundColor: "black",
     display: "flex",
@@ -78,31 +69,11 @@ const useStyles = makeStyles((theme) => ({
     top: 10,
     right: 10,
   },
-  sliderContainer: {
-    position: "relative",
-    width: "100%",
-    overflow: "hidden",
-  },
-  slide: {
-    minWidth: "100%",
-    transition: "transform 0.5s ease-in-out",
-  },
-  navButton: {
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    color: "#c1872b",
-    "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
-    },
-  },
-  prevButton: {
-    left: "10px",
-  },
-  nextButton: {
-    right: "10px",
-  },
+  icon: {
+    color: "white",
+    width: "30px",
+    height: "30px"
+  }
 }));
 
 export default function Photography() {
@@ -111,7 +82,6 @@ export default function Photography() {
   const [currentCategory, setCurrentCategory] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const loadContent = () => {
@@ -134,61 +104,67 @@ export default function Photography() {
     (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase()
   );
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 15000,
+    className: 'slides'
   };
 
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
-   
 
-      <div className={classes.sliderContainer}>
-        {filteredPhotos.map((photo, index) => (
-          <Slide
-            key={photo.id}
-            direction="left"
-            in={index === currentSlide}
-            mountOnEnter
-            unmountOnExit
-            timeout={500}
-          >
-            <div className={classes.slide}>
-              <div className={classes.photoCard}>
-                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
-                <div className={classes.content}>
-                  <h2 className={classes.title}>{photo.TITLE}</h2>
-                  <p className={classes.description}>{photo.CAPTION}</p>
-                  <div className={classes.thumbnailRow}>
-                    {photo.images && photo.images.map((imgObj, index) => (
-                      <img
-                        key={index}
-                        src={imgObj.url}
-                        alt={`Photo ${index}`}
-                        className={classes.thumbnail}
-                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Slide>
-        ))}
-        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
-          Prev
-        </Button>
-        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
-          Next
-        </Button>
+      <div id="filter" placeholder-text="CATEGORIES">
+        <p onClick={() => setCurrentCategory("all")} style={{ color: currentCategory === "all" ? "#c1872b" : "#eeeeee" }}>ALL</p>
+        <p onClick={() => setCurrentCategory("nature")} style={{ color: currentCategory === "nature" ? "#c1872b" : "#eeeeee" }}>NATURE</p>
+        <p onClick={() => setCurrentCategory("portrait")} style={{ color: currentCategory === "portrait" ? "#c1872b" : "#eeeeee" }}>PORTRAITS</p>
+        <p onClick={() => setCurrentCategory("street")} style={{ color: currentCategory === "street" ? "#c1872b" : "#eeeeee" }}>STREET</p>
       </div>
 
-      {/* Image Modal */}
-      <Dialog fullScreen={fullScreen} open={showModal} onClose={() => setShowModal(false)} TransitionComponent={Slide}>
+      <Slider {...settings}>
+        {filteredPhotos.map((photo) => (
+          <div className="flexcol" key={photo.id}>
+            <div className="flexunder">
+              <div className="content">
+                <h2>{photo.TITLE}</h2>
+                <br />
+                {photo.CAPTION.split("\\n").map((text, index) => (
+                  <p key={index}>{text}<br /><br /></p>
+                ))}
+                <br />
+                <div className="thumbnailRow">
+                  {photo.images && photo.images.map((imgObj, index) => (
+                    <img
+                      key={index}
+                      src={imgObj.url}
+                      alt={`Photo ${index}`}
+                      className="thumbnail"
+                      onClick={() => {
+                        setCurrentImage(imgObj.url);
+                        setShowModal(true);
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="poster-container">
+                <img className="poster-img" src={photo.poster} alt={photo.TITLE} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={showModal}
+        onClose={() => setShowModal(false)}
+        TransitionComponent={Slide}
+      >
         <div className={classes.dialogBg}>
           <IconButton onClick={() => setShowModal(false)} className={classes.closeIcon}>
             <CloseIcon />
