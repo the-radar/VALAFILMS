@@ -1,14 +1,34 @@
-import React, { useState, useEffect } from "react";
-import firebase from "./firebase";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import Slide from "@material-ui/core/Slide";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { useState, useEffect } from "react"
+import firebase from "./firebase"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
+import { useTheme } from "@material-ui/core/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import Dialog from "@material-ui/core/Dialog"
+import DialogContent from "@material-ui/core/DialogContent"
+import Slide from "@material-ui/core/Slide"
+import { makeStyles } from "@material-ui/core/styles"
+import Slider from "react-slick"
+import NavigateNextTwoToneIcon from "@material-ui/icons/NavigateNextTwoTone"
+import NavigateBeforeTwoToneIcon from "@material-ui/icons/NavigateBeforeTwoTone"
+
+function SampleNextArrow(props) {
+  const { onClick } = props
+  return (
+    <div className="nextArrow arrow" onClick={onClick}>
+      <NavigateNextTwoToneIcon />
+    </div>
+  )
+}
+
+function SamplePrevArrow(props) {
+  const { onClick } = props
+  return (
+    <div className="prevArrow arrow" onClick={onClick}>
+      <NavigateBeforeTwoToneIcon />
+    </div>
+  )
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,13 +58,19 @@ const useStyles = makeStyles((theme) => ({
   },
   poster: {
     width: "100%",
-    maxHeight: "300px",
+    height: "100vh",
     objectFit: "cover",
-    borderRadius: "8px",
-    marginBottom: "20px",
+    borderRadius: "0",
+    marginBottom: "0",
   },
   content: {
-    padding: "10px",
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    right: "0",
+    padding: "20px",
+    background: "rgba(0, 0, 0, 0.7)",
+    color: "white",
   },
   title: {
     fontSize: "1.5em",
@@ -81,10 +107,12 @@ const useStyles = makeStyles((theme) => ({
   sliderContainer: {
     position: "relative",
     width: "100%",
+    height: "100vh",
     overflow: "hidden",
   },
   slide: {
     minWidth: "100%",
+    height: "100vh",
     transition: "transform 0.5s ease-in-out",
   },
   navButton: {
@@ -103,86 +131,79 @@ const useStyles = makeStyles((theme) => ({
   nextButton: {
     right: "10px",
   },
-}));
+}))
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 2000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 15000,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+}
 
 export default function Photography() {
-  const classes = useStyles();
-  const [photos, setPhotos] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("all");
-  const [showModal, setShowModal] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const classes = useStyles()
+  const [photos, setPhotos] = useState([])
+  const [currentCategory, setCurrentCategory] = useState("all")
+  const [showModal, setShowModal] = useState(false)
+  const [currentImage, setCurrentImage] = useState("")
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     const loadContent = () => {
-      const photoRef = firebase.database().ref("photopages");
+      const photoRef = firebase.database().ref("photopages")
       photoRef.on("value", (snapshot) => {
-        const data = snapshot.val();
+        const data = snapshot.val()
         if (data) {
-          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
-          setPhotos(formattedPhotos);
+          const formattedPhotos = Object.keys(data).map((key) => ({ id: key, ...data[key] }))
+          setPhotos(formattedPhotos)
         }
-      });
-    };
-    loadContent();
-  }, []);
+      })
+    }
+    loadContent()
+  }, [])
 
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("xl"))
 
   const filteredPhotos = photos.filter(
-    (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase()
-  );
-
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredPhotos.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length);
-  };
+    (photo) => currentCategory === "all" || photo.tag.toLowerCase() === currentCategory.toLowerCase(),
+  )
 
   return (
     <div className={classes.root}>
       <h1>Photography</h1>
       <div className={classes.sliderContainer}>
-        {filteredPhotos.map((photo, index) => (
-          <Slide
-            key={photo.id}
-            direction="left"
-            in={index === currentSlide}
-            mountOnEnter
-            unmountOnExit
-            timeout={500}
-          >
-            <div className={classes.slide}>
-              <div className={classes.photoCard}>
-                <img src={photo.poster} alt={photo.TITLE} className={classes.poster} />
-                <div className={classes.content}>
-                  <h2 className={classes.title}>{photo.TITLE}</h2>
-                  <p className={classes.description}>{photo.CAPTION}</p>
-                  <div className={classes.thumbnailRow}>
-                    {photo.images && photo.images.map((imgObj, index) => (
+        <Slider {...settings}>
+          {filteredPhotos.map((photo, index) => (
+            <div key={photo.id} className={classes.slide}>
+              <img src={photo.poster || "/placeholder.svg"} alt={photo.TITLE} className={classes.poster} />
+              <div className={classes.content}>
+                <h2 className={classes.title}>{photo.TITLE}</h2>
+                <p className={classes.description}>{photo.CAPTION}</p>
+                <div className={classes.thumbnailRow}>
+                  {photo.images &&
+                    photo.images.map((imgObj, index) => (
                       <img
                         key={index}
-                        src={imgObj.url}
+                        src={imgObj.url || "/placeholder.svg"}
                         alt={`Photo ${index}`}
                         className={classes.thumbnail}
-                        onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                        onClick={() => {
+                          setCurrentImage(imgObj.url)
+                          setShowModal(true)
+                        }}
                       />
                     ))}
-                  </div>
                 </div>
               </div>
             </div>
-          </Slide>
-        ))}
-        <Button className={`${classes.navButton} ${classes.prevButton}`} onClick={handlePrev}>
-          Prev
-        </Button>
-        <Button className={`${classes.navButton} ${classes.nextButton}`} onClick={handleNext}>
-          Next
-        </Button>
+          ))}
+        </Slider>
       </div>
 
       {/* Image Modal */}
@@ -193,9 +214,14 @@ export default function Photography() {
           </IconButton>
         </div>
         <DialogContent className={classes.dialogBg}>
-          <img src={currentImage} alt="Selected" style={{ maxWidth: "80%", borderRadius: "8px" }} />
+          <img
+            src={currentImage}
+            alt="Selected"
+            style={{ maxWidth: "80%", borderRadius: "8px" }}
+          />
         </DialogContent>
       </Dialog>
     </div>
-  );
+  )
 }
+
