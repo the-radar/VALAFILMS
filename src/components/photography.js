@@ -71,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
   },
   navButton: {
     position: "absolute",
-    top: "40%",
-    transform: "translateY(-50%)",
+    top: "30%",
+    transform: "translateY(-30%)",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     color: "#c1872b",
     "&:hover": {
@@ -81,10 +81,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1000,
   },
   prevButton: {
-    left: "5px",
+    left: "2px",
   },
   nextButton: {
-    right: "5px",
+    right: "2px",
   },
 }));
 
