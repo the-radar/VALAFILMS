@@ -185,8 +185,10 @@ export default function Homepage({ vid ,joinusprop }) {
           backdropFilter: "blur(20px)",
           borderTop: "1px solid rgba(0, 0, 0, 0.1)",
           boxShadow: "0 -4px 6px -1px rgba(0, 0, 0, 0.1)",
+          textAlign: "center",
         }}
       >
+            <h1 style={{textAlign: "center",}}>Brands who have trusted us</h1>
         <div
           style={{
             maxWidth: "1200px",
@@ -206,7 +208,7 @@ export default function Homepage({ vid ,joinusprop }) {
               msOverflowStyle: "none",
             }}
           >
-            <h1>Brands we've worked with</h1>
+        
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/transcorp_hilton_logo_blue-6bOXl0zOIjCTx0CC9c8yzAaqH6QGx2.png"
               alt="Transcorp Hilton"
