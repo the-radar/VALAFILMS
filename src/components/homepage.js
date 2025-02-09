@@ -188,7 +188,10 @@ export default function Homepage({ vid ,joinusprop }) {
           textAlign: "center",
         }}
       >
-            <h1 style={{textAlign: "center",}}>Brands who have trusted us</h1>
+            <h1 style={{
+                 textAlign: "center",
+                 margin: "1rem 0",
+            }}>Brands who have trusted us</h1>
         <div
           style={{
             maxWidth: "1200px",
