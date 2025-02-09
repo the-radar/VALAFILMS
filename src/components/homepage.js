@@ -181,8 +181,8 @@ export default function Homepage({ vid ,joinusprop }) {
           bottom: 0,
           left: 0,
           right: 0,
-          backgroundColor: "rgba(255, 255, 255, 0.95)",
-          backdropFilter: "blur(8px)",
+          backgroundColor: "rgba(0, 0, 0, 0.95)",
+          backdropFilter: "blur(20px)",
           borderTop: "1px solid rgba(0, 0, 0, 0.1)",
           boxShadow: "0 -4px 6px -1px rgba(0, 0, 0, 0.1)",
         }}
@@ -206,6 +206,7 @@ export default function Homepage({ vid ,joinusprop }) {
               msOverflowStyle: "none",
             }}
           >
+            <h1>Brands we've worked with</h1>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/transcorp_hilton_logo_blue-6bOXl0zOIjCTx0CC9c8yzAaqH6QGx2.png"
               alt="Transcorp Hilton"
