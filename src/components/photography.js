@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     gap: "10px",
     marginTop: "10px",
+    flexWrap: "wrap",
   },
   thumbnail: {
     width: "100px",
@@ -66,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: 10,
     right: 10,
+    zIndex: 1000,
   },
   navButton: {
     position: "absolute",
@@ -76,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "rgba(0, 0, 0, 0.7)",
     },
+    zIndex: 1000,
   },
   prevButton: {
     left: "10px",
