@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
   poster: {
-    width: "100%",
-    height: "100vh",
+    width: "96%",
+    height: "96vh",
     objectFit: "cover",
     borderRadius: "8px",
     marginBottom: "20px",
