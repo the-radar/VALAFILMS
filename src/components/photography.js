@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: "white",
     padding: "20px",
+    paddingTop:"40px",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       paddingTop: "40px",
@@ -26,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
   poster: {
-    width: "96%",
-    height: "96vh",
+    width: "100%",
+    height: "100vh",
     objectFit: "cover",
     borderRadius: "8px",
     marginBottom: "20px",
@@ -71,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
   },
   navButton: {
     position: "absolute",
-    top: "30%",
-    transform: "translateY(-30%)",
+    top: "50%",
+    transform: "translateY(-50%)",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     color: "#c1872b",
     "&:hover": {
@@ -81,10 +82,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1000,
   },
   prevButton: {
-    left: "2px",
+    left: "10px",
   },
   nextButton: {
-    right: "2px",
+    right: "10px",
   },
 }));
 
