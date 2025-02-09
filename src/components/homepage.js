@@ -175,68 +175,81 @@ export default function Homepage({ vid ,joinusprop }) {
       <Scrollbutton />
       <br />
       <br />
-      <footer className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t shadow-lg">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-8 overflow-x-auto no-scrollbar">
-            <Image
+      <footer
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.95)",
+          backdropFilter: "blur(8px)",
+          borderTop: "1px solid rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 -4px 6px -1px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "1rem",
+          }}
+        >
+          <div
+            className="logo-container"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "2rem",
+              overflowX: "auto",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/transcorp_hilton_logo_blue-6bOXl0zOIjCTx0CC9c8yzAaqH6QGx2.png"
               alt="Transcorp Hilton"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/png-clipart-logo-united-states-agency-for-international-development-organization-trademark-brand-government-of-gujarat-text-label-zs9gz7A0sXKW8HLtjVKYLPC3sgYIQ1.png"
               alt="USAID"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/JWalker_2015_logo-G9S3rFX5UN6Tm75cUbTIfueuLQpKIn.png"
               alt="Johnnie Walker"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fanta%20logo-4cxxuRy4hXUsxLXFZOVik6hflpLmkv.webp"
               alt="Fanta"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Pad_Up_Africa_Version4-3hjxu3YCx2mcnvON43AkWO8hVNzWrv.png"
               alt="Pad Up Africa"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fayrouz_logo-DhI0FTsxYSro69K9gJc2PP9T4bGUWC.webp"
               alt="Fayrouz"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Evergreen-42NogiMFInOnGSsEXmI6XFsmGtskT8.png"
               alt="Evergreen Initiative"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
-            <Image
+            <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-Vanilla.jpg-ltUkz7nN3zI0v9vVNwOcF40JXwoSnE.jpeg"
               alt="Vanilla"
-              width={120}
-              height={40}
-              className="h-8 w-auto object-contain"
+              style={{ height: "32px", width: "auto", objectFit: "contain" }}
             />
           </div>
         </div>
       </footer>
+
     </div>
   )
 }
