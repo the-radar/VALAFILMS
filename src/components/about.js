@@ -14,7 +14,16 @@ import { useTheme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   dialogContent: {
     textAlign: 'center',
-    animation: `$zoomIn 0.5s ease-in-out`
+    backgroundColor: 'black',
+    color: 'white',
+    animation: `$zoomIn 0.5s ease-in-out`,
+    position: 'relative',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: 'white',
   },
   '@keyframes zoomIn': {
     '0%': {
@@ -131,6 +140,9 @@ export default function About () {
       </div>
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
         <DialogContent className={classes.dialogContent}>
+          <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
           {selectedMember && (
             <>
               <img src={selectedMember.name.imageUrl} alt="" width="300" height="420" />
