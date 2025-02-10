@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import InfiniteScroll from "react-infinite-scroll-component"
 import firebase from "./firebase"
 import IconButton from "@material-ui/core/IconButton"
@@ -46,7 +45,7 @@ export default function About() {
 
   useEffect(() => {
     loadContent()
-  }, [firebase]) // Added firebase as a dependency
+  }, []) //Fixed useEffect dependency issue
 
   const handleOpen = (member) => {
     setSelectedMember(member)
@@ -86,13 +85,7 @@ export default function About() {
           }
         >
           {myArray.map((member, index) => (
-            <motion.div
-              key={member.id}
-              className="teamcontent"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleOpen(member)}
-            >
+            <div key={member.id} className="teamcontent" onClick={() => handleOpen(member)}>
               <img src={member.imageUrl || "/placeholder.svg"} alt={member.name} width="300" height="420" />
               <h4>{`${member.name} : ${member.role}`}</h4>
               <div className="ics">
@@ -117,59 +110,39 @@ export default function About() {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </InfiniteScroll>
       </div>
-      <AnimatePresence>
-        {open && selectedMember && (
-          <Dialog
-            fullScreen={fullScreen}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="responsive-dialog-title"
-            PaperComponent={motion.div}
-            PaperProps={{
-              initial: { opacity: 0, y: 50 },
-              animate: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: 50 },
-              transition: { duration: 0.3 },
+      <Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
+        <DialogContent>
+          {selectedMember && (
+            <div className="member-details">
+              <img
+                src={selectedMember.imageUrl || "/placeholder.svg"}
+                alt={selectedMember.name}
+                width="300"
+                height="420"
+              />
+              <h2>{selectedMember.name}</h2>
+              <h3>{selectedMember.role}</h3>
+              <p>{selectedMember.about}</p>
+            </div>
+          )}
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            style={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: theme.palette.grey[500],
             }}
           >
-            <DialogContent>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="member-details"
-              >
-                <motion.img
-                  src={selectedMember.imageUrl}
-                  alt={selectedMember.name}
-                  width="300"
-                  height="420"
-                  layoutId={`member-image-${selectedMember.id}`}
-                />
-                <h2>{selectedMember.name}</h2>
-                <h3>{selectedMember.role}</h3>
-                <p>{selectedMember.about}</p>
-              </motion.div>
-              <IconButton
-                aria-label="close"
-                onClick={handleClose}
-                style={{
-                  position: "absolute",
-                  right: 8,
-                  top: 8,
-                  color: theme.palette.grey[500],
-                }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </DialogContent>
-          </Dialog>
-        )}
-      </AnimatePresence>
+            <CloseIcon />
+          </IconButton>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
