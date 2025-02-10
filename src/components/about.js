@@ -46,7 +46,7 @@ export default function About() {
 
   useEffect(() => {
     loadContent()
-  }, [firebase]) // Added firebase as a dependency
+  }, []) //Fixed: Added empty dependency array to useEffect
 
   const handleOpen = (member) => {
     setSelectedMember(member)
@@ -123,24 +123,13 @@ export default function About() {
       </div>
       <AnimatePresence>
         {open && selectedMember && (
-          <Dialog
-            fullScreen={fullScreen}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="responsive-dialog-title"
-            PaperComponent={motion.div}
-            PaperProps={{
-              initial: { opacity: 0, y: 50 },
-              animate: { opacity: 1, y: 0 },
-              exit: { opacity: 0, y: 50 },
-              transition: { duration: 0.3 },
-            }}
-          >
+          <Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
             <DialogContent>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
                 className="member-details"
               >
                 <motion.img
