@@ -276,12 +276,19 @@ const classes = useStyles()
            <div className="content"> 
              <h2>{ads[item].TITLE}</h2>
              <br />
-             {ads[item].CAPTION.split("\\n").map((text, index) => (
-               <p key={index}>{text}<br /><br /></p>
-             ))}
-             <br />
-             <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(ads[item].vidlink); if(!!ads[item].storedvidlink) { setembed2(adsLink) }}}>Watch Content</h1>
-             <br />
+ {/* Only show Watch Content if vidlink exists and is not empty */}
+ {(ads[item].vidlink && ads[item].vidlink !== "") && (
+                    <>
+                      <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{
+                        setmodal(true);
+                        setembed(ads[item].vidlink);
+                        if(!!ads[item].storedvidlink) {
+                          setembed2(adsLink);
+                        }
+                      }}>Watch Content</h1>
+                      <br />
+                    </>
+                  )}
              <div className=''>
                <Slider {...settings3}>
                  {ads[item].supprtingimages.map((imgurl, index) => (
@@ -313,12 +320,19 @@ const classes = useStyles()
              <div className="content"> 
                <h2>{obj2[item].TITLE}</h2>
                <br />
-               {obj2[item].CAPTION.split("\\n").map((text, index) => (
-                 <p key={index}>{text}<br /><br /></p>
-               ))}
-               <br />
-               <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{setmodal(true); setembed(obj2[item].vidlink); if(!!obj2[item].storedvidlink) { setembed2(obj2[item].storedvidlink) }}}>Watch Content</h1>
-               <br />
+                {/* Only show Watch Content if vidlink exists and is not empty */}
+                {(obj2[item].vidlink && obj2[item].vidlink !== "") && (
+                      <>
+                        <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{
+                          setmodal(true);
+                          setembed(obj2[item].vidlink);
+                          if(!!obj2[item].storedvidlink) {
+                            setembed2(obj2[item].storedvidlink);
+                          }
+                        }}>Watch Content</h1>
+                        <br />
+                      </>
+                    )}
                <div className=''>
                  <Slider {...settings3}>
                    {obj2[item].supprtingimages.map((imgurl, index) => (
