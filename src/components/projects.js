@@ -276,8 +276,12 @@ const classes = useStyles()
            <div className="content"> 
              <h2>{ads[item].TITLE}</h2>
              <br />
- {/* Only show Watch Content if vidlink exists and is not empty */}
- {(ads[item].vidlink && ads[item].vidlink !== "") && (
+             {ads[item].CAPTION.split("\\n").map((text, index) => (
+               <p key={index}>{text}<br /><br /></p>
+             ))}
+             <br />
+              {/* Only show Watch Content if vidlink exists and is not empty */}
+              {(ads[item].vidlink && ads[item].vidlink !== "") && (
                     <>
                       <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{
                         setmodal(true);
@@ -320,8 +324,11 @@ const classes = useStyles()
              <div className="content"> 
                <h2>{obj2[item].TITLE}</h2>
                <br />
-                {/* Only show Watch Content if vidlink exists and is not empty */}
-                {(obj2[item].vidlink && obj2[item].vidlink !== "") && (
+               {obj2[item].CAPTION.split("\\n").map((text, index) => (
+                 <p key={index}>{text}<br /><br /></p>
+               ))}
+               <br />
+               {(obj2[item].vidlink && obj2[item].vidlink !== "") && (
                       <>
                         <h1 className="baulf2" style={{width:'fit-content'}} onClick={()=>{
                           setmodal(true);
