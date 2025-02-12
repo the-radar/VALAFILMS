@@ -105,7 +105,82 @@ function Appm() {
         <div style={{zIndex:"6000",color:"white"}}>
           <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto"}} visible={showModal} enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
             <form action="https://formsubmit.co/info@valafilms.com" method="POST" onSubmit={sendEmail}>
-              {/* Existing form fields */}
+            <div class="input-container">
+              <input id="name" class="input" type="text" name="name" required placeholder=" " />
+              <label for="name" class="placeholder">NAME</label>
+            </div>
+            <div class="input-container">
+              <input id="email" class="input" type="text" name="email" required placeholder=" " />
+              <label for="email" class="placeholder">EMAIL ADDRESS</label>
+            </div>
+            <div class="input-container">
+              <input id="phone" class="input" type="text" name="phone" required placeholder=" " />
+              <label for="phone" class="placeholder">PHONE</label>
+            </div>
+            <div class="input-container">
+              <select required name="sex">
+                <option selected disabled>GENDER</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="input-container">
+              <input id="dob" class="input" type="text" name="dob" required placeholder=" " />
+              <label for="dob" class="placeholder">DATE OF BIRTH (DD-MM-YYYY)</label>
+            </div>
+            <div class="input-container">
+              <input id="address" class="input" type="text" name="address" required placeholder=" " />
+              <label for="address" class="placeholder">ADDRESS</label>
+            </div>
+            
+            {/* <input type="text" placeholder="NAME" name="name" required />
+            <input type="text" placeholder="EMAIL ADDRESS" name="email" required   />
+            <input type="text" placeholder="PHONE" name="phone" required /> */}
+            <div class="input-container">
+              <select required name="field">
+                <option selected disabled>YOUR FIELD(S) OF SPECIALIZATION</option>
+                <option value="Directing">Directing</option>
+                <option value="Acting">Acting</option>
+                <option value="Voice Acting">Voice Acting</option>
+                <option value="Cinematography">Cinematography</option>
+                <option value="Color Grading">Color Grading</option>
+                <option value="Sound Design">Sound Design</option>
+                <option value="Music Production/Scoring">Music Production/Scoring</option>
+                <option value="Screenwriting">Screenwriting</option>
+                <option value="Drone piloting">Drone piloting</option>
+                <option value="Art Directing">Art Directing</option>
+                <option value="Project Management">Project Management</option>
+                <option value="Graphics">Graphics</option>
+                <option value="Photography">Photography</option>
+                <option value="Animating">Animating</option>
+                <option value="Set Design">Set Design</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="input-container">
+              <input id="fieldother" class="input" type="text" name="other field" placeholder=" " />
+              <label for="fieldother" class="placeholder">SPECIFY FIELD (OTHER)</label>
+            </div>
+            <div class="input-container">
+              <input id="pw" class="input" type="text" name="previous work" required placeholder=" " />
+              <label for="pw" class="placeholder">LINK TO PREVIOUS WORK</label>
+            </div>
+            <div class="input-container">
+              <input id="us" class="input" type="text" name=" hear About us" required placeholder=" " />
+              <label for="us" class="placeholder">HOW DID YOU HEAR ABOUT US?</label>
+            </div>
+            <div class="textarea-container">
+              <textarea id="message" class="input" name="message" required placeholder=" "></textarea>
+              <label for="message" class="placeholder">YOUR COMMENT</label>
+            </div>
+            
+            {/* <input type="text" placeholder="SPECIFY FIELD (OTHER)" name="fieldother"/>
+            <input  type="text" placeholder="LINK TO PREVIOUS WORK" name="pw"/>
+            <input required  type="text" placeholder="HOW DID YOU HEAR ABOUT US?" name="us" />
+            <textarea placeholder="YOUR MESSAGE" name="message"></textarea> */}
+
               <input type="submit" value="SEND" />
             </form>
           </Rodal>
