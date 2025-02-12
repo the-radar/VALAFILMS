@@ -71,7 +71,7 @@ export default function Homepage({ vid ,joinusprop }) {
   return (
     <div>{!!link ?
 
-      <div>
+      <div style={{ paddingBottom: "120px" }}>
         <div className="vidcon ">
         <img
         src={thumblink}
