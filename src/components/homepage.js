@@ -212,7 +212,7 @@ export default function Homepage({ vid ,joinusprop }) {
                 alt: "Transcorp Hilton",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/png-clipart-logo-united-states-agency-for-international-development-organization-trademark-brand-government-of-gujarat-text-label-zs9gz7A0sXKW8HLtjVKYLPC3sgYIQ1.png",
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/USAID-logo-AB0E9UAznb5jpSd1V2BDbpbL5vNOVL.png",
                 alt: "USAID",
               },
               {
@@ -220,7 +220,7 @@ export default function Homepage({ vid ,joinusprop }) {
                 alt: "Johnnie Walker",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fanta%20logo-4cxxuRy4hXUsxLXFZOVik6hflpLmkv.webp",
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fanta-logo-LheBdhqEYG3mUUchZ7D394BM49Cv3x.png",
                 alt: "Fanta",
               },
               {
