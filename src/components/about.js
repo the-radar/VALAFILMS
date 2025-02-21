@@ -120,7 +120,7 @@ export default function About () {
           }
         >
           {!!myArray && myArray.map((member, index) => (
-            <div className="teamcontent" key={index} onClick={() => handleClickOpen(member)}>
+            <div className="teamcontent" key={index}>
               <img src={member.name.imageUrl} alt="" width="300" height="420" />
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
               <div className="ics">
