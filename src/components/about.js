@@ -40,10 +40,22 @@ const useStyles = makeStyles((theme) => ({
     transition: 'filter 0.3s ease',
   },
   projectsText: {
-    margin: '5px 0',
+    margin: '10px 0',
     fontSize: '14px',
-    color: '#888'
-  }
+    color: '#888',
+    '& h5': {
+      margin: '5px 0',
+      fontSize: '16px',
+      color: '#fff',
+    },
+    '& ul': {
+      paddingLeft: '20px',
+      listStyleType: 'disc',
+    },
+    '& li': {
+      margin: '5px 0',
+    },
+  },
 }));
 
 export default function About () {
@@ -140,7 +152,12 @@ export default function About () {
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
               {member.name.projects && (
                 <div className={classes.projectsText}>
-                  {member.name.projects}
+                  <h5>Projects:</h5>
+                  <ul>
+                    {member.name.projects.split(',').map((project, idx) => (
+                      <li key={idx}>{project.trim()}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
               <div className="ics">
