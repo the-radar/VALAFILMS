@@ -35,6 +35,15 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
   },
+  blackAndWhiteImg: {
+    filter: 'grayscale(100%)',
+    transition: 'filter 0.3s ease',
+  },
+  projectsText: {
+    margin: '5px 0',
+    fontSize: '14px',
+    color: '#888'
+  }
 }));
 
 export default function About () {
@@ -121,8 +130,19 @@ export default function About () {
         >
           {!!myArray && myArray.map((member, index) => (
             <div className="teamcontent" key={index}>
-              <img src={member.name.imageUrl} alt="" width="300" height="420" />
+              <img 
+                src={member.name.imageUrl} 
+                alt="" 
+                width="300" 
+                height="420" 
+                className={classes.blackAndWhiteImg}
+              />
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
+              {member.name.projects && (
+                <div className={classes.projectsText}>
+                  {member.name.projects}
+                </div>
+              )}
               <div className="ics">
                 <div className='lk'>
                   {!!member.name.fb && <a href={member.name.fb} target="_blank" className="fa fa-facebook"></a>}
@@ -147,6 +167,9 @@ export default function About () {
             <>
               <img src={selectedMember.name.imageUrl} alt="" width="300" height="420" />
               <h4>{`${selectedMember.name.name} : ${selectedMember.name.role} `}</h4>
+              {selectedMember.name.projects && (
+                <p><strong>Projects:</strong> {selectedMember.name.projects}</p>
+              )}
               <p>{selectedMember.name.about}</p>
             </>
           )}
