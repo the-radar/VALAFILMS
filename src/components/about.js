@@ -159,19 +159,17 @@ export default function About () {
               />
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
               {member.name.projects && (
-  <div className={classes.projectsContainer}>
-    <div className={classes.projectsLabel}>Projects</div>
-    <div className={classes.projectsList}>
-      {member.name.projects.split(',').map((project, i) => (
-        <span key={i} className={classes.projectItem}>
-          {project.trim()}
-        </span>
-      ))}
-    </div>
-  </div>
-)}
-  </div>
-)}
+              <div className={classes.projectsContainer}>
+                <div className={classes.projectsLabel}>Projects</div>
+                <div className={classes.projectsList}>
+                  {member.name.projects.split(',').map((project, i) => (
+                    <span key={i} className={classes.projectItem}>
+                      {project.trim()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
               <div className="ics">
                 <div className='lk'>
                   {!!member.name.fb && <a href={member.name.fb} target="_blank" className="fa fa-facebook"></a>}
