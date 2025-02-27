@@ -39,20 +39,31 @@ const useStyles = makeStyles((theme) => ({
     filter: 'grayscale(100%)',
     transition: 'filter 0.3s ease',
   },
-  projectsText: {
-    margin: '5px 0',
+  projectsContainer: {
+    margin: '15px 0',
+    padding: '0 10px',
+  },
+  projectsLabel: {
+    color: '#9f7036',
     fontSize: '14px',
+    fontWeight: 'bold',
+    marginBottom: '5px',
+  },
+  projectsList: {
     color: '#888',
+    fontSize: '13px',
+    lineHeight: '1.4',
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '5px',
+    justifyContent: 'center',
   },
-  projectChip: {
-    display: 'inline-block',
-    backgroundColor: '#444',
-    color: '#fff',
+  projectItem: {
+    background: 'rgba(159, 112, 54, 0.1)',
+    padding: '3px 8px',
     borderRadius: '12px',
-    padding: '4px 8px',
-    fontSize: '12px',
-    margin: '2px',
-  },
+    display: 'inline-block',
+  }
 }));
 
 export default function About () {
@@ -148,10 +159,17 @@ export default function About () {
               />
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
               {member.name.projects && (
-  <div className={classes.projectsText}>
-    {member.name.projects.split(',').map((proj, index) => (
-      <span key={index} className={classes.projectChip}>{proj.trim()}</span>
-    ))}
+  <div className={classes.projectsContainer}>
+    <div className={classes.projectsLabel}>Projects</div>
+    <div className={classes.projectsList}>
+      {member.name.projects.split(',').map((project, i) => (
+        <span key={i} className={classes.projectItem}>
+          {project.trim()}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
   </div>
 )}
               <div className="ics">
