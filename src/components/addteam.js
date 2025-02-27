@@ -76,6 +76,7 @@ export default function Teamsettings() {
   const [teamMembers, setTeamMembers] = useState([]);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [currentMember, setCurrentMember] = useState(null);
+  const [snackbarMessage, setSnackbarMessage] = useState('Changes successfully uploaded');
 
   useEffect(() => {
     // Load team members for the list
@@ -99,7 +100,8 @@ export default function Teamsettings() {
     };
   }, []);
 
-  const handleClick = () => {
+  const handleClick = (message = 'Changes successfully uploaded') => {
+    setSnackbarMessage(message);
     setOpen(true);
   };
 
@@ -129,28 +131,39 @@ export default function Teamsettings() {
     firebase.storage().ref(`/images/${image.name}`).put(image)
       .on("state_changed", 
         () => console.log("Upload in progress"), 
-        (error) => console.error("Error uploading image:", error), 
+        (error) => {
+          console.error("Error uploading image:", error);
+          handleClick('Error uploading image');
+        }, 
         () => {
           // Getting Download Link
           firebase.storage().ref("images").child(image.name).getDownloadURL()
             .then((url) => {
               setImageUrl(url);
               
-              // Add new team member
-              firebase.database().ref('/teammembers').push({
+              // Prepare data object, only including defined values
+              const newMemberData = {
                 imageUrl: url,
-                name,
-                role,
-                ig,
-                twitter,
-                gmail,
-                projects
-              }).then(() => {
-                handleClick(); // Show success message
-                resetForm();
-              }).catch(error => {
-                console.error("Error adding team member:", error);
-              });
+                name: name || '',
+                role: role || ''
+              };
+              
+              // Only add optional fields if they have values
+              if (ig) newMemberData.ig = ig;
+              if (twitter) newMemberData.twitter = twitter;
+              if (gmail) newMemberData.gmail = gmail;
+              if (projects) newMemberData.projects = projects;
+              
+              // Add new team member
+              firebase.database().ref('/teammembers').push(newMemberData)
+                .then(() => {
+                  handleClick('Team member added successfully'); 
+                  resetForm();
+                })
+                .catch(error => {
+                  console.error("Error adding team member:", error);
+                  handleClick('Error adding team member');
+                });
             });
         }
       );
@@ -169,20 +182,27 @@ export default function Teamsettings() {
   const handleEditSave = () => {
     if (!currentMember) return;
     
-    firebase.database().ref(`/teammembers/${currentMember.id}`).update({
-      name: currentMember.name,
-      role: currentMember.role,
-      ig: currentMember.ig,
-      twitter: currentMember.twitter,
-      gmail: currentMember.gmail,
-      projects: currentMember.projects
-    })
+    // Create an update object with only the fields that have values
+    const updateData = {};
+    
+    // Required fields (provide defaults if undefined)
+    updateData.name = currentMember.name || '';
+    updateData.role = currentMember.role || '';
+    
+    // Optional fields (only include if they have values)
+    if (currentMember.ig !== undefined) updateData.ig = currentMember.ig;
+    if (currentMember.twitter !== undefined) updateData.twitter = currentMember.twitter;
+    if (currentMember.gmail !== undefined) updateData.gmail = currentMember.gmail;
+    if (currentMember.projects !== undefined) updateData.projects = currentMember.projects;
+    
+    firebase.database().ref(`/teammembers/${currentMember.id}`).update(updateData)
       .then(() => {
-        handleClick(); // Show success message
+        handleClick('Team member updated successfully');
         handleEditClose();
       })
       .catch(error => {
         console.error("Error updating team member:", error);
+        handleClick('Error updating team member');
       });
   };
 
@@ -190,10 +210,11 @@ export default function Teamsettings() {
     if (window.confirm("Are you sure you want to delete this team member?")) {
       firebase.database().ref(`/teammembers/${id}`).remove()
         .then(() => {
-          handleClick();
+          handleClick('Team member deleted successfully');
         })
         .catch(error => {
           console.error("Error deleting team member:", error);
+          handleClick('Error deleting team member');
         });
     }
   };
@@ -206,13 +227,8 @@ export default function Teamsettings() {
     });
   };
 
-  const isInvalid =
-    ig === "" ||
-    role === "" ||
-    name === "" ||
-    gmail === "" ||
-    !imageUrl ||
-    twitter === "";
+  // Modified validation to only require name, role and image
+  const isInvalid = name === "" || role === "" || !imageUrl;
 
   return (
     <div>
@@ -224,7 +240,7 @@ export default function Teamsettings() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Changes successfully uploaded"
+        message={snackbarMessage}
         action={
           <div>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
@@ -238,7 +254,7 @@ export default function Teamsettings() {
         <div className={classes.formSection}>
           <h1>Upload Team Member</h1>
           <div className={classes.formField}>
-            <label className={classes.formLabel}>Image:</label>
+            <label className={classes.formLabel}>Image: <span style={{ color: 'red' }}>*</span></label>
             <input 
               accept="image/*" 
               type="file" 
@@ -247,7 +263,7 @@ export default function Teamsettings() {
           </div>
           
           <div className={classes.formField}>
-            <label className={classes.formLabel}>Name:</label>
+            <label className={classes.formLabel}>Name: <span style={{ color: 'red' }}>*</span></label>
             <input 
               type="text" 
               className={classes.formInput}
@@ -258,7 +274,7 @@ export default function Teamsettings() {
           </div>
           
           <div className={classes.formField}>
-            <label className={classes.formLabel}>Role:</label>
+            <label className={classes.formLabel}>Role: <span style={{ color: 'red' }}>*</span></label>
             <input 
               type="text" 
               className={classes.formInput}
@@ -357,7 +373,7 @@ export default function Teamsettings() {
           {currentMember && (
             <div>
               <div className={classes.formField}>
-                <label className={classes.formLabel}>Name:</label>
+                <label className={classes.formLabel}>Name: <span style={{ color: 'red' }}>*</span></label>
                 <input
                   type="text"
                   name="name"
@@ -368,7 +384,7 @@ export default function Teamsettings() {
               </div>
               
               <div className={classes.formField}>
-                <label className={classes.formLabel}>Role:</label>
+                <label className={classes.formLabel}>Role: <span style={{ color: 'red' }}>*</span></label>
                 <input
                   type="text"
                   name="role"
