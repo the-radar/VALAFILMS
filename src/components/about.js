@@ -40,21 +40,18 @@ const useStyles = makeStyles((theme) => ({
     transition: 'filter 0.3s ease',
   },
   projectsText: {
-    margin: '10px 0',
+    margin: '5px 0',
     fontSize: '14px',
     color: '#888',
-    '& h5': {
-      margin: '5px 0',
-      fontSize: '16px',
-      color: '#fff',
-    },
-    '& ul': {
-      paddingLeft: '20px',
-      listStyleType: 'disc',
-    },
-    '& li': {
-      margin: '5px 0',
-    },
+  },
+  projectChip: {
+    display: 'inline-block',
+    backgroundColor: '#444',
+    color: '#fff',
+    borderRadius: '12px',
+    padding: '4px 8px',
+    fontSize: '12px',
+    margin: '2px',
   },
 }));
 
@@ -151,15 +148,12 @@ export default function About () {
               />
               <h4>{`${member.name.name} : ${member.name.role} `}</h4>
               {member.name.projects && (
-                <div className={classes.projectsText}>
-                  <h5>Projects:</h5>
-                  <ul>
-                    {member.name.projects.split(',').map((project, idx) => (
-                      <li key={idx}>{project.trim()}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+  <div className={classes.projectsText}>
+    {member.name.projects.split(',').map((proj, index) => (
+      <span key={index} className={classes.projectChip}>{proj.trim()}</span>
+    ))}
+  </div>
+)}
               <div className="ics">
                 <div className='lk'>
                   {!!member.name.fb && <a href={member.name.fb} target="_blank" className="fa fa-facebook"></a>}
