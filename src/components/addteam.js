@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Teamsettings() {
   const classes = useStyles();
   const [imageUrl, setImageUrl] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [twitter, setTwitter] = useState('');
@@ -77,6 +77,7 @@ export default function Teamsettings() {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [currentMember, setCurrentMember] = useState(null);
   const [snackbarMessage, setSnackbarMessage] = useState('Changes successfully uploaded');
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     // Load team members for the list
@@ -120,28 +121,41 @@ export default function Teamsettings() {
     setGmail('');
     setProjects('');
     setImageUrl('');
-    setImage('');
+    setImage(null);
   };
 
   const upload = () => {
-    if (image === null || image === '') {
+    // Validate required fields
+    if (!name || !role) {
+      handleClick('Name and role are required');
       return;
     }
 
+    // Check if image is selected
+    if (!image) {
+      handleClick('Please select an image');
+      return;
+    }
+
+    setIsUploading(true);
+
     firebase.storage().ref(`/images/${image.name}`).put(image)
       .on("state_changed", 
-        () => console.log("Upload in progress"), 
+        (snapshot) => {
+          // Progress function
+          console.log("Upload in progress");
+        }, 
         (error) => {
+          // Error function
           console.error("Error uploading image:", error);
           handleClick('Error uploading image');
+          setIsUploading(false);
         }, 
         () => {
-          // Getting Download Link
+          // Completion function
           firebase.storage().ref("images").child(image.name).getDownloadURL()
             .then((url) => {
-              setImageUrl(url);
-              
-              // Prepare data object, only including defined values
+              // Prepare data object
               const newMemberData = {
                 imageUrl: url,
                 name: name || '',
@@ -159,11 +173,18 @@ export default function Teamsettings() {
                 .then(() => {
                   handleClick('Team member added successfully'); 
                   resetForm();
+                  setIsUploading(false);
                 })
                 .catch(error => {
                   console.error("Error adding team member:", error);
                   handleClick('Error adding team member');
+                  setIsUploading(false);
                 });
+            })
+            .catch(error => {
+              console.error("Error getting download URL:", error);
+              handleClick('Error processing image');
+              setIsUploading(false);
             });
         }
       );
@@ -182,14 +203,20 @@ export default function Teamsettings() {
   const handleEditSave = () => {
     if (!currentMember) return;
     
-    // Create an update object with only the fields that have values
+    // Validate required fields
+    if (!currentMember.name || !currentMember.role) {
+      handleClick('Name and role are required');
+      return;
+    }
+    
+    // Create an update object
     const updateData = {};
     
-    // Required fields (provide defaults if undefined)
-    updateData.name = currentMember.name || '';
-    updateData.role = currentMember.role || '';
+    // Add required fields
+    updateData.name = currentMember.name;
+    updateData.role = currentMember.role;
     
-    // Optional fields (only include if they have values)
+    // Add optional fields (only if they exist and aren't undefined)
     if (currentMember.ig !== undefined) updateData.ig = currentMember.ig;
     if (currentMember.twitter !== undefined) updateData.twitter = currentMember.twitter;
     if (currentMember.gmail !== undefined) updateData.gmail = currentMember.gmail;
@@ -227,9 +254,6 @@ export default function Teamsettings() {
     });
   };
 
-  // Modified validation to only require name, role and image
-  const isInvalid = name === "" || role === "" || !imageUrl;
-
   return (
     <div>
       <Snackbar
@@ -258,8 +282,13 @@ export default function Teamsettings() {
             <input 
               accept="image/*" 
               type="file" 
-              onChange={(e) => { setImage(e.target.files[0]) }} 
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  setImage(e.target.files[0]);
+                }
+              }} 
             />
+            {image && <p>Selected: {image.name}</p>}
           </div>
           
           <div className={classes.formField}>
@@ -331,10 +360,10 @@ export default function Teamsettings() {
           <Button 
             variant="contained" 
             color="primary" 
-            onClick={upload} 
-            disabled={isInvalid}
+            onClick={upload}
+            disabled={isUploading || !name || !role || !image}
           >
-            Submit
+            {isUploading ? 'Uploading...' : 'Submit'}
           </Button>
         </div>
 
@@ -455,7 +484,12 @@ export default function Teamsettings() {
           <Button onClick={handleEditClose} color="default">
             Cancel
           </Button>
-          <Button onClick={handleEditSave} color="primary" variant="contained">
+          <Button 
+            onClick={handleEditSave} 
+            color="primary" 
+            variant="contained"
+            disabled={!currentMember || !currentMember.name || !currentMember.role}
+          >
             Save Changes
           </Button>
         </DialogActions>
