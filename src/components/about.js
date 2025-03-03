@@ -120,7 +120,7 @@ export default function About () {
   return (
     <div className="teampage">
       <div className="teamtext">
-        <h1>OUR TEAM</h1>
+        <h1>The Roster</h1>
         <br />
         <p>Here at ValaFilms, our people are our greatest asset. Collaboration is a big
           part of our culture and we have a team of young, talented and passionate
