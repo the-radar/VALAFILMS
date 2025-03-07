@@ -118,6 +118,8 @@ const settings = {
   arrows: true,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
+  lazyLoad: true,
+  fade:true,
 };
 
 export default function Photography() {
@@ -168,6 +170,7 @@ export default function Photography() {
                       alt={`Photo ${index}`}
                       className={classes.thumbnail}
                       onClick={() => { setCurrentImage(imgObj.url); setShowModal(true); }}
+                      loading="lazy"
                     />
                   ))}
                 </div>
