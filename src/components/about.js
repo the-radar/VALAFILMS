@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   blackAndWhiteImg: {
     filter: 'grayscale(100%)',
     transition: 'filter 0.3s ease',
+    objectFit:'contain',
   },
   projectsContainer: {
     margin: '15px 0',
