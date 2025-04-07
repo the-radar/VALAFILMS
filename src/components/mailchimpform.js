@@ -32,6 +32,7 @@ export default function MailchimpForm () {
                   background: '#222',
                   border: '1px solid #444',
                   color: 'white',
+                  maxWidth:'300px',
                   fontSize: '14px'
                 }}
               />

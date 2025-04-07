@@ -217,21 +217,6 @@ function Appm() {
         <span></span>
       </div>
       <div className={styleCondition ? "nav" : "nav show"}>
-        <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
-          <p className="cp-text">
-            <div style={{display:'flex',justifyContent:'center'}}> 
-              <p className="gmail">
-                Send us an email: info@valafilms.com
-              </p>
-            </div>
-            <br />
-            <p>
-              © Copyright 2025 Vala Films
-            </p>
-            <br />
-            <p className="radar" style={{cursor:"pointer"}} onClick={()=>{window.open("https://the-radar.net",'_blank')}}>by, TheRadar</p>
-          </p>
-        </div>
         <div className="navcontent">
           <div className="nav-content-container">
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('home');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);
@@ -246,9 +231,7 @@ function Appm() {
   setContactModal(false);setstyle3(!styleCondition3)}}>creative junkies</h1>
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setmodal(true); setstyle2(!styleCondition2);setstyle(!styleCondition);setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}>JOIN US</h1>
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setContactModal(true); setstyle2(!styleCondition2);setstyle(!styleCondition);setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}>CONTACT US</h1>
-            <div className={styleCondition3 ? "slidedown" : "slideup"}>
-      <MailchimpForm />
-    </div>
+          
             <div className={styleCondition3 ? "slidedown " : "slideup "} onClick={()=>{setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);
   setContactModal(false);setstyle3(!styleCondition3)}}>
               <div className="aflex"> 
@@ -257,6 +240,20 @@ function Appm() {
                 <a href="https://instagram.com/vala_films?utm_medium=copy_link" target="_blank" className="fa fa-instagram"></a>
               </div> 
             </div>
+            <div className={styleCondition3 ? "slidedown" : "slideup"} style={{marginTop: '20px'}}>
+        <MailchimpForm />
+        <div style={{textAlign: 'center', fontSize: '14px', marginTop: '20px'}}> 
+          <p className="gmail">
+            Send us an email: info@valafilms.com
+          </p>
+          <p style={{margin: '10px 0'}}>
+            © Copyright 2025 Vala Films
+          </p>
+          <p className="radar" style={{cursor:"pointer"}} onClick={()=>{window.open("https://the-radar.net",'_blank')}}>
+            by, TheRadar
+          </p>
+        </div>
+      </div>
           </div>
         </div>
       </div>
