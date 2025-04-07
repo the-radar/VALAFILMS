@@ -100,8 +100,10 @@ function Appm() {
     <div className="App">
       <div className={`navcontainer ${visible}`}></div>
       <div className="homecon">
-        <img src={logo} style={{zIndex:"9000"}} alt="" onClick={()=>{setview('home');setmodal(false)}} />
-        <h1 className="valatext" onClick={()=>{setview('home');setmodal(false)}} >V A L A   F I L M S</h1>
+        <img src={logo} style={{zIndex:"9000"}} alt="" onClick={()=>{setview('home');setmodal(false);
+  setContactModal(false)}} />
+        <h1 className="valatext" onClick={()=>{setview('home');setmodal(false);
+  setContactModal(false)}} >V A L A   F I L M S</h1>
         <div style={{zIndex:"6000",color:"white"}}>
           <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto"}} visible={showModal} enterAnimation="rotate" showCloseButton={false} onClose={()=>{setmodal(false)}}>
             <form action="https://formsubmit.co/info@valafilms.com" method="POST" onSubmit={sendEmail}>
