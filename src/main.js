@@ -216,15 +216,11 @@ function Appm() {
         <span></span>
         <span></span>
       </div>
-      <div className={styleCondition3 ? "slidedown" : "slideup"}>
-      <MailchimpForm />
-    </div>
       <div className={styleCondition ? "nav" : "nav show"}>
-      <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
-  <p className="cp-text">
-    <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}> 
-     
-      <p className="gmail">
+        <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
+          <p className="cp-text">
+            <div style={{display:'flex',justifyContent:'center'}}> 
+              <p className="gmail">
                 Send us an email: info@valafilms.com
               </p>
             </div>
@@ -250,6 +246,9 @@ function Appm() {
   setContactModal(false);setstyle3(!styleCondition3)}}>creative junkies</h1>
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setmodal(true); setstyle2(!styleCondition2);setstyle(!styleCondition);setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}>JOIN US</h1>
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{ setContactModal(true); setstyle2(!styleCondition2);setstyle(!styleCondition);setstyle3(!styleCondition3)}} style={{cursor:"pointer"}}>CONTACT US</h1>
+            <div className={styleCondition3 ? "slidedown" : "slideup"}>
+      <MailchimpForm />
+    </div>
             <div className={styleCondition3 ? "slidedown " : "slideup "} onClick={()=>{setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);
   setContactModal(false);setstyle3(!styleCondition3)}}>
               <div className="aflex"> 
