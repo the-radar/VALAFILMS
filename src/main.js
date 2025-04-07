@@ -7,6 +7,7 @@ import Home from "../src/components/homepage";
 import Projects from "../src/components/projects";
 import Collabs from "../src/components/collab";
 import Admin from "../src/components/admin";
+import MailchimpForm from '../src/components/mailchimpform';
 import Ad from "../src/components/Ad";
 import Ab from "../src/components/about";
 import Photography from '../src/components/photography';
@@ -219,6 +220,7 @@ function Appm() {
         <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
           <p className="cp-text">
             <div style={{display:'flex',justifyContent:'center'}}> 
+            <MailchimpForm />
               <p className="gmail">
                 Send us an email: info@valafilms.com
               </p>
