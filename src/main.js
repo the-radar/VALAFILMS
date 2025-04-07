@@ -216,7 +216,10 @@ function Appm() {
         <span></span>
         <span></span>
       </div>
-      <div className={styleCondition ? "nav" : "nav show"}>
+      <div className={styleCondition ? "nav" : "nav show"} style={{ 
+  overflowY: 'auto',  
+  maxHeight: '100vh' 
+}}>
         <div className="navcontent">
           <div className="nav-content-container">
             <h1 className={styleCondition3 ? "slidedown" : "slideup"} onClick={()=>{setview('home');setstyle2(!styleCondition2);setstyle(!styleCondition);setmodal(false);
