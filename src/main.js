@@ -67,7 +67,7 @@ function Appm() {
   function sendEmail(e) {
     e.preventDefault();
 
-    emailjs.sendForm('service_oxpe34e', 'template_4eiz1bm', e.target, 'user_y8UP0RC7QPtiBCf0ynAQD')
+    emailjs.sendForm('service_44a9us2', 'template_c1hvvvu', e.target, '8QiJyKaujovssckO3')
       .then((result) => {
         console.log(result.text);
         alert('form submitted');
@@ -83,7 +83,7 @@ function Appm() {
   function sendContactEmail(e) {
     e.preventDefault();
 
-    emailjs.sendForm('service_oxpe34e', 'template_4eiz1bm', e.target, 'user_y8UP0RC7QPtiBCf0ynAQD')
+    emailjs.sendForm('service_44a9us2', 'template_43t2hpj', e.target, '8QiJyKaujovssckO3')
       .then((result) => {
         console.log(result.text);
         alert('form submitted');
