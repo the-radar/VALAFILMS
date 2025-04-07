@@ -162,15 +162,15 @@ function Appm() {
             </div>
 
             <div class="input-container">
-              <input id="fieldother" class="input" type="text" name="other field" placeholder=" " />
+              <input id="fieldother" class="input" type="text" name="other_field" placeholder=" " />
               <label for="fieldother" class="placeholder">SPECIFY FIELD (OTHER)</label>
             </div>
             <div class="input-container">
-              <input id="pw" class="input" type="text" name="previous work" required placeholder=" " />
+              <input id="pw" class="input" type="text" name="previous_work" required placeholder=" " />
               <label for="pw" class="placeholder">LINK TO PREVIOUS WORK</label>
             </div>
             <div class="input-container">
-              <input id="us" class="input" type="text" name=" hear About us" required placeholder=" " />
+              <input id="us" class="input" type="text" name=" hear_about_us" required placeholder=" " />
               <label for="us" class="placeholder">HOW DID YOU HEAR ABOUT US?</label>
             </div>
             <div class="textarea-container">
