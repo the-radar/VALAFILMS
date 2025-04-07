@@ -1,12 +1,9 @@
 export default function MailchimpForm () {
     return (
       <div id="mc_embed_signup" style={{
-        background: '#010101',
-        padding: '20px',
         color: 'white',
         fontFamily: 'inherit',
         width: '100%',
-        maxWidth: '500px',
         margin: '0 auto'
       }}>
         <form

@@ -217,11 +217,11 @@ function Appm() {
         <span></span>
       </div>
       <div className={styleCondition ? "nav" : "nav show"}>
-        <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
-          <p className="cp-text">
-            <div style={{display:'flex',justifyContent:'center'}}> 
-            <MailchimpForm />
-              <p className="gmail">
+      <div style={{display:'flex',justifyContent:'center',alignItems:"center"}}> 
+  <p className="cp-text">
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}> 
+      <MailchimpForm />
+      <p className="gmail">
                 Send us an email: info@valafilms.com
               </p>
             </div>
