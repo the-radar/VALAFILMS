@@ -2,8 +2,9 @@ export default function MailchimpForm () {
     return (
       <div id="mc_embed_signup" style={{
         color: 'white',
-        fontFamily: 'inherit',
+        fontSize: '14px',
         width: '100%',
+        maxWidth: '400px',
         margin: '0 auto'
       }}>
         <form
@@ -13,6 +14,7 @@ export default function MailchimpForm () {
           name="mc-embedded-subscribe-form"
           className="validate"
           target="_blank"
+          style={{ fontSize: 'inherit' }}
         >
           <div id="mc_embed_signup_scroll">
             <h2 style={{color: 'white'}}>Subscribe to our newsletter</h2>
@@ -29,7 +31,8 @@ export default function MailchimpForm () {
                   padding: '8px',
                   background: '#222',
                   border: '1px solid #444',
-                  color: 'white'
+                  color: 'white',
+                  fontSize: '14px'
                 }}
               />
             </div>
