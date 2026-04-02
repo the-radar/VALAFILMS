@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from './firebase';
 import { v4 as uuid } from 'uuid';
+import { uploadToCloudinary } from './cloudinary';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -18,15 +19,10 @@ export default function UploadImage({path}) {
   const readImages = async (e) => {
     const file = e.target.files[0];
     const id = uuid();
-   
-    const storageRef = firebase.storage().ref('images').child(id);
+    const url = await uploadToCloudinary(file);
     const imageRef = firebase.database().ref('filmpage').child(id);
-    await storageRef.put(file);
-    storageRef.getDownloadURL().then((url) => {
-      imageRef.set(url);
-      const newState = [...imageUrl, { id, url }];
-      setImageUrl(newState);
-    });
+    imageRef.set(url);
+    setImageUrl([...imageUrl, { id, url }]);
   };
   const handleClick = () => {
     setOpen(true);
@@ -54,14 +50,8 @@ export default function UploadImage({path}) {
   };
   const readposter = async (e) => {
     const file = e.target.files[0];
-    const id = uuid();
-    const storageRef = firebase.storage().ref('poster').child(id);
-    const imageRef = firebase.database().ref('poster').child(id);
-    await storageRef.put(file);
-    storageRef.getDownloadURL().then((url) => {
-      setsposter(url)
-     
-    });
+    const url = await uploadToCloudinary(file);
+    setsposter(url);
   };
 
   

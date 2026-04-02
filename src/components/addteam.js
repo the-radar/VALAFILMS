@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from './firebase';
-import { v4 as uuid } from 'uuid';
+import { uploadToCloudinary } from './cloudinary';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -124,14 +124,12 @@ export default function Teamsettings() {
     setImage(null);
   };
 
-  const upload = () => {
-    // Validate required fields
+  const upload = async () => {
     if (!name || !role) {
       handleClick('Name and role are required');
       return;
     }
 
-    // Check if image is selected
     if (!image) {
       handleClick('Please select an image');
       return;
@@ -139,55 +137,29 @@ export default function Teamsettings() {
 
     setIsUploading(true);
 
-    firebase.storage().ref(`/images/${image.name}`).put(image)
-      .on("state_changed", 
-        (snapshot) => {
-          // Progress function
-          console.log("Upload in progress");
-        }, 
-        (error) => {
-          // Error function
-          console.error("Error uploading image:", error);
-          handleClick('Error uploading image');
-          setIsUploading(false);
-        }, 
-        () => {
-          // Completion function
-          firebase.storage().ref("images").child(image.name).getDownloadURL()
-            .then((url) => {
-              // Prepare data object
-              const newMemberData = {
-                imageUrl: url,
-                name: name || '',
-                role: role || ''
-              };
-              
-              // Only add optional fields if they have values
-              if (ig) newMemberData.ig = ig;
-              if (twitter) newMemberData.twitter = twitter;
-              if (gmail) newMemberData.gmail = gmail;
-              if (projects) newMemberData.projects = projects;
-              
-              // Add new team member
-              firebase.database().ref('/teammembers').push(newMemberData)
-                .then(() => {
-                  handleClick('Team member added successfully'); 
-                  resetForm();
-                  setIsUploading(false);
-                })
-                .catch(error => {
-                  console.error("Error adding team member:", error);
-                  handleClick('Error adding team member');
-                  setIsUploading(false);
-                });
-            })
-            .catch(error => {
-              console.error("Error getting download URL:", error);
-              handleClick('Error processing image');
-              setIsUploading(false);
-            });
-        }
-      );
+    try {
+      const url = await uploadToCloudinary(image);
+
+      const newMemberData = {
+        imageUrl: url,
+        name: name || '',
+        role: role || ''
+      };
+
+      if (ig) newMemberData.ig = ig;
+      if (twitter) newMemberData.twitter = twitter;
+      if (gmail) newMemberData.gmail = gmail;
+      if (projects) newMemberData.projects = projects;
+
+      await firebase.database().ref('/teammembers').push(newMemberData);
+      handleClick('Team member added successfully');
+      resetForm();
+    } catch (error) {
+      console.error("Error adding team member:", error);
+      handleClick('Error adding team member');
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleEditClick = (member) => {

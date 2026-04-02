@@ -208,35 +208,35 @@ export default function Homepage({ vid ,joinusprop }) {
           >
             {[
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/transcorp_hilton_logo_blue-6bOXl0zOIjCTx0CC9c8yzAaqH6QGx2.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118227/intc5wolqi29sumihkg6.png",
                 alt: "Transcorp Hilton",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/USAID-logo-AB0E9UAznb5jpSd1V2BDbpbL5vNOVL.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118238/kgr4899teiu00lbjavjv.png",
                 alt: "USAID",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/JWalker_2015_logo-G9S3rFX5UN6Tm75cUbTIfueuLQpKIn.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118241/aabmhzo8pwl8dv2skrlp.png",
                 alt: "Johnnie Walker",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fanta-logo-LheBdhqEYG3mUUchZ7D394BM49Cv3x.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118244/aakadf0qwxkv78xzvod9.png",
                 alt: "Fanta",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Pad_Up_Africa_Version4-3hjxu3YCx2mcnvON43AkWO8hVNzWrv.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118250/bnnsqvj2gftgtkqkqn7m.png",
                 alt: "Pad Up Africa",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Fayrouz_logo-DhI0FTsxYSro69K9gJc2PP9T4bGUWC.webp",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118254/ukn0mftqo6idm82beuov.webp",
                 alt: "Fayrouz",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Evergreen-42NogiMFInOnGSsEXmI6XFsmGtskT8.png",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118257/sim6dj8tyucn51milnbp.png",
                 alt: "Evergreen Initiative",
               },
               {
-                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-Vanilla.jpg-ltUkz7nN3zI0v9vVNwOcF40JXwoSnE.jpeg",
+                src: "https://res.cloudinary.com/dsrwsvsfn/image/upload/v1775118261/r9b0fmr1shubemcamhpt.jpg",
                 alt: "Vanilla",
               },
             ].map((logo, index) => (

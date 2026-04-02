@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from './firebase';
-import { v4 as uuid } from 'uuid';
+import { uploadToCloudinary } from './cloudinary';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
@@ -71,19 +71,13 @@ const PhotoUpload = () => {
 
   const readImages = async (e) => {
     const file = e.target.files[0];
-    const id = uuid();
-    const storageRef = firebase.storage().ref('photos').child(id);
-    await storageRef.put(file);
-    const url = await storageRef.getDownloadURL();
+    const url = await uploadToCloudinary(file);
     setImageUrl([...imageUrl, { url }]);
   };
 
   const readPoster = async (e) => {
     const file = e.target.files[0];
-    const id = uuid();
-    const storageRef = firebase.storage().ref('photoPoster').child(id);
-    await storageRef.put(file);
-    const url = await storageRef.getDownloadURL();
+    const url = await uploadToCloudinary(file);
     setPosterUrl(url);
   };
 
