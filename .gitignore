@@ -27,6 +27,10 @@ yarn-error.log*
 # migration scripts (contain credentials)
 /scripts/migrate-to-cloudinary.js
 /scripts/fix-oversized.js
+/scripts/list-dead-files.js
+/scripts/list-vidlinks.js
+/scripts/restore-dead-files.js
+/scripts/restore-homepage-video.js
 /scripts/continuity.md
 
 # playwright
@@ -38,3 +42,10 @@ yarn-error.log*
 
 # eslint cache
 .eslintcache
+
+# media archives / source assets (not part of app build)
+/Stills.zip
+/Stills/
+/fwdstills.zip
+/Website Homepagge video.mov
+/continuity.md
