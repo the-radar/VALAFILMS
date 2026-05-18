@@ -135,6 +135,11 @@ export default function About () {
           Our goal is to develop stories that push boundaries, entertain and create
           lasting social and cultural impact. We believe that together we can shape
           and define the future of media in Africa.</p>
+        <br />
+        <p style={{fontSize: "13px", color: "#c1872b"}}>
+          The roster is growing. If you're a creative who wants in,
+          open the menu and pick <strong>JOIN US</strong>.
+        </p>
       </div>
       <div className="teammembers">
         <InfiniteScroll

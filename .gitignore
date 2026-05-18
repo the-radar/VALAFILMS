@@ -49,3 +49,17 @@ yarn-error.log*
 /fwdstills.zip
 /Website Homepagge video.mov
 /continuity.md
+
+# never commit credentials
+src/gitcred.txt
+*.token
+*.pem
+*.key
+
+# session artifacts
+_pre_clone_backup/
+film_club_brief.py
+file_issues.sh
+Vala_Film_Club_Brief.pdf
+Vala_Film_Club_Brief_Philosophy.md
+src/CLAUDE.md

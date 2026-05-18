@@ -1,0 +1,30 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "filmpages":   { ".read": true, ".write": "auth != null" },
+    "photopages":  { ".read": true, ".write": "auth != null" },
+    "teammembers": { ".read": true, ".write": "auth != null" },
+    "collab":      { ".read": true, ".write": "auth != null" },
+    "ad":          { ".read": true, ".write": "auth != null" },
+    "vala":        { ".read": true, ".write": "auth != null" },
+    "poster":      { ".read": true, ".write": "auth != null" },
+    "filmpage":    { ".read": true, ".write": "auth != null" },
+
+    "admins": {
+      ".read": "auth != null",
+      ".write": false
+    },
+
+    "filmclub_members": {
+      ".read":  "auth != null && root.child('admins').child(auth.uid).exists()",
+      ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
+    },
+
+    "$other": {
+      ".read":  "auth != null && root.child('admins').child(auth.uid).exists()",
+      ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
+    }
+  }
+}

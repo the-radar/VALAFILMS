@@ -574,6 +574,13 @@ opacity: 1;
   top: 20px;
   right: 30px;
   z-index: 5001;
+  /* Solid backdrop so the icon stays legible over scrolling content (closes #3) */
+  background-color: rgba(0, 0, 0, 0.72);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  padding: 10px;
+  box-sizing: border-box;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);

@@ -178,16 +178,23 @@ function Appm() {
               <textarea id="message" class="input" name="message" required placeholder=" "></textarea>
               <label for="message" class="placeholder">YOUR COMMENT</label>
             </div>
-            
-            {/* <input type="text" placeholder="SPECIFY FIELD (OTHER)" name="fieldother"/>
-            <input  type="text" placeholder="LINK TO PREVIOUS WORK" name="pw"/>
-            <input required  type="text" placeholder="HOW DID YOU HEAR ABOUT US?" name="us" />
-            <textarea placeholder="YOUR MESSAGE" name="message"></textarea> */}
+
+            <p style={{fontSize: "11px", color: "#888", margin: "16px 0 8px", lineHeight: "1.5"}}>
+              We use the info above only to evaluate your application. We don't share it with third parties.
+              By sending this you confirm you're 18+ and agree to be contacted by Vala Films about creative opportunities.
+            </p>
 
               <input type="submit" value="SEND" />
             </form>
           </Rodal>
           <Rodal className="element" customMaskStyles={{backgroundColor:'#010101'}} customStyles={{backgroundColor:"#010101",padding:"10px",width:"80vw",height:"auto",overflowY:"auto"}} visible={showContactModal} enterAnimation="rotate" showCloseButton={false} onClose={()=>{setContactModal(false)}}>
+            <div style={{padding: "0 8px 16px", color: "#bbb", fontSize: "13px", lineHeight: "1.6"}}>
+              <p style={{margin: "0 0 6px", color: "#fff", fontSize: "15px", letterSpacing: "0.05em"}}>GET IN TOUCH</p>
+              <p style={{margin: 0}}>
+                Email us directly: <a href="mailto:info@valafilms.com" style={{color: "#c1872b"}}>info@valafilms.com</a>
+              </p>
+              <p style={{margin: "4px 0 0"}}>Or send a note with the form below.</p>
+            </div>
             <form action="https://formsubmit.co/info@valafilms.com" method="POST" onSubmit={sendContactEmail}>
               <div class="input-container">
                 <input id="contact-name" class="input" type="text" name="name" required placeholder=" " />
@@ -250,7 +257,7 @@ function Appm() {
             Send us an email: info@valafilms.com
           </p>
           <p style={{margin: '10px 0'}}>
-            © Copyright 2025 Vala Films
+            © Copyright {new Date().getFullYear()} Vala Films
           </p>
           <p className="radar" style={{cursor:"pointer"}} onClick={()=>{window.open("https://the-radar.net",'_blank')}}>
             by, TheRadar

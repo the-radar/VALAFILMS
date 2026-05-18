@@ -210,7 +210,7 @@ const classes = useStyles()
         {!!obj2 && !!currentitem && obj2[currentitem].supprtingimages.map((imgurl, index) => (
       <div>
     
-      < img src={`${imgurl.url}`} alt="hey" className="imgslide" key={index} />
+      < img src={`${imgurl.url}`} alt={`${obj2[currentitem].TITLE || 'Film'} still ${index + 1}`} className="imgslide" key={index} />
 <br />
 
 
@@ -297,7 +297,7 @@ const classes = useStyles()
                <Slider {...settings3}>
                  {ads[item].supprtingimages.map((imgurl, index) => (
                    <div className="newimage">
-                     <img src={`${imgurl.url}`} className="" alt="hey" key={index} onClick={()=>{
+                     <img src={`${imgurl.url}`} className="" alt={`${ads[item].TITLE || 'Ad'} still ${index + 1}`} key={index} onClick={()=>{
                        setsettings({...sett, initialSlide: index});
                        setcurrentitem(item);
                      }}/>
@@ -307,7 +307,7 @@ const classes = useStyles()
              </div>
            </div>
            <div className="poster">
-             <img src={ads[item].poster} alt=""/>
+             <img src={ads[item].poster} alt={`${ads[item].TITLE || 'Ad'} poster`}/>
            </div>
          </div>
          <br/>
@@ -344,7 +344,7 @@ const classes = useStyles()
                  <Slider {...settings3}>
                    {obj2[item].supprtingimages.map((imgurl, index) => (
                      <div className="newimage">
-                       <img src={`${imgurl.url}`} className="" alt="hey" key={index} onClick={()=>{
+                       <img src={`${imgurl.url}`} className="" alt={`${obj2[item].TITLE || 'Film'} still ${index + 1}`} key={index} onClick={()=>{
                          setsettings({...sett, initialSlide: index});
                          setcurrentitem(item);
                        }}/>
@@ -354,7 +354,7 @@ const classes = useStyles()
                </div>
              </div>
              <div className="poster-container">
-               <img className="poster-img" src={obj2[item].poster} alt=""/>
+               <img className="poster-img" src={obj2[item].poster} alt={`${obj2[item].TITLE || 'Film'} poster`}/>
              </div>
            </div>
            <br/>
