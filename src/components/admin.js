@@ -9,7 +9,7 @@ import PhotoUpload from './PhotoUpload';
 
 export default function Admin() {
 
-    const HOMEPAGE_VID_URL=firebase.database().ref()
+    // (removed unused root-ref to support locked-down RTDB rules — #17)
     const [home,sethome]=useState()
     const [ad,setad]=useState()
     const [collab,setcollab]=useState()

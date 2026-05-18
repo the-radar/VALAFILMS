@@ -131,16 +131,20 @@ export default function Collab({vid}) {
     setIsVideoLoaded(true);
   };
   const loadContent= ()=>{
-    const todoRef = firebase.database().ref();
-    todoRef.on('value', (snapshot) => {
-     setobj(snapshot.val())
-     console.log()
-      setobj2(snapshot.val().collab.slides)
-      setlink(snapshot.val().vala.settings.collab.landingvideo)
-      setthumblink(snapshot.val().vala.settings.collab.thumb)
-
-
-    }); }
+    // Scoped reads — /collab and /vala/settings/collab. Lets RTDB rules deny root. (closes #17 with refactor)
+    const collabRef = firebase.database().ref('/collab');
+    collabRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setobj(v);
+      setobj2(v.slides);
+    });
+    const valaRef = firebase.database().ref('/vala/settings/collab');
+    valaRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setlink(v.landingvideo);
+      setthumblink(v.thumb);
+    });
+  }
    
     const [obj,setobj]= useState()
     const [imgs,setimgs]= useState([])

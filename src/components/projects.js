@@ -144,17 +144,30 @@ export default function Projects({vid}) {
   };
   
   const loadContent= ()=>{
-    const todoRef = firebase.database().ref();
-    todoRef.on('value', (snapshot) => {
-     setobj(snapshot.val())
-     console.log()
-      setobj2(snapshot.val().filmpages.slides)
-      setlink(snapshot.val().vala.settings.film.landingvideo)
-      setthumblink(snapshot.val().vala.settings.film.thumb)
-      setAds(snapshot.val().ad.slides) // Load ads content
-      setAdsLink(snapshot.val().vala.settings.ads.landingvideo) // Load ads landing video
-
-    }); }
+    // Scoped reads — filmpages, ad, and vala settings. Lets RTDB rules deny root. (closes #17 with refactor)
+    const filmpagesRef = firebase.database().ref('/filmpages');
+    filmpagesRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setobj(v);
+      setobj2(v.slides);
+    });
+    const adRef = firebase.database().ref('/ad');
+    adRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setAds(v.slides);
+    });
+    const valaFilmRef = firebase.database().ref('/vala/settings/film');
+    valaFilmRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setlink(v.landingvideo);
+      setthumblink(v.thumb);
+    });
+    const valaAdsRef = firebase.database().ref('/vala/settings/ads');
+    valaAdsRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setAdsLink(v.landingvideo);
+    });
+  }
     const [obj,setobj]= useState()
     const [imgs,setimgs]= useState([])
    const[obj2,setobj2]=useState()

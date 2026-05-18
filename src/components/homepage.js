@@ -48,13 +48,13 @@ export default function Homepage({ vid ,joinusprop }) {
   const [thumblink,setthumblink] = useState()
   
   const loadContent = () => {
-    const todoRef = firebase.database().ref();
+    // Read only what we need so RTDB rules can deny root reads (closes #17 with refactor)
+    const todoRef = firebase.database().ref('/vala/settings/homepage');
     todoRef.on('value', (snapshot) => {
-     
-      setlink(snapshot.val().vala.settings.homepage.landingvideo)
-      setthumblink(snapshot.val().vala.settings.homepage.thumb)
+      const v = snapshot.val() || {};
+      setlink(v.landingvideo)
+      setthumblink(v.thumb)
       console.log(link)
-
     });
   }
 

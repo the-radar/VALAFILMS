@@ -100,16 +100,19 @@ export default function Ads({vid}) {
 
   let images=[]
   const loadContent= ()=>{
-    const todoRef = firebase.database().ref();
-    todoRef.on('value', (snapshot) => {
-     setobj(snapshot.val())
-     console.log()
-     if(snapshot.val().ad.slides!=null)
-      setobj2(snapshot.val().ad.slides)
-      setlink(snapshot.val().vala.settings.ads.landingvideo)
-
-
-    }); }
+    // Scoped reads — /ad for slides, /vala for video. Lets RTDB rules deny root. (closes #17 with refactor)
+    const adRef = firebase.database().ref('/ad');
+    adRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setobj(v);
+      if (v.slides != null) setobj2(v.slides);
+    });
+    const valaRef = firebase.database().ref('/vala/settings/ads');
+    valaRef.on('value', (snapshot) => {
+      const v = snapshot.val() || {};
+      setlink(v.landingvideo);
+    });
+  }
     const Transition = React.forwardRef(function Transition(props, ref) {
       return <Slide direction="up" ref={ref} {...props} />;
     });
